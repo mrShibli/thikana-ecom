@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+            margin: 0;
+        }
+
+        
+        .glowcard {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(50deg, rgb(162 233 233) 0%, rgb(10 106 90) 100%);
+            border-radius: 10px;
+            color: white;
+            padding: 20px 40px;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* .glowcard {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(50deg, rgb(30 195 195) 0%, rgb(100 147 255) 100%);
+            border-radius: 10px;
+            color: white;
+            padding: 20px 40px;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        } */
+
+        .glowcard-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .glowcard .icon {
+            font-size: 1.6em;
+            margin-right: 10px;
+        }
+
+        .glowcard .count {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .glowcard .label {
+            font-size: 1em;
+        }
+
+        .glowcard::before,
+        .glowcard::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+        }
+
+        .glowcard::before {
+            top: -150px;
+            left: -50px;
+        }
+
+        .glowcard::after {
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .glowcard i {
+            font-size: 10px;
+            ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glowcard">
+        <div class="glowcard-content">
+            <span class="icon"><span class="fas fa-user text-white fs-4"></span></span>
+            <div>
+                <div class="count">99.99k</div>
+                <div class="label">Followers</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

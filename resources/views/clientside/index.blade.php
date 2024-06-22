@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thikana</title>
+    <link rel="shortcut icon" href="{{ asset('clientside/images/logo.png') }}" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ asset('clientside/dist/assets/index.css') }}">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top  px-10 py-2  flex  justify-between bg-blue">
+            <div>
+                <a href="#" class="text-white text-xs  laptop:text-sm">Donation for Palestine</a>
+                <a href="#" class="text-white pl-3 text-xs laptop:text-sm">Track Order</a>
+            </div>
+            <!-- <p class="text-sm text-white hidden laptop:block">Free Shipping Over 1499 Taka Order!</p> -->
+            <div>
+                <a href="#" class="ml-2 text-white text-base"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="ml-2 text-white text-base"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="ml-2 text-white text-base"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="flex justify-between px-2 laptop:px-10 py-2 bg-[#FAF4F6] items-center">
+            <a href="#"> <img class="w-32 laptop:w-40 h-auto" src="{{ asset('clientside/images/logo.png') }}"
+                    alt=""></a>
+
+            <nav class="hidden laptop:block">
+                <ul class="flex gap-4">
+                    <li class="dropdown"><a href="shop.html" class="text-base text-red hover:text-blue ">T-Shirt
+                            Collection <i class="fa-solid fa-angle-down"></i></i></a>
+                        <ul>
+                            <li><a href="shop.html" class="text-base text-red hover:text-blue">Dawah T-Shirt</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Gift Item</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Mens Fashion</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Womens Fashion</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue">Customize Chocolate</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Fashion Accessories</a></li>
+                </ul>
+            </nav>
+
+            <div class="user"><a href="{{ route('login') }}"><img class="w-8 h-8"
+                        src="{{ asset('clientside/images/profile.png') }}" alt=""></a></div>
+
+            <div class="cart flex gap-2">
+                <img class="w-8 h-8" src="{{ asset('clientside/images/cart.png') }}" alt="">
+                <a class="text-red" href="">0ট</a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- -------------------hero-section------------------- -->
+
+    <div class="swiper hero-slider container mx-auto p-3 py-3">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="{{ asset('clientside/images/Eid-Sale-Slider-Ramadan-Special.jpg') }}" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="{{ asset('clientside/images/Eid-Sale-Slider-Ramadan-Special.jpg') }}" alt="">
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- ---------product-category-section-------------- -->
+
+    <div class="category container mx-auto py-5 p-3 ">
+
+        <input type="search" name="search" placeholder="Search Category" id=""
+            class="p-1 pl-2 border rounded my-5 placeholder:text-xs focus:border-red outline-none">
+
+        <div class="grid grid-cols-4 tablet:grid-cols-4 laptop:grid-cols-8 desktop:grid-cols-9 ">
+            <div>
+                <a href="shop.html"> <img class="w-14 h-14" src="{{ asset('clientside/images/mens-fashion.png') }}"
+                        alt=""></a>
+                <a href="shop.html">
+                    <h6 class="text-xs mt-2">Mens Fashion</h6>
+                </a>
+            </div>
+            <div>
+                <a href="shop.html"><img class="w-14 h-14" src="{{ asset('clientside/images/T-Shirt_Collection.png') }}"
+                        alt=""></a>
+                <a href="shop.html">
+                    <h6 class="text-xs mt-2">T-Shirt Collection</h6>
+                </a>
+            </div>
+            <div>
+                <a href="shop.html"> <img class="w-14 h-14" src="{{ asset('clientside/images/Dawah_T-Shirt.png') }}"
+                        alt=""></a>
+                <a href="shop.html">
+                    <h6 class="text-xs mt-2">Dawah T-Shirt</h6>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <!-- ------------------Featured_Products-section-------------------  -->
+
+    <div class="container mx-auto p-3 laptop:py-8 ">
+        <h2 class="mb-4 laptop:mb-12 text-blue text-xl font-semibold text-center ">Featured Products</h2>
+
+        <div class="swiper featured-slider pb-14 ">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"> <img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/Special-Dawah-T-Shirt-1-.jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (3).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="{{ asset('clientside/bg-slate-100 p-2') }}"
+                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+
+    </div>
+
+    <div class="divider border  block  container mx-auto my-7 "></div>
+
+    <!-- --------------New_Arrival-section------------------  -->
+
+    <div class="container mx-auto p-3 laptop:py-5">
+        <h2 class="mb-4 laptop:mb-12 text-center mt-7 text-blue text-xl font-semibold">New Arrival</h2>
+        <div class="divider border  block container my-8"></div>
+
+        <div class="swiper newArrival-slider pb-14 ">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"> <img class="{{ asset('clientside/bg-slate-100 p-2') }}"
+                            src="{{ asset('clientside/images/Special-Dawah-T-Shirt-1-.jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="{{ asset('clientside/bg-slate-100 p-2') }}"
+                            src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (3).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+                <div class="swiper-slide text-center border rounded p-2">
+                    <a href="product_single.html"><img class="bg-slate-100 p-2"
+                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
+                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                            class="special">299৳</span></p>
+                    <a href="#"
+                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
+                </div>
+
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+    </div>
+
+    <!-- -------------------------c-review------------------- -->
+
+    <div class="container mx-auto p-3 tablet:py-6 laptop:py-8 ">
+
+        <h2 class="mb-14 text-center text-blue text-base laptop:text-xl  font-semibold">Happy Customer</h2>
+
+        <div class="grid gap-4 grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 client-review swiper pb-14">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
+                        src="{{ asset('clientside/images/hpy-cstmr (1).jpg') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
+                        src="{{ asset('clientside/images/hpy-cstmr (2).jpg') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
+                        src="{{ asset('clientside/images/hpy-cstmr (1).png') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
+                        src="{{ asset('clientside/images/hpy-cstmr (2).png') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
+                        src="{{ asset('clientside/images/hpy-cstmr (1).png') }}" alt="">
+                </div>
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- --------------T-Shirt_Collection-section--------------------  -->
+
+
+    <div class="container mx-auto p-3 laptop:py-5">
+        <h2 class="mb-4 laptop:mb-12 text-center mt-7 text-blue text-xl font-semibold">T-Shirt Collection</h2>
+        <div class="divider border  block  container my-8 "></div>
+
+        <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4">
+
+            <div class="text-center border rounded p-2">
+                <a href="product_single.html"><img class="bg-slate-100 p-2"
+                        src="{{ asset('clientside/images/Special-Dawah-T-Shirt-1-.jpg') }}" alt=""></a>
+                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
+                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                        class="special">299৳</span></p>
+                <a href="#"
+                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                    Product</a>
+            </div>
+
+            <div class="text-center border rounded p-2">
+                <a href="product_single.html"> <img class="bg-slate-100 p-2"
+                        src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
+                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
+                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                        class="special">299৳</span></p>
+                <a href="#"
+                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                    Product</a>
+            </div>
+
+            <div class="text-center border rounded p-2">
+                <a href="product_single.html"><img class="bg-slate-100 p-2"
+                        src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
+                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
+                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                        class="special">299৳</span></p>
+                <a href="#"
+                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                    Product</a>
+            </div>
+
+            <div class="text-center border rounded p-2">
+                <a href="product_single.html"><img class="bg-slate-100 p-2"
+                        src="{{ asset('clientside/images/img (3).jpg') }}" alt=""></a>
+                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
+                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
+                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
+                        class="special">299৳</span></p>
+                <a href="#"
+                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                    Product</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ------------Our_Activities(blog)-section-------------------  -->
+
+
+    <div class="container mx-auto p-3 laptop:py-5 blog">
+        <h2 class="mb-10 mt-7 text-blue text-2xl font-medium text-center">Our Activities</h2>
+
+        <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4 ">
+            <div>
+                <a href="#"> <img src="{{ asset('clientside/images/donation.jpg') }}" alt=""></a>
+                <a href="#">
+                    <p class="title text-red my-2 text-x">March-2024 1st Week Donation</p>
+                </a>
+                <a href="#">
+                    <h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা
+                        হবে।</h5>
+                </a>
+                <a href="#"
+                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+            </div>
+            <div>
+                <a href="#"> <img src="{{ asset('clientside/images/donation.jpg') }}" alt=""></a>
+                <a href="#">
+                    <p class="title text-red my-2 text-x">March-2024 1st Week Donation</p>
+                </a>
+                <a href="#">
+                    <h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা
+                        হবে।</h5>
+                </a>
+                <a href="#"
+                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+            </div>
+            <div>
+                <a href="#"> <img src="{{ asset('clientside/images/donation.jpg') }}" alt=""></a>
+                <a href="#">
+                    <p class="title text-red my-2 text-x">March-2024 1st Week Donation</p>
+                </a>
+                <a href="#">
+                    <h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা
+                        হবে।</h5>
+                </a>
+                <a href="#"
+                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- --------------------------------  -->
+
+
+    <div class="container mx-auto p-3 laptop:py-10 grid gap-4 grid-cols-2  laptop:grid-cols-4">
+
+        <div class="flex items-center gap-4 ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
+            </svg>
+            <div>
+                <h4 class="text-sm laptop:text-base text-blue font-medium">High-quality Goods</h4>
+                <p class="text-xs laptop:text-sm">Enjoy top quality items for less</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
+            </svg>
+            <div>
+
+                <h4 class="text-sm laptop:text-base text-blue font-medium">24/7 Live chat</h4>
+                <p class="text-xs laptop:text-sm">Instant assistance whenever you need</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+            </svg>
+            <div>
+                <h4 class="text-sm laptop:text-base text-blue font-medium">Express Shipping</h4>
+                <p class="text-xs laptop:text-sm">Fast & reliable delivery options</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4  ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+            </svg>
+
+            <div>
+                <h4 class="text-sm laptop:text-base text-blue font-medium"> Secure Payment</h4>
+                <p class="text-xs laptop:text-sm">Multiple safe payment methods</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ---------------Footer-section---------------------------  -->
+
+    <div class="footer bg-[#00000F] p-3 laptop:py-10">
+        <div class="container mx-auto grid gap-4 grid-cols-1 tablet:grid-cols-4">
+            <div>
+                <a href="#"><img class="w-1/4 tablet:w-36 laptop:w-1/2  h-auto mb-2 tablet:mb-5 laptop:mb-6"
+                        src="{{ asset('clientside/images/logo.png') }}" alt=""></a>
+                <p class="text-white text-sm laptop:text-sm">Unbox The Unexpected</p>
+            </div>
+
+            <div>
+                <h1 class="text-white mb-2 text-[18px]">Quick LInks</h1>
+                <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
+                <div>
+                    <a href="blog.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Blog</a>
+                    <a href="shop.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Shop</a>
+                    <a href="my-account.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">My
+                        account</a>
+                    <a href="terms-and-conditions.html"
+                        class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Terms and Conditions</a>
+                    <a href="privacy-policy.html"
+                        class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Privacy Policy</a>
+                    <a href="refund_returns.html"
+                        class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Refund and Return
+                        Policy</a>
+                    <a href="donation-of-thikana-shop.html"
+                        class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Donation for Palestine</a>
+                </div>
+            </div>
+
+            <div>
+                <h1 class="text-white mb-2 text-[18px]">Categories</h1>
+                <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
+                <div>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">T-Shirt
+                        Collection </a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Dawah
+                        T-Shirt</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Gift
+                        Item</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Mens
+                        Fashion</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Womens
+                        Fashion</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Customize
+                        Chocolate</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Fashion
+                        Accessories</a>
+                </div>
+            </div>
+            <div>
+                <h1 class="text-white mb-2 text-[18px]">Contact Us</h1>
+                <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
+
+                <div>
+                    <a href="#"><i
+                            class="fa-brands fa-facebook text-red h-8 w-8 leading-[30px] text-center  border-red border-2 rounded-full hover:scale-105 ease-linear mr-2"></i>
+                    </a>
+                    <a href="#"><i
+                            class="fa-brands fa-youtube   text-red h-8 w-8 leading-[30px] text-center  border-red border-2 rounded-full hover:scale-105 ease-linear"></i></a>
+                    <div class="mt-5">
+                        <p class="text-white text-xs laptop:text-sm"> <i
+                                class="fa-solid fa-location-dot text-red mr-1"></i> Kolahat, Badalgachi, Naogaon</p>
+                        <p class="text-white text-xs laptop:text-sm my-4"> <i
+                                class="fa-solid fa-envelope-open-text text-red mr-1"></i> <a
+                                href="mailto:thikanagiftshop@gmail.com">thikanagiftshop@gmail.com</a></p>
+                        <p class="text-white text-xs laptop:text-sm"> <i
+                                class="fa-solid fa-phone-volume text-red mr-1"></i> <a
+                                href="tel:+8801327-282454">+8801327-282454</a></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="divider border-[1px] border-rose-950 container mx-auto my-10"></div>
+        <p class="text-center text-white text-xs tablet:text-sm  laptop:text-sm  mt-4 laptop:mt-10 leading-6 ">
+            Copyright © 2024 Thikana.shop .All rights reserved. Website Designed & Developed by <a class="text-red"
+                href="#">SOFTEB.COM</a></p>
+
+    </div>
+
+
+    <!-- swiper js  -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- cstm js  -->
+    <script src="{{ asset('clientside/js/script.js') }}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thikana</title>
+    <link rel="shortcut icon" href="/assets/logo-MO5qWhZL.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" crossorigin href="/assets/index-C9n8FHPy.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-top  px-10 py-2  flex  justify-between bg-blue">
+            <div>
+                <a href="#" class="text-white text-xs  laptop:text-sm">Donation for Palestine</a>
+                <a href="#" class="text-white pl-3 text-xs laptop:text-sm">Track Order</a>
+            </div>
+            <!-- <p class="text-sm text-white hidden laptop:block">Free Shipping Over 1499 Taka Order!</p> -->
+            <div>
+                <a href="#" class="ml-2 text-white text-base"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="ml-2 text-white text-base"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="ml-2 text-white text-base"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="flex justify-between px-2 laptop:px-10 py-2 bg-[#FAF4F6] items-center">
+            <a href="#"> <img class="w-32 laptop:w-40 h-auto" src="/assets/logo-MO5qWhZL.png" alt=""></a>
+
+            <nav class="hidden laptop:block">
+                <ul class="flex gap-4">
+                    <li class="dropdown"><a href="shop.html" class="text-base text-red hover:text-blue ">T-Shirt Collection <i class="fa-solid fa-angle-down"></i></i></a>
+                    <ul>
+                        <li><a href="shop.html" class="text-base text-red hover:text-blue">Dawah T-Shirt</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Gift Item</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Mens Fashion</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Womens Fashion</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue">Customize Chocolate</a></li>
+                    <li><a href="shop.html" class="text-base text-red hover:text-blue ">Fashion Accessories</a></li> 
+                </ul>
+            </nav>
+
+            <div class="user"><a href="#"><img class="w-8 h-8" src="data:image/png;base64,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" alt=""></a></div>
+
+            <div class="cart flex gap-2">
+                <img class="w-8 h-8" src="data:image/png;base64,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" alt="">
+                <a class="text-red" href="">0ট</a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- -------------------hero-section------------------- -->
+
+    <div class="swiper hero-slider container mx-auto p-3 py-3">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                 <img src="/assets/Eid-Sale-Slider-Ramadan-Special-wVwKr1HA.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="/assets/Eid-Sale-Slider-Ramadan-Special-wVwKr1HA.jpg" alt="">
+           </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+          <!-- ---------product-category-section-------------- -->
+
+     <div class="category container mx-auto py-5 p-3 ">
+
+        <input  type="search" name="search" placeholder="Search Category" id="" class="p-1 pl-2 border rounded my-5 placeholder:text-xs focus:border-red outline-none">
+
+    <div class="grid grid-cols-4 tablet:grid-cols-4 laptop:grid-cols-8 desktop:grid-cols-9 ">
+        <div>
+           <a href="shop.html"> <img class="w-14 h-14" src="/assets/mens-fashion-tQ1__6XR.png" alt=""></a>
+            <a href="shop.html"><h6 class="text-xs mt-2">Mens Fashion</h6></a>
+        </div>
+        <div>
+            <a href="shop.html"><img class="w-14 h-14" src="/assets/T-Shirt_Collection-MN6Pm-pB.png" alt=""></a>
+          <a href="shop.html">  <h6 class="text-xs mt-2">T-Shirt Collection</h6></a>
+        </div>
+        <div>
+           <a href="shop.html"> <img class="w-14 h-14" src="/assets/Dawah_T-Shirt-DUjXnPUA.png" alt=""></a>
+            <a href="shop.html"><h6 class="text-xs mt-2">Dawah T-Shirt</h6></a>
+        </div>
+        
+        
+    </div>
+          </div>
+
+   
+
+    <!-- ------------------Featured_Products-section-------------------  -->
+
+    <div class="container mx-auto p-3 laptop:py-8 ">
+        <h2 class="mb-4 laptop:mb-12 text-blue text-xl font-semibold text-center ">Featured Products</h2>
+
+        <div class="swiper featured-slider pb-14 ">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide text-center border rounded p-2"> 
+                    <a href="product_single.html"> <img class="bg-slate-100 p-2" src="/assets/Special-Dawah-T-Shirt-1--CKTCyEkG.jpg" alt=""></a> 
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+                    <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                 </div> 
+       
+                 <div class="swiper-slide text-center border rounded p-2">
+                   <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(1)-CGJmukIV.jpg" alt=""></a> 
+                   <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+                   <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+                   <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+               </div> 
+       
+               <div class="swiper-slide text-center border rounded p-2">
+                 <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(2)-vfQibHEL.jpg" alt=""></a>
+                 <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+                 <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+                 <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+             </div> 
+       
+             <div class="swiper-slide text-center border rounded p-2">
+               <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(3)-BU3akTXN.jpg" alt=""></a>
+               <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+               <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+               <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+           </div>  
+
+           <div class="swiper-slide text-center border rounded p-2">
+            <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(2)-vfQibHEL.jpg" alt=""></a>
+            <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+            <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+            <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+        </div> 
+
+        </div>
+         
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div> 
+
+        </div>
+
+       
+    </div> 
+
+    <div class="divider border  block  container mx-auto my-7 "></div>
+
+    <!-- --------------New_Arrival-section------------------  -->
+
+    <div class="container mx-auto p-3 laptop:py-5">
+        <h2 class="mb-4 laptop:mb-12 text-center mt-7 text-blue text-xl font-semibold">New Arrival</h2>
+    <div class="divider border  block container my-8"></div>
+
+    <div class="swiper newArrival-slider pb-14 ">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide text-center border rounded p-2"> 
+                <a href="product_single.html"> <img class="bg-slate-100 p-2" src="/assets/Special-Dawah-T-Shirt-1--CKTCyEkG.jpg" alt=""></a> 
+                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+                <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+             </div> 
+   
+             <div class="swiper-slide text-center border rounded p-2">
+               <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(1)-CGJmukIV.jpg" alt=""></a> 
+               <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+               <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+               <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+           </div> 
+   
+           <div class="swiper-slide text-center border rounded p-2">
+             <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(2)-vfQibHEL.jpg" alt=""></a>
+             <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+             <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+             <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+         </div> 
+   
+         <div class="swiper-slide text-center border rounded p-2">
+           <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(3)-BU3akTXN.jpg" alt=""></a>
+           <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+           <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+           <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+       </div>  
+
+       <div class="swiper-slide text-center border rounded p-2">
+        <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(2)-vfQibHEL.jpg" alt=""></a>
+        <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+        <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+        <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+    </div> 
+    <div class="swiper-slide text-center border rounded p-2">
+        <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(1)-CGJmukIV.jpg" alt=""></a> 
+        <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+        <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+        <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+    </div> 
+
+    <div class="swiper-slide text-center border rounded p-2">
+      <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(2)-vfQibHEL.jpg" alt=""></a>
+      <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+      <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+      <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+  </div> 
+
+
+    </div>
+     
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div> 
+
+    </div>  
+       
+    </div>
+
+    <!-- -------------------------c-review------------------- -->
+
+    <div class="container mx-auto p-3 tablet:py-6 laptop:py-8 ">
+
+        <h2 class="mb-14 text-center text-blue text-base laptop:text-xl  font-semibold">Happy Customer</h2>
+
+        <div class="grid gap-4 grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 client-review swiper pb-14">
+            <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded" src="/assets/hpy-cstmr%20(1)-CFasaHl6.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded" src="/assets/hpy-cstmr%20(2)-Ck6TbQf4.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded" src="/assets/hpy-cstmr%20(1)-GCfsLiAy.png" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded" src="/assets/hpy-cstmr%20(2)-cKqwdPdh.png" alt="">
+            </div> 
+            <div class="swiper-slide">
+                <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded" src="/assets/hpy-cstmr%20(1)-GCfsLiAy.png" alt="">
+            </div>
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div> 
+            
+
+        </div>
+
+    </div>
+
+
+     
+
+    <!-- --------------T-Shirt_Collection-section--------------------  -->
+
+    
+    <div class="container mx-auto p-3 laptop:py-5">
+        <h2 class="mb-4 laptop:mb-12 text-center mt-7 text-blue text-xl font-semibold">T-Shirt Collection</h2>
+    <div class="divider border  block  container my-8 "></div>
+
+    <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4">
+
+        <div class="text-center border rounded p-2">
+          <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/Special-Dawah-T-Shirt-1--CKTCyEkG.jpg" alt=""></a>
+          <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+          <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+          <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+      </div> 
+
+      <div class="text-center border rounded p-2">
+       <a href="product_single.html"> <img class="bg-slate-100 p-2" src="/assets/img%20(1)-CGJmukIV.jpg" alt=""></a>
+        <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+        <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+        <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+    </div> 
+
+    <div class="text-center border rounded p-2">
+      <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(2)-vfQibHEL.jpg" alt=""></a>
+      <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+      <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+      <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+  </div> 
+
+  <div class="text-center border rounded p-2">
+    <a href="product_single.html"><img class="bg-slate-100 p-2" src="/assets/img%20(3)-BU3akTXN.jpg" alt=""></a>
+    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5> 
+    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span class="special">299৳</span></p>
+    <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+</div>  
+
+    </div>
+    
+    </div>
+
+
+
+    <!-- ------------Our_Activities(blog)-section-------------------  -->
+
+    
+    <div class="container mx-auto p-3 laptop:py-5 blog">
+        <h2 class="mb-10 mt-7 text-blue text-2xl font-medium text-center">Our Activities</h2> 
+
+         <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4 ">
+         <div>
+           <a href="#"> <img src="/assets/donation-bQrKcRwR.jpg" alt=""></a>
+            <a href="#"><p class="title text-red my-2 text-x">March-2024 1st Week Donation</p> </a>
+            <a href="#"><h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা হবে।</h5></a>
+            <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+        </div>
+        <div>
+            <a href="#"> <img src="/assets/donation-bQrKcRwR.jpg" alt=""></a>
+             <a href="#"><p class="title text-red my-2 text-x">March-2024 1st Week Donation</p> </a>
+             <a href="#"><h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা হবে।</h5></a>
+             <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+         </div>
+         <div>
+            <a href="#"> <img src="/assets/donation-bQrKcRwR.jpg" alt=""></a>
+             <a href="#"><p class="title text-red my-2 text-x">March-2024 1st Week Donation</p> </a>
+             <a href="#"><h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা হবে।</h5></a>
+             <a href="#" class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+         </div>
+        
+         </div>
+       
+    </div>
+
+
+
+
+    <!-- --------------------------------  -->
+
+    
+        <div class="container mx-auto p-3 laptop:py-10 grid gap-4 grid-cols-2  laptop:grid-cols-4">
+
+        <div class="flex items-center gap-4 ">  
+            <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path   stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
+              </svg> 
+              <div>
+              <h4 class="text-sm laptop:text-base text-blue font-medium">High-quality Goods</h4>
+              <p class="text-xs laptop:text-sm">Enjoy top quality items for less</p>
+              </div> 
+        </div>
+        <div class="flex items-center gap-4"> 
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
+              </svg>   
+              <div>
+
+              <h4 class="text-sm laptop:text-base text-blue font-medium">24/7 Live chat</h4>
+              <p class="text-xs laptop:text-sm">Instant assistance whenever you need</p>
+              </div> 
+        </div>
+
+        <div class="flex items-center gap-4"> 
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+              </svg> 
+              <div>
+              <h4 class="text-sm laptop:text-base text-blue font-medium">Express Shipping</h4>
+              <p class="text-xs laptop:text-sm">Fast & reliable delivery options</p>
+              </div> 
+        </div>
+        <div class="flex items-center gap-4  "> 
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8  h-8
+            laptop:w-10 laptop:h-10 text-blue border-2  border-blue rounded-full p-1 ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+              </svg> 
+            
+              <div>
+              <h4 class="text-sm laptop:text-base text-blue font-medium"> Secure Payment</h4>
+              <p class="text-xs laptop:text-sm">Multiple safe payment methods</p>
+              </div> 
+        </div>
+        
+
+        </div>
+   
+
+
+    <!-- ---------------Footer-section---------------------------  -->
+
+    <div class="footer bg-[#00000F] p-3 laptop:py-10">
+        <div class="container mx-auto grid gap-4 grid-cols-1 tablet:grid-cols-4">
+            <div>
+                <a href="#"><img class="w-1/4 tablet:w-36 laptop:w-1/2  h-auto mb-2 tablet:mb-5 laptop:mb-6" src="/assets/logo-MO5qWhZL.png" alt=""></a>
+                <p class="text-white text-sm laptop:text-sm">Unbox The Unexpected</p>
+            </div>
+
+            <div>
+                <h1 class="text-white mb-2 text-[18px]">Quick LInks</h1>
+                <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
+                <div>
+                    <a href="blog.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Blog</a>
+                    <a href="shop.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Shop</a>
+                    <a href="my-account.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">My account</a>
+                    <a href="terms-and-conditions.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Terms and Conditions</a>
+                    <a href="privacy-policy.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Privacy Policy</a>
+                    <a href="refund_returns.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Refund and Return Policy</a>
+                    <a href="donation-of-thikana-shop.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Donation for Palestine</a> 
+                </div>
+            </div>
+
+            <div>
+                <h1 class="text-white mb-2 text-[18px]">Categories</h1>
+                <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
+                <div>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">T-Shirt Collection </a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Dawah T-Shirt</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Gift Item</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Mens Fashion</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Womens Fashion</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Customize Chocolate</a>
+                    <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Fashion Accessories</a> 
+                </div>
+            </div>
+            <div>
+                <h1 class="text-white mb-2 text-[18px]">Contact Us</h1>
+                <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
+
+                <div>
+                    <a href="#"><i class="fa-brands fa-facebook text-red h-8 w-8 leading-[30px] text-center  border-red border-2 rounded-full hover:scale-105 ease-linear mr-2"></i> </a>
+                    <a href="#"><i class="fa-brands fa-youtube   text-red h-8 w-8 leading-[30px] text-center  border-red border-2 rounded-full hover:scale-105 ease-linear"></i></a>  
+                    <div class="mt-5">
+                         <p class="text-white text-xs laptop:text-sm"> <i class="fa-solid fa-location-dot text-red mr-1"></i> Kolahat, Badalgachi, Naogaon</p>
+                         <p class="text-white text-xs laptop:text-sm my-4"> <i class="fa-solid fa-envelope-open-text text-red mr-1"></i> <a href="mailto:thikanagiftshop@gmail.com">thikanagiftshop@gmail.com</a></p>
+                         <p class="text-white text-xs laptop:text-sm"> <i class="fa-solid fa-phone-volume text-red mr-1"></i> <a href="tel:+8801327-282454">+8801327-282454</a></p>
+                    </div>
+                   
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="divider border-[1px] border-rose-950 container mx-auto my-10"></div>
+        <p class="text-center text-white text-xs tablet:text-sm  laptop:text-sm  mt-4 laptop:mt-10 leading-6 ">Copyright © 2024 Thikana.shop .All rights reserved. Website Designed & Developed by <a class="text-red" href="#">SOFTEB.COM</a></p>
+
+    </div>
+
+
+    <!-- swiper js  -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- cstm js  --> 
+     <script src="js/script.js"></script>
+
+    
+</body>
+</html>
