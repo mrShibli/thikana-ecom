@@ -26,85 +26,100 @@
             </li>
         </ul>
         <!-- Tab content -->
-        <div class="tab-content mt-3" id="productFormTabsContent">
-            <!-- Basic Information Tab -->
-            <div class="tab-pane fade show active" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
-                <form>
-                    <div class="mb-3">
-                        <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="productName" placeholder="Enter product name"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="productDescription" class="form-label">Product Description</label>
-                        <textarea class="form-control" id="productDescription" rows="3" placeholder="Enter product description"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="productThumbnail" class="form-label">Thumbnail Image</label>
-                        <input type="file" class="form-control" id="productThumbnail" accept="image/*" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="productGallery" class="form-label">Gallery Images</label>
-                        <input type="file" class="form-control" id="productGallery" accept="image/*" multiple>
-                    </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="tab" data-bs-target="#details">Next:
-                        Details</button>
-                </form>
+        <form>
+            <div class="tab-content mt-3" id="productFormTabsContent">
+                <!-- Basic Information Tab -->
+                <div class="tab-pane fade show active" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="productName" placeholder="Enter product name"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Product Description</label>
+                            <textarea class="form-control" id="productDescription" rows="3" placeholder="Enter product description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productThumbnail" class="form-label">Thumbnail Image</label>
+                            <input type="file" class="form-control" id="productThumbnail" accept="image/*" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productGallery" class="form-label">Gallery Images</label>
+                            <input type="file" class="form-control" id="productGallery" accept="image/*" multiple>
+                        </div>
+                        <button class="btn btn-primary"  type="button" data-bs-toggle="tab" data-bs-target="#details">Next:
+                            Details</button>
+                            
+                    
+                </div>
+                <!-- Details Tab -->
+                <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
+                    
+                        <div class="mb-3">
+                            <label for="productBrand" class="form-label">Brand</label>
+                            <input type="text" class="form-control" id="productBrand" placeholder="Enter product brand">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productBrand" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="productBrand" placeholder="Enter product brand">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productBrand" class="form-label">Size</label>
+                            <input type="text" class="form-control" id="productBrand" placeholder="Enter product brand">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productCategory" class="form-label">Category</label>
+                            <input type="text" class="form-control" id="productCategory"
+                                placeholder="Enter product category">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productTags" class="form-label">Tags</label>
+                            <input type="text" class="form-control" id="productTags" placeholder="Enter product tags">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productSKU" class="form-label">SKU</label>
+                            <input type="text" class="form-control" id="productSKU" placeholder="Enter product SKU">
+                        </div>
+                        <button class="btn btn-secondary" type="button" data-bs-toggle="tab"
+                            data-bs-target="#basic-info">Back:
+                            Basic Information</button>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="tab" data-bs-target="#pricing">Next:
+                            Pricing & Inventory</button>
+                   
+                </div>
+                <!-- Pricing & Inventory Tab -->
+                <div class="tab-pane fade" id="pricing" role="tabpanel" aria-labelledby="pricing-tab">
+                   
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Reguler Price</label>
+                            <input type="number" class="form-control" id="productPrice" placeholder="Enter reguler product price"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Offer Price</label>
+                            <input type="number" class="form-control" id="productPrice" placeholder="Enter offer product price"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productQuantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="productQuantity"
+                                placeholder="Enter product quantity" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productStatus" class="form-label">Status</label>
+                            <select class="form-select" id="productStatus" required>
+                                <option value="">Select product status</option>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary" type="button" data-bs-toggle="tab"
+                            data-bs-target="#details">Back: Details</button>
+                        <button class="btn btn-success" type="submit">Create Product</button>
+                    
+                </div>
             </div>
-            <!-- Details Tab -->
-            <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
-                <form>
-                    <div class="mb-3">
-                        <label for="productBrand" class="form-label">Brand</label>
-                        <input type="text" class="form-control" id="productBrand" placeholder="Enter product brand">
-                    </div>
-                    <div class="mb-3">
-                        <label for="productCategory" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="productCategory"
-                            placeholder="Enter product category">
-                    </div>
-                    <div class="mb-3">
-                        <label for="productTags" class="form-label">Tags</label>
-                        <input type="text" class="form-control" id="productTags" placeholder="Enter product tags">
-                    </div>
-                    <div class="mb-3">
-                        <label for="productSKU" class="form-label">SKU</label>
-                        <input type="text" class="form-control" id="productSKU" placeholder="Enter product SKU">
-                    </div>
-                    <button class="btn btn-secondary" type="button" data-bs-toggle="tab"
-                        data-bs-target="#basic-info">Back:
-                        Basic Information</button>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="tab" data-bs-target="#pricing">Next:
-                        Pricing & Inventory</button>
-                </form>
-            </div>
-            <!-- Pricing & Inventory Tab -->
-            <div class="tab-pane fade" id="pricing" role="tabpanel" aria-labelledby="pricing-tab">
-                <form>
-                    <div class="mb-3">
-                        <label for="productPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="productPrice" placeholder="Enter product price"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="productQuantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="productQuantity"
-                            placeholder="Enter product quantity" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="productStatus" class="form-label">Status</label>
-                        <select class="form-select" id="productStatus" required>
-                            <option value="">Select product status</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-secondary" type="button" data-bs-toggle="tab"
-                        data-bs-target="#details">Back: Details</button>
-                    <button class="btn btn-success" type="submit">Create Product</button>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
 @endsection
 

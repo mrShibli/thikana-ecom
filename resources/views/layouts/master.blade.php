@@ -396,8 +396,8 @@
                                         <img src="{{ asset('assets/img/man.png') }}" alt=""
                                             class="user-img">
                                         <div class="mt-3">
-                                            <h2>{{ Auth::user()->name }}</h2>
-                                            <p> <small>{{ Auth::user()->email }}</small> </p>
+                                            <h2>{{ Auth::user()->name ?? '' }}</h2>
+                                            <p> <small>{{ Auth::user()->email  ?? ''}}</small> </p>
                                             <p>Super admin</p>
                                         </div>
                                     </div>

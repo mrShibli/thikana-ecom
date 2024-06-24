@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Client\ProductControler;
 use App\Http\Controllers\Product\ProductCategoryController;
 
 /*
@@ -19,11 +20,12 @@ use App\Http\Controllers\Product\ProductCategoryController;
 Route::get('/', function () {
     return view('clientside.index');
 });
+Route::get('/product-singel', [ProductControler::class, 'index']);
 
 Route::post('/check-email', [AdminController::class, 'checkemail'])->name('check.email');
 
-
-Route::middleware(['auth'])->prefix('admin')->group(function () {
+//middleware(['auth'])->
+Route::prefix('admin')->group(function () {
 
     // Dashboard Controller
     Route::get('/dashboard', [AdminController::class, 'admin'])->name('admin');
