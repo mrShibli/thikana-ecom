@@ -61,8 +61,10 @@
                         src="{{ asset('clientside/images/profile.png') }}" alt=""></a></div>
 
             <div class="cart flex gap-2">
-                <img class="w-8 h-8" src="{{ asset('clientside/images/cart.png') }}" alt="">
-                <a class="text-red" href="">0ট</a>
+                <a href="{{ route('cart.index') }}">
+                    <img class="w-8 h-8" src="{{ asset('clientside/images/cart.png') }}" alt="">
+                    <p class="text-red">0ট</p>
+                </a>
             </div>
 
         </div>

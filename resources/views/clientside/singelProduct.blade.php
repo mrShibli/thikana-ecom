@@ -2,7 +2,11 @@
 
 @section('client-content')
     <!-- -----------product-single-page--------- -->
-
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class=" container mx-auto my-5 flex flex-wrap gap-4 p-3 ">
         <div class="w-full laptop:w-[430px] border rounded p-2">
             <div class="laptop:hidden tablet:hidden desktop:hidden">
@@ -36,10 +40,10 @@
 
             <div class="mt-4">
                 <p class="px-2 py-1 bg-[#F38A0E] rounded text-xs text-white font-bold inline-block" >Sale!</p>
-                <h1 class="text-base tablet:text-xl laptop:text-2xl font-bold"> <span class="text-red line-through">{{ $product->old_price }}৳</span>  {{ $product->offer }}৳ </h1>
+                <h1 class="text-base tablet:text-xl laptop:text-2xl font-bold"> <span class="text-red line-through">{{ $product->old_price }}৳</span> <span id="updateOfferPrice">{{ $product->offer }}</span> ৳ </h1>
             </div>
 
-            <div class="color-btn mt-5">
+            {{-- <div class="color-btn mt-5">
                 <h4 class="font-semibold mb-2">Color</h4>
                 <div class="flex gap-2">
                     <div class="black p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
@@ -57,34 +61,33 @@
                         <button class="p-4 transition-all bg-white"></button>
                     </div> 
                 </div>
-            </div>
-
-            <div class="p-size mt-5">
-                <h4 class="font-semibold mb-2">Size</h4>
-                <div class="flex gap-2">
-                    <div class="black p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="py-1 px-2 transition-all text-sm ">L</button>
-                    </div> 
-                    <div class="dark-olive p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="py-1 px-2 transition-all text-sm ">M</button>
+            </div> --}}
+            @foreach ($product->variations as $variations)
+                <div class="p-size mt-5">
+                    <h4 class="font-semibold mb-2">{{ $variations->name }}</h4>
+                    <div class="flex gap-2">
+                        @foreach ($variations->options as $options)
+                        @php
+                            $optinId = $options->id
+                        @endphp
+                            <div class="black p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
+                                <button class="py-1 px-2 transition-all text-sm" onclick="optionsPrice({{ $options->price }})">{{ $options->name }}</button>
+                            </div> 
+                        @endforeach
                     </div>
-                    
-                    <div class="light-purple p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="py-1 px-2 transition-all text-sm ">XL</button>
-                    </div>
-                    
-                    <div class="white p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="py-1 px-2 transition-all text-sm">XXL</button>
-                    </div> 
                 </div>
-            </div>
-
-            <div class="flex items-center gap-2 my-5">
-                <input type="number"  id="quantity" name="quantity" min="1" value="1" minlength="1"  class="py-2 pl-4 laptop:py-2 laptop:px-10 border text-white rounded  bg-gray-100 w-12">
-                <a href="cart.html" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-blue rounded text-white text-sm  font-bold">Add To Cart</a>
-                <a href="#" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-red rounded text-white text-sm tablet:text-base laptop:text-base font-bold">Buy Now</a>
-            </div>   
-
+            @endforeach
+            <form action="{{ route('cart.store') }}" method="get">
+                <div class="flex items-center gap-2 my-5">
+                    {{-- <input type="number"  id="quantity" name="quantity" min="1" value="1" minlength="1"  class="py-2 pl-4 laptop:py-2 laptop:px-10 border text-white rounded  bg-gray-100 w-12"> --}}
+                    <input type="number" name="quantity" value="1" style="padding: 8px 0px" class=" border text-black rounded   w-12"/>
+                    <input type="hidden" name="product_id" value="{{ $product->id }}"/>
+                    <input type="hidden" name="price" id="priceId"/>
+                    <input type="hidden" name="option_id" value="{{ $optinId }}"/>
+                    <button type="submit" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-blue rounded text-white text-sm  font-bold">Add To Cart</button>
+                    <a href="#" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-red rounded text-white text-sm tablet:text-base laptop:text-base font-bold">Buy Now</a>
+                </div>   
+            </form>
         </div>
 
 
@@ -132,17 +135,18 @@
         <div class="a-information">
             <h1 class="text-2xl laptop:text-3xl text-black my-4">Additional information</h1> 
 
-            <div id="additional_information">
+            <div id="additional_information" style="width: 100%">
 
                @foreach ($product->variations as $variations)
                {{-- {{ $variations }} --}}
-                <div class="gap-4 mb-5 juti"  style="flex-wrap: nowrap">
-                    <p id="weight" class="text-sm font-bold px-5 border-r border-r-slate-300 ">{{ $variations->name }} </p>
+                <div class="gap-4 my-5"  style="flex-wrap: nowrap; justify-content: center; align-items: center">
+                    <p id="weight" class="text-sm font-bold border-r border-r-slate-300 ">{{ $variations->name }} </p>
                     @foreach ($variations->options as $options)
-                    <div class="border-r border-r-slate-300">
+                    {{-- <div class="border-r border-r-slate-300" style="flex-wrap: nowrap; justify-content: center; align-items: center""> --}}
                         <p class="text-sm text-gray-500">{{ $options->name }}</p>
                         <p class="text-sm text-gray-500">Price: {{ $options->price }}</p>
-                    </div>
+                        <div class="border-r border-r-slate-300" style="    background: #cbd5e1;height: 19px;"></div>
+                    {{-- </div> --}}
                     @endforeach
                 </div>
                 <hr>
@@ -217,5 +221,12 @@
         
     </div>
 
+<script>
+    function optionsPrice(price) {
+        document.getElementById('updateOfferPrice').innerText = price;
+        document.getElementById('priceId').value = price;
+        
+    }
 
+</script>
 @endsection

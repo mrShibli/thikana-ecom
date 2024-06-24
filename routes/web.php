@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\ProductControler;
 use App\Http\Controllers\Admin\ProductControler as AdminProductControler;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Product\ProductCategoryController;
 use App\Models\Product;
 
@@ -26,6 +27,8 @@ Route::get('/', function () {
 Route::get('/product/{id}/{slug}', [ProductControler::class, 'index'])->name('product.single');
 
 Route::post('/check-email', [AdminController::class, 'checkemail'])->name('check.email');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
+Route::get('/cart/store', [CartController::class, 'store'])->name('cart.store')->middleware('auth');
 
 //middleware(['auth'])->
 Route::prefix('admin')->group(function () {
