@@ -1,7 +1,6 @@
 @extends('clientside.app.app')
 
 @section('client-content')
-  
     <!-- -----------product-single-page--------- -->
 
     <div class=" container mx-auto my-5 flex flex-wrap gap-4 p-3 ">
@@ -13,12 +12,14 @@
             </div> 
             <div class="flex gap-1">
                 
-                 <img class="w-60 laptop:w-80 object-contain" src="images/product-single.jpg" alt="">
+                 <img class="w-60 laptop:w-80 object-contain" src="{{ asset('storage/'.$product->thumb_image) }}" alt="">
             <div class="image-gallery px-1">
-                <img class="w-14 h-16 laptop:w-24 laptop:h-28 object-cover mb-1 border border-red " src="images/single-img_ (1).jpg" alt="">
-                <img class="w-14 h-16 laptop:w-24 laptop:h-28 object-cover mb-1 border border-red" src="images/single-img_ (2).jpg" alt="">
-                <img class="w-14 h-16 laptop:w-24 laptop:h-28 object-cover mb-1 border border-red" src="images/single-img_ (3).jpg" alt="">
-                <img class="w-14 h-16 laptop:w-24 laptop:h-28 object-cover mb-1 border border-red" src="images/single-img_ (4).jpg" alt="">
+                @php
+                    $productIMage = json_decode($product->images);
+                @endphp
+                @foreach ($productIMage as $image)
+                    <img class="w-14 h-16 laptop:w-24 laptop:h-28 object-cover mb-1 border border-red " src="{{ asset('storage/'.$image) }}" alt="">
+                @endforeach
             </div>
             </div> 
 
@@ -28,14 +29,14 @@
             <div class="hidden laptop:block">
                 <a class="text-xs text-red hover:text-blue" href="index.html">Home <i class="fas fa-angle-right text-xs text-gray-400"></i></a>
                 <a class="text-xs text-red hover:text-blue" href="">Products <i class="fas fa-angle-right text-xs text-gray-400"></i></a> 
-                <h2 class="p-title my-2 text-sm tablet:table laptop:text-[17px] leading-6">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h2>
+                <h2 class="p-title my-2 text-sm tablet:table laptop:text-[17px] leading-6">{{ $product->title }}</h2>
             </div> 
 
            
 
             <div class="mt-4">
                 <p class="px-2 py-1 bg-[#F38A0E] rounded text-xs text-white font-bold inline-block" >Sale!</p>
-                <h1 class="text-base tablet:text-xl laptop:text-2xl font-bold"> <span class="text-red line-through">350৳</span>  299৳ </h1>
+                <h1 class="text-base tablet:text-xl laptop:text-2xl font-bold"> <span class="text-red line-through">{{ $product->old_price }}৳</span>  {{ $product->offer }}৳ </h1>
             </div>
 
             <div class="color-btn mt-5">
@@ -124,28 +125,30 @@
 
         <div class="d-bx">
             <h1 class="text-2xl laptop:text-3xl text-black my-4">Description</h1>
-            <p class="text-black text-sm laptop:text-base mb-2">“নিশ্চই কষ্টের সাথেই, স্বস্তি রয়েছে” আয়াত টি  সূরা “আল-ইনশিরাহ” তে করা মহান আল্লাহ তা’য়ালার এক অবিস্মরনীয় ওয়াদা এবং সমগ্র কোরআন মাজীদের সুন্দরতম আয়াত সমুহের ভিতর অন্যতম।</p>
-            <p class="mb-3 text-sm laptop:text-base">Dawah Message : নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে </p> 
-            <p class="mb-3 text-sm laptop:text-base"> Fabrics:  Single Jersey</p> 
-            <p class="mb-3 text-sm laptop:text-base"> Fabrics Type: 100% Cotton Fabric</p> 
-            <p class="mb-3 text-sm laptop:text-base"> GSM: 170-180 Gsm</p> 
-            <p class="mb-3 text-sm laptop:text-base">Size: 4 Size Available (M, L, XL, XXL) </p>
-            <p class="mb-3 text-sm laptop:text-base">Color: 4 Colors available (Black, Olive Black, White, and Light Purple)</p> 
-            <p class="mb-3 text-sm laptop:text-base">Used one-by-one rib at the neck with full body top sewing. </p>
-            <p class="mb-3 text-sm laptop:text-base">100% Export Quality</p>
+            {!! $product->description !!}
            
         </div>
 
         <div class="a-information">
             <h1 class="text-2xl laptop:text-3xl text-black my-4">Additional information</h1> 
 
-            <div id="additional_information" >
-                <div class="gap-4 mb-5">
-               <p id="weight" class="text-sm font-bold px-5 border-r border-r-slate-300 ">Weight </p>
-               <p class="text-sm text-gray-500">0.150 g</p>
-                </div>
+            <div id="additional_information">
 
-                <div class=" gap-4 mb-5">
+               @foreach ($product->variations as $variations)
+               {{-- {{ $variations }} --}}
+                <div class="gap-4 mb-5 juti"  style="flex-wrap: nowrap">
+                    <p id="weight" class="text-sm font-bold px-5 border-r border-r-slate-300 ">{{ $variations->name }} </p>
+                    @foreach ($variations->options as $options)
+                    <div class="border-r border-r-slate-300">
+                        <p class="text-sm text-gray-500">{{ $options->name }}</p>
+                        <p class="text-sm text-gray-500">Price: {{ $options->price }}</p>
+                    </div>
+                    @endforeach
+                </div>
+                <hr>
+               @endforeach 
+
+                {{-- <div class=" gap-4 mb-5">
                 <p id="dimensions" class="text-sm font-bold px-5 border-r border-r-slate-300">Dimensions </p>
                 <p class="text-sm text-gray-500">8 × 11 × 4 cm</p>
                 </div>
@@ -159,7 +162,7 @@
                  <p id="size" class="text-sm font-bold px-5 border-r border-r-slate-300">Size </p>
                  <p class="text-sm text-gray-500">L, M, XL, XXL</p>
                 </div>
-                
+                 --}}
                 
             </div>
            

@@ -27,16 +27,10 @@ class AdminController extends Controller
     }
 
    // Dashboard product Create Page
-   public function productCreate()
-   {
-       return view('admin.product.create');
-   }
+ 
 
    // Dashboard product Create Page
-   public function index()
-   {
-       return view('admin.product.index');
-   }
+ 
 
     public function checkemail(Request $request)
     {

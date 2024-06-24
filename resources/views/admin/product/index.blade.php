@@ -22,31 +22,36 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Image</th>
+                    <th>Price</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-               
-                    <tr>
-                        <td>1</td>
-                        <td>Product 1</td>
-                        <td>customr@gmail.com</td>
-                        <td>
-                            <a href="">
-                                <img src="{{ asset('view.svg') }}" alt="" width="28">
-                            </a>
-                            <a href="">
-                                <img src="{{ asset('edit.svg') }}" alt="" width="26">
-                            </a>
-                            <form action="" method="POST" class="d-inline">
-                               
-                                <button type="submit" onclick="return confirm('Are you sure?')">
-                                    <img src="{{ asset('delete.svg') }}" alt="" width="26">
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+               @foreach ($products as $product)    
+               <tr>
+                   <td>{{ $product->id }}</td>
+                   <td> {{ $product->title }}</td>
+                   <td>
+                        <img src="{{ asset('storage/'.$product->thumb_image) }}" alt="" width="28">
+                    </td>
+                   <td> {{ $product->old_price }}</td>
+                   <td>
+                       <a href="">
+                           <img src="{{ asset('view.svg') }}" alt="" width="28">
+                       </a>
+                       <a href="">
+                           <img src="{{ asset('edit.svg') }}" alt="" width="26">
+                       </a>
+                       <form action="" method="POST" class="d-inline">
+                          
+                           <button type="submit" onclick="return confirm('Are you sure?')">
+                               <img src="{{ asset('delete.svg') }}" alt="" width="26">
+                           </button>
+                       </form>
+                   </td>
+               </tr>
+               @endforeach
                
             </tbody>
         </table>

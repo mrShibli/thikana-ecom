@@ -61,66 +61,24 @@
 
         <div class="swiper featured-slider pb-14 ">
             <div class="swiper-wrapper">
-
+                @foreach ($products as $product)
+                    
                 <div class="swiper-slide text-center border rounded p-2">
                     <a href="product_single.html"> <img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/Special-Dawah-T-Shirt-1-.jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
+                            src="{{ asset('storage/'.$product->thumb_image) }}" alt=""></a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$product->title }}</h5>
+                    <p class="my-3"><span class="regular line-through text-red mr-2">{{ $product->old_price }}৳</span> <span
+                            class="special">{{ $product->offer }}৳</span></p>
+                            @php
+                                $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->title)));
+                            @endphp
+                        
+                        <a href="{{ route('product.single', ['slug' => $slug, 'id' => $product->id]) }}"
+                            class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                        
                 </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (3).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="{{ asset('clientside/bg-slate-100 p-2') }}"
-                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
+                @endforeach
+                
 
             </div>
 

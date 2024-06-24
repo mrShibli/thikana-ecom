@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\ProductControler;
+use App\Http\Controllers\Admin\ProductControler as AdminProductControler;
 use App\Http\Controllers\Product\ProductCategoryController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,10 @@ use App\Http\Controllers\Product\ProductCategoryController;
 */
 
 Route::get('/', function () {
-    return view('clientside.index');
+    $products = Product::where('status', 1)->inRandomOrder()->get(['id', 'title','thumb_image','old_price','offer']);
+    return view('clientside.index', compact('products'));
 });
-Route::get('/product-singel', [ProductControler::class, 'index']);
+Route::get('/product/{id}/{slug}', [ProductControler::class, 'index'])->name('product.single');
 
 Route::post('/check-email', [AdminController::class, 'checkemail'])->name('check.email');
 
@@ -45,8 +48,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('/product_categories/{id}', [ProductCategoryController::class, 'destroy'])->name('product_categories.destroy');
 
     // Dashboard Product Controller
-    Route::get('/product', [AdminController::class, 'index'])->name('product.index');
-    Route::get('/product/create', [AdminController::class, 'productCreate'])->name('product.create');
+    Route::get('/product', [AdminProductControler::class, 'index'])->name('product.index');
+    // Route::get('/product/create', [AdminController::class, 'productCreate'])->name('product.create');
+
+    //caht gpt 
+    Route::get('/products/create', [AdminProductControler::class, 'productCreate'])->name('product.create');
+    Route::post('/products', [AdminProductControler::class, 'store'])->name('products.store');
 });
 
 
