@@ -489,6 +489,13 @@
                                 <li><a href="#"><i class="fas fa-bell"></i>Notification</a></li>
                             </ul>
                         </li>
+                        <li class="sub-menu">
+                            <a href="#"><i class="fas fa-user"></i>Orders <span
+                                    class="fas fa-caret-down right"></span></a>
+                            <ul class="left-menu-dp">
+                                <li><a href="{{ route('admin.orders.index') }}"><i class="fas fa-user-circle"></i>All Orders</a></li>
+                            </ul>
+                        </li>
 
 
 

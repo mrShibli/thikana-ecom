@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+    use App\Http\Controllers\Client\OrderController;
+    use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\ProductControler;
@@ -23,16 +24,23 @@ use App\Models\Product;
 Route::get('/', function () {
     $products = Product::where('status', 1)->inRandomOrder()->get(['id', 'title','thumb_image','old_price','offer']);
     return view('clientside.index', compact('products'));
-});
+})->name ("index");
 Route::get('/product/{id}/{slug}', [ProductControler::class, 'index'])->name('product.single');
 
 Route::post('/check-email', [AdminController::class, 'checkemail'])->name('check.email');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 Route::get('/cart/store', [CartController::class, 'store'])->name('cart.store')->middleware('auth');
+Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('auth');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth');
+//Order Controller
+Route::get('/order', [OrderController::class, 'index'])->name('order.index')->middleware('auth');
+Route::post('/order/store', [OrderController::class, 'store'])->name('order.store')->middleware('auth');
 
 //middleware(['auth'])->
 Route::prefix('admin')->group(function () {
-
+    Route::get ("/",function (){
+        return redirect()->route('admin');
+    });
     // Dashboard Controller
     Route::get('/dashboard', [AdminController::class, 'admin'])->name('admin');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
@@ -57,6 +65,10 @@ Route::prefix('admin')->group(function () {
     //caht gpt 
     Route::get('/products/create', [AdminProductControler::class, 'productCreate'])->name('product.create');
     Route::post('/products', [AdminProductControler::class, 'store'])->name('products.store');
+    //orders
+    Route::name('admin.')->group(function () {
+        Route::resource ('orders', OrderController::class);
+    });
 });
 
 

@@ -38,7 +38,7 @@
         </div>
 
         <div class="flex justify-between px-2 laptop:px-10 py-2 bg-[#FAF4F6] items-center">
-            <a href="#"> <img class="w-32 laptop:w-40 h-auto" src="{{ asset('clientside/images/logo.png') }}"
+            <a href="{{route ("index")}}"> <img class="w-32 laptop:w-40 h-auto" src="{{ asset('clientside/images/logo.png') }}"
                     alt=""></a>
 
             <nav class="hidden laptop:block">

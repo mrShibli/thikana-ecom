@@ -2,15 +2,27 @@
 
 @section('client-content')
     <!-- -----------product-single-page--------- -->
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    <div class="container mx-auto">
+        @if (session('success'))
+            <div class="text-center text-red py-2 bg-red text-white text-2xl">
+
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
+    @if($errors->any())
+        <div class="alert alert-danger text-center py-2">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="text-red">{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
     <div class=" container mx-auto my-5 flex flex-wrap gap-4 p-3 ">
         <div class="w-full laptop:w-[430px] border rounded p-2">
             <div class="laptop:hidden tablet:hidden desktop:hidden">
-                <a class="text-xs text-red hover:text-blue" href="index.html">Home <i class="fas fa-angle-right text-xs text-gray-400"></i></a>
+                <a class="text-xs text-red hover:text-blue" href="{{route ("index")}}">Home <i class="fas fa-angle-right text-xs text-gray-400"></i></a>
                 <a class="text-xs text-red hover:text-blue" href="">Products <i class="fas fa-angle-right text-xs text-gray-400"></i></a> 
                 <h2 class="p-title my-2 text-base tablet:table laptop:text-[17px] leading-6">Ramadan Special Premium Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h2>
             </div> 
@@ -31,7 +43,7 @@
         </div>
         <div class=" w-full laptop:w-[460px] border rounded p-3">
             <div class="hidden laptop:block">
-                <a class="text-xs text-red hover:text-blue" href="index.html">Home <i class="fas fa-angle-right text-xs text-gray-400"></i></a>
+                <a class="text-xs text-red hover:text-blue" href="{{route ("index")}}">Home <i class="fas fa-angle-right text-xs text-gray-400"></i></a>
                 <a class="text-xs text-red hover:text-blue" href="">Products <i class="fas fa-angle-right text-xs text-gray-400"></i></a> 
                 <h2 class="p-title my-2 text-sm tablet:table laptop:text-[17px] leading-6">{{ $product->title }}</h2>
             </div> 
@@ -71,7 +83,7 @@
                             $optinId = $options->id
                         @endphp
                             <div class="black p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                                <button class="py-1 px-2 transition-all text-sm" onclick="optionsPrice({{ $options->price }})">{{ $options->name }}</button>
+                                <button class="py-1 px-2 transition-all text-sm" onclick="optionsPrice({{ $options->price }},{{$options->id}})">{{ $options->name }}</button>
                             </div> 
                         @endforeach
                     </div>
@@ -83,7 +95,8 @@
                     <input type="number" name="quantity" value="1" style="padding: 8px 0px" class=" border text-black rounded   w-12"/>
                     <input type="hidden" name="product_id" value="{{ $product->id }}"/>
                     <input type="hidden" name="price" id="priceId"/>
-                    <input type="hidden" name="option_id" value="{{ $optinId }}"/>
+                    <input name="main_price" type="hidden" value="{{$product->offer??$product->old_price}}">
+                    <input type="hidden" name="option_id" value="{{ $optinId }}" id="option_id"/>
                     <button type="submit" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-blue rounded text-white text-sm  font-bold">Add To Cart</button>
                     <a href="#" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-red rounded text-white text-sm tablet:text-base laptop:text-base font-bold">Buy Now</a>
                 </div>   
@@ -222,9 +235,10 @@
     </div>
 
 <script>
-    function optionsPrice(price) {
+    function optionsPrice(price,id) {
         document.getElementById('updateOfferPrice').innerText = price;
         document.getElementById('priceId').value = price;
+        document.getElementById('option_id').value = id;
         
     }
 

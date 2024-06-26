@@ -6,6 +6,9 @@
     <div class="divider border my-2 mb-8"> </div>
 
     <div class="flex flex-wrap gap-4">
+        @if(session('success'))
+        <div class="bg-green-300 p-3 text-white text-center w-full">{{session('success')}}</div>
+        @endif
 
         <div class="w-full laptop:w-[70%] border rounded p-1 laptop:p-4 flex justify-center"> 
 
@@ -22,7 +25,9 @@
                 @foreach ($cart as $cart)
                     
                     <tr>
-                    <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px]  text-red"><a href=""><i class="fas fa-times pl-4"></i></a></td>
+                    <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px]  text-red">
+                        <a href="{{route ("cart.destroy",$cart->id)}}"><i class="fas fa-times pl-4"></i></a>
+                    </td>
                     <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] " id="p-img"><a href=""><img src="images/img (3).jpg" alt="" class=" h-12 w-10 laptop:h-16 laptop:w-14"></a></td>
                     <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] " id="p-title"><a href="">Ramadan Special Premium Dawah T-Shirt  </a></td>
                     <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] " id="p-price">{{ $cart->price }}৳</td>
@@ -47,9 +52,9 @@
             <h2 class="text-base text-black">Cart totals</h2>
             <div class="flex justify-evenly gap-4  my-4 bg-slate-100 border border-gray-300">
                 <p class="p-2 text-xs laptop:text-sm">Subtotal</p>
-                <p class="p-2 border-l border-gray-300 pl-6 text-xs laptop:text-sm">598৳</p>
+                <p class="p-2 border-l border-gray-300 pl-6 text-xs laptop:text-sm">{{$sub_total}}৳</p>
             </div>
-            <a href="" class="py-2 px-3 bg-blue text-xs text-white block text-center rounded">Proceed to checkout</a>
+            <a href="{{route ("checkout")}}" class="py-2 px-3 bg-blue text-xs text-white block text-center rounded">Proceed to checkout</a>
 
             <div>  
                 <iframe class="mt-5 rounded" src="https://www.youtube.com/embed/MvOTNP_xQ7A?si=4eR_nfb_qj42-bns" height="160" width="290"></iframe>  
