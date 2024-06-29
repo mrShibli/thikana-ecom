@@ -51,8 +51,12 @@
            
 
             <div class="mt-4">
+                @if($product->offer)
                 <p class="px-2 py-1 bg-[#F38A0E] rounded text-xs text-white font-bold inline-block" >Sale!</p>
                 <h1 class="text-base tablet:text-xl laptop:text-2xl font-bold"> <span class="text-red line-through">{{ $product->old_price }}৳</span> <span id="updateOfferPrice">{{ $product->offer }}</span> ৳ </h1>
+                @else
+                    <span id="updateOfferPrice">{{ $product->old_price }}</span> ৳
+                @endif
             </div>
 
             {{-- <div class="color-btn mt-5">
@@ -74,6 +78,9 @@
                     </div> 
                 </div>
             </div> --}}
+            @php
+                $optinId=null;
+            @endphp
             @foreach ($product->variations as $variations)
                 <div class="p-size mt-5">
                     <h4 class="font-semibold mb-2">{{ $variations->name }}</h4>
@@ -96,7 +103,9 @@
                     <input type="hidden" name="product_id" value="{{ $product->id }}"/>
                     <input type="hidden" name="price" id="priceId"/>
                     <input name="main_price" type="hidden" value="{{$product->offer??$product->old_price}}">
-                    <input type="hidden" name="option_id" value="{{ $optinId }}" id="option_id"/>
+                    @if($optinId)
+                        <input type="hidden" name="option_id" value="{{ $optinId }}" id="option_id"/>
+                    @endif
                     <button type="submit" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-blue rounded text-white text-sm  font-bold">Add To Cart</button>
                     <a href="#" class=" py-2 px-8 laptop:py-3 laptop:px-10 bg-red rounded text-white text-sm tablet:text-base laptop:text-base font-bold">Buy Now</a>
                 </div>   
