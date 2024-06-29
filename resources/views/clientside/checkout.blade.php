@@ -3,30 +3,68 @@
     <div class="container mx-auto p-3 laptop:py-10">
         <h1 class="text-xl laptop:text-2xl text-blue text-center py-4">Checkout</h1>
         <div class="divider border mb-4 laptop:mb-8"></div>
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                <div class="bg-red-300 p-3 text-black text-center w-full">{{$error}}</div>
-            @endforeach
-            <div class="bg-red-300 p-3 text-white text-center w-full">{{$errors->first()}}</div>
-        @endif
         <form action="{{route ("order.store")}}" method="post">
             @csrf
         <div class="flex flex-wrap gap-4">
 
             <div class="laptop:w-1/2 border rounded p-2 laptop:p-4">
                     <h2 class="text-xl font-semibold mb-3">Billing details</h2>
-
-                    <input class="w-full p-1 pl-2 mb-3 placeholder:text-xs placeholder:text-[#666666] border rounded"
+                <div class="mb-3">
+                    <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
                            type="text" name="name" placeholder="আপনার নাম লিখুন" id="">
-                    <input class="w-full p-1 pl-2 mb-3 placeholder:text-xs placeholder:text-[#666666] border rounded"
+                    @if($errors->get('name'))
+                        <div class="font-light text-red-900 px-1">
+                            @foreach ($errors->get('name') as $error)
+                                <small>{{ $error }}</small>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
                            type="text" name="address"
                            placeholder="যেখানে ডেলিভারি নিবেন তা লিখুন যেমনঃ হোল্ডিং/গ্রাম/বাজার" id="">
-                    <input class="w-full p-1 pl-2 mb-3 placeholder:text-xs placeholder:text-[#666666] border rounded"
+                    @if($errors->get('address'))
+                        <div class="font-light text-red-900 px-1">
+                            @foreach ($errors->get('address') as $error)
+                                <small>{{ $error }}</small>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
                            type="text" name="upazila" placeholder="আপনার থানা (পুলিশ স্টেশন) লিখুন" id="">
-                    <input class="w-full p-1 pl-2 mb-3 placeholder:text-xs placeholder:text-[#666666] border rounded"
+                    @if($errors->get('upazila'))
+                        <div class="font-light text-red-900 px-1">
+                            @foreach ($errors->get('upazila') as $error)
+                                <small>{{ $error }}</small>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
                            type="text" name="city" placeholder="আপনার জেলা লিখুন" id="">
-                    <input class="w-full p-1 pl-2 mb-3 placeholder:text-xs placeholder:text-[#666666] border rounded"
+                    @if($errors->get('city'))
+                        <div class="font-light text-red-900 px-1">
+                            @foreach ($errors->get('city') as $error)
+                                <small>{{ $error }}</small>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <input class="w-full p-1 pl-2  placeholder:text-xs placeholder:text-[#666666] border rounded"
                            type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার লিখুন" id="">
+                    @if($errors->get('phone'))
+                        <div class="font-light text-red-900 px-1">
+                            @foreach ($errors->get('phone') as $error)
+                                <small>{{ $error }}</small>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
 
                     <h5 class="text-xs laptop:text-sm my-5">প্রিয়জন কে চিরকুট দিতে আপনার Message এখানে লিখুন</h5>
 

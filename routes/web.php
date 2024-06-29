@@ -1,32 +1,34 @@
 <?php
 
+    use App\Http\Controllers\Client\OthersController;
+    use App\Http\Controllers\Admin\ProductControler as AdminProductControler;
+    use App\Http\Controllers\AdminController;
+    use App\Http\Controllers\CartController;
     use App\Http\Controllers\Client\OrderController;
+    use App\Http\Controllers\Client\ProductControler;
+    use App\Http\Controllers\Product\ProductCategoryController;
+    use App\Models\Product;
     use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Client\ProductControler;
-use App\Http\Controllers\Admin\ProductControler as AdminProductControler;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\Product\ProductCategoryController;
-use App\Models\Product;
+    use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register web routes for your application. These
+    | routes are loaded by the RouteServiceProvider and all of them will
+    | be assigned to the "web" middleware group. Make something great!
+    |
+    */
 
-Route::get('/', function () {
-    $products = Product::where('status', 1)->inRandomOrder()->get(['id', 'title','thumb_image','old_price','offer']);
-    return view('clientside.index', compact('products'));
-})->name ("index");
 Route::get('/product/{id}/{slug}', [ProductControler::class, 'index'])->name('product.single');
-
+Route::controller (OthersController::class)->group (function (){
+    Route::get ("/shop", 'shop')->name ("shop");
+    Route::get ("/refund-returns","refund")->name ("refund-returns");
+    Route::get ("/privacy-policy","policy")->name ("privacy-policy");
+    Route::get('/',"index" )->name ("index");
+});
 Route::post('/check-email', [AdminController::class, 'checkemail'])->name('check.email');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 Route::get('/cart/store', [CartController::class, 'store'])->name('cart.store')->middleware('auth');

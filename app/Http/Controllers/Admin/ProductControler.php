@@ -14,7 +14,7 @@ class ProductControler extends Controller
 {
     public function index()
     {
-        $products = Product::where('status', 1)->get(['id', 'title', 'thumb_image', 'old_price']);
+        $products = Product::get(['id', 'title', 'thumb_image', 'old_price']);
         return view('admin.product.index', compact('products'));
     }
     public function productCreate()
@@ -88,7 +88,7 @@ class ProductControler extends Controller
             }
         }
 
-        return redirect()->route('pproduct.create')->with('success', 'Product created successfully.');
+        return redirect()->route('product.create')->with('success', 'Product created successfully.');
     
     }
 }

@@ -16,8 +16,8 @@
 
     <!-- Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        @vite("resources/css/app.css")
     <link rel="stylesheet" href="{{ asset('clientside/dist/assets/index.css') }}">
-
 </head>
 
 <body>
@@ -92,9 +92,9 @@
                         account</a>
                     <a href="terms-and-conditions.html"
                         class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Terms and Conditions</a>
-                    <a href="privacy-policy.html"
+                    <a href="{{route ("privacy-policy")}}"
                         class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Privacy Policy</a>
-                    <a href="refund_returns.html"
+                    <a href="{{route ("refund-returns")}}"
                         class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Refund and Return
                         Policy</a>
                     <a href="donation-of-thikana-shop.html"

@@ -58,25 +58,29 @@
 
     <div class="container mx-auto p-3 laptop:py-8 ">
         <h2 class="mb-4 laptop:mb-12 text-blue text-xl font-semibold text-center ">Featured Products</h2>
-
         <div class="swiper featured-slider pb-14 ">
             <div class="swiper-wrapper">
-                @foreach ($products as $product)
-                    
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"> <img class="bg-slate-100 p-2"
-                            src="{{ asset('storage/'.$product->thumb_image) }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$product->title }}</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">{{ $product->old_price }}৳</span> <span
-                            class="special">{{ $product->offer }}৳</span></p>
-                            @php
-                                $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->title)));
-                            @endphp
-                        
-                        <a href="{{ route('product.single', ['slug' => $slug, 'id' => $product->id]) }}"
-                            class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
-                        
-                </div>
+                @foreach ($features_products as $features_product)
+                    @php
+                        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $features_product->title)));
+                    @endphp
+                    <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
+                        <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}">
+                            <img class="bg-slate-100 p-2 w-full h-48 object-cover" src="{{ asset($features_product->thumb_image) }}" alt="">
+                        </a>
+                        <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$features_product->title }}</h5>
+                        <p class="my-3">
+                            @if($features_product->offer)
+                                <span class="regular line-through text-red mr-2">{{ $features_product->old_price }}৳</span>
+                                <span class="special">{{ $features_product->offer }}৳</span>
+                            @else
+                                <span class="special">{{$features_product->old_price }}৳</span>
+                            @endif
+                        </p>
+                        <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}"
+                           class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                    </div>
+
                 @endforeach
                 
 
@@ -101,90 +105,27 @@
 
         <div class="swiper newArrival-slider pb-14 ">
             <div class="swiper-wrapper">
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"> <img class="{{ asset('clientside/bg-slate-100 p-2') }}"
-                            src="{{ asset('clientside/images/Special-Dawah-T-Shirt-1-.jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="{{ asset('clientside/bg-slate-100 p-2') }}"
-                            src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (3).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
-                <div class="swiper-slide text-center border rounded p-2">
-                    <a href="product_single.html"><img class="bg-slate-100 p-2"
-                            src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
-                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt
-                        । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                    <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                            class="special">299৳</span></p>
-                    <a href="#"
-                        class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                        Product</a>
-                </div>
-
+                @foreach ($products as $product)
+                    @php
+                        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->title)));
+                    @endphp
+                    <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
+                        <a href="{{ route('product.single', ['slug' => $slug, 'id' => $product->id]) }}">
+                            <img class="bg-slate-100 p-2 w-full h-48 object-cover" src="{{ asset($product->thumb_image) }}" alt="">
+                        </a>
+                        <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$product->title }}</h5>
+                        <p class="my-3">
+                            @if($product->offer)
+                                <span class="regular line-through text-red mr-2">{{ $product->old_price }}৳</span>
+                                <span class="special">{{ $product->offer }}৳</span>
+                            @else
+                                <span class="special">{{$product->old_price }}৳</span>
+                            @endif
+                        </p>
+                        <a href="{{ route('product.single', ['slug' => $slug, 'id' => $product->id]) }}"
+                           class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                    </div>
+                @endforeach
 
             </div>
 
@@ -248,55 +189,27 @@
         <div class="divider border  block  container my-8 "></div>
 
         <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4">
-
-            <div class="text-center border rounded p-2">
-                <a href="product_single.html"><img class="bg-slate-100 p-2"
-                        src="{{ asset('clientside/images/Special-Dawah-T-Shirt-1-.jpg') }}" alt=""></a>
-                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
-                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                        class="special">299৳</span></p>
-                <a href="#"
-                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                    Product</a>
-            </div>
-
-            <div class="text-center border rounded p-2">
-                <a href="product_single.html"> <img class="bg-slate-100 p-2"
-                        src="{{ asset('clientside/images/img (1).jpg') }}" alt=""></a>
-                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
-                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                        class="special">299৳</span></p>
-                <a href="#"
-                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                    Product</a>
-            </div>
-
-            <div class="text-center border rounded p-2">
-                <a href="product_single.html"><img class="bg-slate-100 p-2"
-                        src="{{ asset('clientside/images/img (2).jpg') }}" alt=""></a>
-                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
-                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                        class="special">299৳</span></p>
-                <a href="#"
-                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                    Product</a>
-            </div>
-
-            <div class="text-center border rounded p-2">
-                <a href="product_single.html"><img class="bg-slate-100 p-2"
-                        src="{{ asset('clientside/images/img (3).jpg') }}" alt=""></a>
-                <h5 class="title text-sm laptop:text-base font-hindSiliguri">Ramadan Special Premium Dawah T-Shirt ।
-                    নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h5>
-                <p class="my-3"><span class="regular line-through text-red mr-2">350৳</span> <span
-                        class="special">299৳</span></p>
-                <a href="#"
-                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
-                    Product</a>
-            </div>
-
+            @foreach ($features_products as $features_product)
+                @php
+                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $features_product->title)));
+                @endphp
+                <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
+                    <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}">
+                        <img class="bg-slate-100 p-2 w-full h-48 object-cover" src="{{ asset($features_product->thumb_image) }}" alt="">
+                    </a>
+                    <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$features_product->title }}</h5>
+                    <p class="my-3">
+                        @if($features_product->offer)
+                            <span class="regular line-through text-red mr-2">{{ $features_product->old_price }}৳</span>
+                            <span class="special">{{ $features_product->offer }}৳</span>
+                        @else
+                            <span class="special">{{$features_product->old_price }}৳</span>
+                        @endif
+                    </p>
+                    <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}"
+                       class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                </div>
+            @endforeach
         </div>
 
     </div>
@@ -310,42 +223,21 @@
         <h2 class="mb-10 mt-7 text-blue text-2xl font-medium text-center">Our Activities</h2>
 
         <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4 ">
-            <div>
-                <a href="#"> <img src="{{ asset('clientside/images/donation.jpg') }}" alt=""></a>
-                <a href="#">
-                    <p class="title text-red my-2 text-x">March-2024 1st Week Donation</p>
-                </a>
-                <a href="#">
-                    <h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা
-                        হবে।</h5>
-                </a>
-                <a href="#"
-                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
-            </div>
-            <div>
-                <a href="#"> <img src="{{ asset('clientside/images/donation.jpg') }}" alt=""></a>
-                <a href="#">
-                    <p class="title text-red my-2 text-x">March-2024 1st Week Donation</p>
-                </a>
-                <a href="#">
-                    <h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা
-                        হবে।</h5>
-                </a>
-                <a href="#"
-                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
-            </div>
-            <div>
-                <a href="#"> <img src="{{ asset('clientside/images/donation.jpg') }}" alt=""></a>
-                <a href="#">
-                    <p class="title text-red my-2 text-x">March-2024 1st Week Donation</p>
-                </a>
-                <a href="#">
-                    <h5 class="my-3 text-sm laptop:text-base">মার্চ-২০২৪ এর সকল Donation মাসের শেষ তারিখে Update করা
-                        হবে।</h5>
-                </a>
-                <a href="#"
-                    class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
-            </div>
+            @foreach($activities as $activity)
+                <div>
+                    <a href="#"> <img src="{{ asset($activity->thumb_images) }}" alt=""></a>
+                    <a href="#">
+                        <p class="title text-red my-2 text-x">{{$activity->title}}</p>
+                    </a>
+                    <a href="#">
+                        <h5 class="my-3 text-sm laptop:text-base">{{$activity->note}}</h5>
+                    </a>
+                    <a href="#"
+                       class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+                </div>
+            @endforeach
+
+
 
         </div>
 
