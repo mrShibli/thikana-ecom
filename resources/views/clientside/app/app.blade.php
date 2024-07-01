@@ -47,6 +47,7 @@
         <nav class="hidden laptop:block">
             <ul class="flex gap-4">
                 @foreach($categories as $category)
+                    {{$category }}
                     <li class="@if($category->sub_category)dropdown @endif">
                         <a href="{{route ("shop")}}?category={{$category->id}}" class="text-base text-red hover:text-blue ">
                             {{$category->name}} @if($category->sub_category)

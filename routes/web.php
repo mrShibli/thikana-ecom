@@ -38,7 +38,7 @@ Route::get('/order', [OrderController::class, 'index'])->name('order.index')->mi
 Route::post('/order/store', [OrderController::class, 'store'])->name('order.store')->middleware('auth');
 
 //middleware(['auth'])->
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware ("is_admin")->group(function () {
     Route::get ("/",function (){
         return redirect()->route('admin');
     });
