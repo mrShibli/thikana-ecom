@@ -18,5 +18,10 @@ class ProductCategory extends Model
         'image',
         'background_image',
         'status',
+        'show_menu'
     ];
+
+    public function subCategory () {
+        return $this->hasMany (SubCategory::class)->where ("show_menu",true);
+    }
 }

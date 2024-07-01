@@ -469,7 +469,7 @@
                                 <li><a href="{{ route('product.create') }}"><i class="fas fa-plus-circle"></i>Add
                                         Product</a></li>
                                 <li><a href="{{ route('product_categories.index') }}"><i class="fas fa-tags"></i>Categories</a></li>
-                                <li><a href="{{ route('product_categories.create') }}"><i class="fas fa-tags"></i>Create Categories</a></li>
+                                <li><a href="{{ route('admin.sub-categories.index') }}"><i class="fas fa-tags"></i>Sub Categories</a></li>
                                 <li><a href="#"><i class="fas fa-star"></i>Reviews</a></li>
                                 <li><a href="#"><i class="fas fa-warehouse"></i>Stock Management</a></li>
                                 <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>

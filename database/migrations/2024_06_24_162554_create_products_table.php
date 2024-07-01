@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string ("slug");
-            $table->string ("is_featured");
+            $table->boolean  ("is_featured")->default (false);
             $table->text('description');
             $table->string('thumb_image');
             $table->json('images');
             $table->string('tags');
             $table->decimal('old_price', 8, 2);
             $table->decimal('offer', 8, 2)->nullable();
-            $table->boolean('status');
+            $table->boolean('status')->default (true);
             $table->integer('quantity');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('sub_category_id');

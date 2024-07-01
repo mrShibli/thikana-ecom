@@ -3,6 +3,7 @@
     namespace Database\Factories;
 
     use Illuminate\Database\Eloquent\Factories\Factory;
+    use Illuminate\Support\Str;
     use Random\RandomException;
 
     /**
@@ -24,8 +25,10 @@
                 $images[]= "products/".$image;
             }
             $thumb_image = "products/".fake ()->image ("public/products",500,500,null,false);
+            $title = fake ()->text (50);
             return [
-                "title"           => fake ()->text(50),
+                "title" => $title,
+                "slug"  => Str::slug ($title),
                 "category_id"     => random_int (1, 10),
                 "old_price"       => random_int (200, 500),
                 "sub_category_id" => random_int (1, 10),

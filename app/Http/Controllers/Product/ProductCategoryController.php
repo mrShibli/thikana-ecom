@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Product;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use App\Models\ProductCategory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
@@ -27,7 +27,6 @@ class ProductCategoryController extends Controller
         // Validate the request
         $request->validate([
             'name' => 'required',
-            'slug' => 'required|unique:product_categories',
             'description' => 'nullable',
             'meta_title' => 'nullable',
             'meta_description' => 'nullable',
@@ -56,7 +55,7 @@ class ProductCategoryController extends Controller
         // Create a new product category
         ProductCategory::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->slug),
+            'slug'      => Str::slug ($request->name),
             'description' => $request->description,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
@@ -64,6 +63,7 @@ class ProductCategoryController extends Controller
             'image' => $imagePath,
             'background_image' => $backgroundImagePath,
             'status' => $request->status,
+            'show_menu' => (bool)$request->show_menu,
         ]);
 
         return redirect()->route('product_categories.create')->with('success', 'Product category created successfully.');

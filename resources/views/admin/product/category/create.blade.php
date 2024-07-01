@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-5 py-5">
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -77,6 +77,13 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="show_menu" type="checkbox"
+                                       id="flexSwitchCheckChecked">
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Show in menu</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h6>SEO Info</h6>
@@ -104,6 +111,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
                     </div>
                 </div>
             </div>

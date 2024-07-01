@@ -17813,6 +17813,87 @@ namespace Barryvdh\Debugbar\Facades {
             }
     }
 
+namespace Flasher\Laravel\Facade {
+            /**
+     * 
+     *
+     * @method static NotificationBuilder addSuccess(string $message, array $options = array())
+     * @method static NotificationBuilder addError(string $message, array $options = array())
+     * @method static NotificationBuilder addWarning(string $message, array $options = array())
+     * @method static NotificationBuilder addInfo(string $message, array $options = array())
+     * @method static NotificationBuilder addFlash(NotificationInterface|string $type, string $message = null, array $options = array())
+     * @method static NotificationBuilder flash(StampInterface[] $stamps = array())
+     * @method static NotificationBuilder type(string $type, string $message = null, array $options = array())
+     * @method static NotificationBuilder message(string $message)
+     * @method static NotificationBuilder options(array $options, bool $merge = true)
+     * @method static NotificationBuilder option(string $name, $value)
+     * @method static NotificationBuilder success(string $message = null, array $options = array())
+     * @method static NotificationBuilder error(string $message = null, array $options = array())
+     * @method static NotificationBuilder info(string $message = null, array $options = array())
+     * @method static NotificationBuilder warning(string $message = null, array $options = array())
+     * @method static NotificationBuilder priority(int $priority)
+     * @method static NotificationBuilder hops(int $amount)
+     * @method static NotificationBuilder keep()
+     * @method static NotificationBuilder delay(int $delay)
+     * @method static NotificationBuilder now()
+     * @method static NotificationBuilder with(StampInterface[] $stamps = array())
+     * @method static NotificationBuilder withStamp(StampInterface $stamp)
+     * @method static NotificationBuilder handler(string $handler)
+     * @method static Envelope            getEnvelope()
+     */        class Flasher {
+                    /**
+         * Get a driver instance.
+         *
+         * @param string|null $alias
+         * @return \Flasher\Prime\Factory\NotificationFactoryInterface 
+         * @throws \InvalidArgumentException
+         * @static 
+         */        public static function create($alias = null)
+        {
+                        /** @var \Flasher\Prime\Flasher $instance */
+                        return $instance->create($alias);
+        }
+                    /**
+         * Get a driver instance.
+         *
+         * @param string|null $alias
+         * @return \Flasher\Prime\Factory\NotificationFactoryInterface 
+         * @throws \InvalidArgumentException
+         * @static 
+         */        public static function using($alias)
+        {
+                        /** @var \Flasher\Prime\Flasher $instance */
+                        return $instance->using($alias);
+        }
+                    /**
+         * 
+         *
+         * @param array<string, mixed> $criteria
+         * @param string $presenter
+         * @param array<string, mixed> $context
+         * @return mixed 
+         * @phpstan-return ($presenter is 'html' ? string : mixed)
+         * @static 
+         */        public static function render($criteria = [], $presenter = 'html', $context = [])
+        {
+                        /** @var \Flasher\Prime\Flasher $instance */
+                        return $instance->render($criteria, $presenter, $context);
+        }
+                    /**
+         * Register a custom driver creator.
+         *
+         * @param string $alias
+         * @param callable|\Flasher\Prime\Factory\NotificationFactoryInterface $factory
+         * @return static 
+         * @static 
+         */        public static function addFactory($alias, $factory)
+        {
+                        /** @var \Flasher\Prime\Flasher $instance */
+                        return $instance->addFactory($alias, $factory);
+        }
+            }
+    }
+
 namespace Spatie\LaravelIgnition\Facades {
             /**
      * 
@@ -21817,6 +21898,7 @@ namespace  {
             class Vite extends \Illuminate\Support\Facades\Vite {}
             class NoCaptcha extends \Anhskohbo\NoCaptcha\Facades\NoCaptcha {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
+            class Flasher extends \Flasher\Laravel\Facade\Flasher {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
     }
 

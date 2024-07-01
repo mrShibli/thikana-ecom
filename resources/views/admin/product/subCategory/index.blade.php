@@ -11,44 +11,46 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">categorys</li>
+                <li class="breadcrumb-item active" aria-current="page">subCategories</li>
             </ol>
         </nav>
-        <h5>All categorys</h5> <hr>
-        <a href="{{route ("product_categories.create")}}" class="btn btn-primary rounded mb-2">Add Category</a>
+        <h5>All Sub Categories</h5> <hr>
+        <a href="{{route ("admin.sub-categories.create")}}" class="btn btn-primary rounded mb-2">Add SubCategory</a>
         <table class="table table-striped" id="categories">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $category->name }}</td>
-                        <td>546456</td>
-                        <td>
-                            <a href="">
-                                <img src="{{ asset('view.svg') }}" alt="" width="28">
-                            </a>
-                            <a href="{{ route('product_categories.edit', $category->id) }}">
-                                <img src="{{ asset('edit.svg') }}" alt="" width="26">
-                            </a>
-                            <form action="{{ route('product_categories.destroy', $category->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
+            @foreach ($sub_categories as $category)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->slug }}</td>
+                    <td>{{ $category->product_category_id }}</td>
+                    <td>
+                        <a href="">
+                            <img src="{{ asset('view.svg') }}" alt="" width="28">
+                        </a>
+                        <a href="{{ route('admin.sub-categories.edit', $category->id) }}">
+                            <img src="{{ asset('edit.svg') }}" alt="" width="26">
+                        </a>
+                        <form action="{{ route('admin.sub-categories.destroy', $category->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
                                     onclick="return confirm('Are you sure?')">
-                                    <img src="{{ asset('delete.svg') }}" alt="" width="26">
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
+                                <img src="{{ asset('delete.svg') }}" alt="" width="26">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

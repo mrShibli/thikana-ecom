@@ -1,13 +1,12 @@
 <?php
 
-    use App\Http\Controllers\Client\OthersController;
     use App\Http\Controllers\Admin\ProductControler as AdminProductControler;
     use App\Http\Controllers\AdminController;
     use App\Http\Controllers\CartController;
     use App\Http\Controllers\Client\OrderController;
+    use App\Http\Controllers\Client\OthersController;
     use App\Http\Controllers\Client\ProductControler;
     use App\Http\Controllers\Product\ProductCategoryController;
-    use App\Models\Product;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Route;
 
@@ -70,7 +69,10 @@ Route::prefix('admin')->group(function () {
     //orders
     Route::name('admin.')->group(function () {
         Route::resource ('orders', OrderController::class);
+        //sub category
+        Route::resource ("sub-categories", App\Http\Controllers\SubCategoryController::class)->except ("show");
     });
+
 });
 
 

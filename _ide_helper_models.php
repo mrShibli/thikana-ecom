@@ -46,11 +46,11 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property int $user_id
  * @property int $product_id
  * @property int $qunt
  * @property int $price
  * @property int $option_id
+ * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Product|null $product
@@ -75,6 +75,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title
+ * @property string $slug
+ * @property string $is_featured
  * @property string $description
  * @property string $thumb_image
  * @property string $images
@@ -98,9 +100,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereImages($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereOffer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereOldPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSubCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereTags($value)
@@ -125,6 +129,7 @@ namespace App\Models{
  * @property string|null $image
  * @property string|null $background_image
  * @property string $status
+ * @property int $show_menu
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory newModelQuery()
@@ -139,6 +144,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereMetaKeywords($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereMetaTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereShowMenu($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereUpdatedAt($value)
@@ -174,10 +180,40 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $product_category_id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $description
+ * @property int $status
+ * @property int $show_menu
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereProductCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereShowMenu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCategory whereUpdatedAt($value)
+ */
+	class SubCategory extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
+ * @property int $is_admin
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -193,6 +229,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsAdmin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
