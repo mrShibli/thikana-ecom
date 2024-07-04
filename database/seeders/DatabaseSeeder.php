@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
              'is_admin' => true,
              'password' => bcrypt ("naimul0000")
          ]);
-//        Product::factory (20)->create ();
-//        Activities::factory (5)->create ();
+        Product::factory (10)->create ();
+        Activities::factory (5)->create ();
     }
 }

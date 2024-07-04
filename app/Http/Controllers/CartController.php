@@ -23,8 +23,8 @@ class CartController extends Controller {
          $request->validate([
             'product_id' => 'required|integer|exists:products,id',
             'quantity' => 'required|integer|min:1',
-            'price' => 'required|integer',
-            'option_id' => 'required|integer',
+            'price' => 'required',
+//            'option_id' => 'required|integer',
         ]);
 
         $cart = Cart::where ('user_id', Auth::user ()->id)->where ('product_id', $request->product_id)->first ();
@@ -38,7 +38,7 @@ class CartController extends Controller {
                 'product_id' => $request->product_id,
                 'qunt'       => $request->quantity ?? 1,
                 'price'      => $request->price,
-                'option_id'  => $request->option_id,
+                'option_id'  => 1,
                 'user_id'    => Auth::user ()->id,
             ]);
         }

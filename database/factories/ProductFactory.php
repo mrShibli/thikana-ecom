@@ -21,10 +21,10 @@
             $images = [];
             $random = random_int (1,5);
             for ($i = 0; $i < $random; $i++) {
-                $image = fake ()->image ("public/products",500,500,null,false);
+                $image = fake ()->image (public_path ()."/products",500,500,null,false);
                 $images[]= "products/".$image;
             }
-            $thumb_image = "products/".fake ()->image ("public/products",500,500,null,false);
+            $thumb_image = "products/".fake ()->image (public_path ()."/products",500,500,null,false);
             $title = fake ()->text (50);
             return [
                 "title" => $title,

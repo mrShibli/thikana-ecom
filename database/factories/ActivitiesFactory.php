@@ -17,7 +17,7 @@
         public function definition (): array {
             $title =fake ()->text ("35");
             $slug = Str::slug ($title);
-            $thumb_image = "activities/".fake ()->image ('public/activities',500,500,null,false);
+            $thumb_image = "activities/".fake ()->image (public_path ()."/activities",500,500,null,false);
             return [
                 "title" => $title,
                 "slug" => $slug,

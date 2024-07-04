@@ -18,12 +18,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     @vite("resources/css/app.css")
     <link rel="stylesheet" href="{{ asset('clientside/dist/assets/index.css') }}">
+    <!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    <style>
+        a.active p {
+            color: rgb(46 49 146 / var(--tw-text-opacity)) !important;
+        }
+    </style>
 </head>
 
 <body>
 <!-- ---------------Footer-section---------------------------  -->
 
 <header>
+    @php
+        $socials = \App\Models\Social::where ("status",1)->get ();
+        if ($socials){
+            $socials = [];
+        }
+        $setting = \App\Models\Setting::first ();
+        if (!$setting){
+            $setting =[
+             "title"   => "",
+                    "email"   => "",
+                    "slogan"  => "",
+                    "phone"   => "",
+                    "address" => "",
+                    "logo"    => ""
+];
+        }
+    @endphp
     <div class="header-top  px-10 py-2  flex  justify-between bg-blue">
         <div>
             <a href="#" class="text-white text-xs  laptop:text-sm">Donation for Palestine</a>
@@ -31,25 +56,25 @@
         </div>
         <!-- <p class="text-sm text-white hidden laptop:block">Free Shipping Over 1499 Taka Order!</p> -->
         <div>
-            <a href="#" class="ml-2 text-white text-base"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="ml-2 text-white text-base"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="ml-2 text-white text-base"><i class="fab fa-youtube"></i></a>
+            @foreach($socials as $social)
+                <a href="{{$social->url}}" target="_blank" class="ml-2 text-white text-base"><i
+                            class="{{$social->class}}"></i></a>
+            @endforeach
         </div>
     </div>
 
     <div class="flex justify-between px-2 laptop:px-10 py-2 bg-[#FAF4F6] items-center">
         <a href="{{route ("index")}}"> <img class="w-32 laptop:w-40 h-auto"
-                                            src="{{ asset('clientside/images/logo.png') }}"
+                                            src="{{ asset($setting->logo) }}"
                                             alt=""></a>
         @php
-            $categories = \App\Models\ProductCategory::with("subCategory")->select(["name","id"])->where("status","active")->where ('show_menu',true)->get ();
+            $categories = \App\Models\ProductCategory::with("subCategory")->select(["name","slug"])->where("status","active")->where ('show_menu',true)->get ();
         @endphp
         <nav class="hidden laptop:block">
             <ul class="flex gap-4">
                 @foreach($categories as $category)
-                    {{$category }}
                     <li class="@if($category->sub_category)dropdown @endif">
-                        <a href="{{route ("shop")}}?category={{$category->id}}" class="text-base text-red hover:text-blue ">
+                        <a href="{{route ("shop",$category->slug)}}" class="text-base text-red hover:text-blue ">
                             {{$category->name}} @if($category->sub_category)
                                 <i class="fa-solid fa-angle-down"></i>
                             @endif
@@ -91,28 +116,23 @@
 <div class="footer bg-[#00000F] p-3 laptop:py-10">
     <div class="container mx-auto grid gap-4 grid-cols-1 tablet:grid-cols-4">
         <div>
-            <a href="#"><img class="w-1/4 tablet:w-36 laptop:w-1/2  h-auto mb-2 tablet:mb-5 laptop:mb-6"
-                             src="{{ asset('clientside/images/logo.png') }}" alt=""></a>
-            <p class="text-white text-sm laptop:text-sm">Unbox The Unexpected</p>
+            <a href="{{route ("index")}}"><img class="w-1/4 tablet:w-36 laptop:w-1/2  h-auto mb-2 tablet:mb-5 laptop:mb-6"
+                             src="{{ asset($setting->logo) }}" alt=""></a>
+            <p class="text-white text-sm laptop:text-sm">{{$setting->slogan}}</p>
         </div>
 
         <div>
+            @php
+                $pages = \App\Models\Page::where ("status",1)->get ();
+            @endphp
             <h1 class="text-white mb-2 text-[18px]">Quick LInks</h1>
             <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
             <div>
-                <a href="blog.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Blog</a>
-                <a href="shop.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Shop</a>
-                <a href="my-account.html" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">My
-                    account</a>
-                <a href="terms-and-conditions.html"
-                   class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Terms and Conditions</a>
-                <a href="{{route ("privacy-policy")}}"
-                   class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Privacy Policy</a>
-                <a href="{{route ("refund-returns")}}"
-                   class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Refund and Return
-                    Policy</a>
-                <a href="donation-of-thikana-shop.html"
-                   class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Donation for Palestine</a>
+                @foreach($pages as $page)
+                    <a href="{{route ("page",$page->slug)}}"
+                       class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">{{$page->title}}</a>
+                @endforeach
+
             </div>
         </div>
 
@@ -120,20 +140,12 @@
             <h1 class="text-white mb-2 text-[18px]">Categories</h1>
             <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
             <div>
-                <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">T-Shirt
-                    Collection </a>
-                <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Dawah
-                    T-Shirt</a>
-                <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Gift
-                    Item</a>
-                <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Mens
-                    Fashion</a>
-                <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Womens
-                    Fashion</a>
-                <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Customize
-                    Chocolate</a>
-                <a href="#" class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">Fashion
-                    Accessories</a>
+                @foreach($categories as $category)
+                    <a href="{{route ("shop",$category->slug)}}"
+                       class="text-white text-xs laptop:text-sm block mb-4 hover:text-red">
+                        {{$category->name}}
+                    </a>
+                @endforeach
             </div>
         </div>
         <div>
@@ -141,20 +153,20 @@
             <div class="divider w-16 h-1 bg-[#7C0E19] mb-6"></div>
 
             <div>
-                <a href="#"><i
-                            class="fa-brands fa-facebook text-red h-8 w-8 leading-[30px] text-center  border-red border-2 rounded-full hover:scale-105 ease-linear mr-2"></i>
-                </a>
-                <a href="#"><i
-                            class="fa-brands fa-youtube   text-red h-8 w-8 leading-[30px] text-center  border-red border-2 rounded-full hover:scale-105 ease-linear"></i></a>
+                @foreach($socials as $social)
+                    <a href="{{$social->url}}" target="_blank">
+                        <i class="{{$social->class}} text-red h-8 w-8 leading-[30px] text-center  border-red border-2 rounded-full hover:scale-105 ease-linear mr-2"></i>
+                    </a>
+                @endforeach
                 <div class="mt-5">
                     <p class="text-white text-xs laptop:text-sm"><i
-                                class="fa-solid fa-location-dot text-red mr-1"></i> Kolahat, Badalgachi, Naogaon</p>
+                                class="fa-solid fa-location-dot text-red mr-1"></i> {{$setting->address}}</p>
                     <p class="text-white text-xs laptop:text-sm my-4"><i
                                 class="fa-solid fa-envelope-open-text text-red mr-1"></i> <a
-                                href="mailto:thikanagiftshop@gmail.com">thikanagiftshop@gmail.com</a></p>
+                                href="mailto:{{$setting->email}}">{{$setting->email}}</a></p>
                     <p class="text-white text-xs laptop:text-sm"><i
                                 class="fa-solid fa-phone-volume text-red mr-1"></i> <a
-                                href="tel:+8801327-282454">+8801327-282454</a></p>
+                                href="tel:{{$setting->phone}}">{{$setting->phone}}</a></p>
                 </div>
 
             </div>
@@ -170,15 +182,14 @@
     </p>
 
 </div>
-
-
 <!-- swiper js  -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+<!--jQuery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- cstm js  -->
 <script src="{{ asset('clientside/js/script.js') }}"></script>
-
-
+<!--Plugin JavaScript file-->
+@yield("script")
 </body>
 
 </html>

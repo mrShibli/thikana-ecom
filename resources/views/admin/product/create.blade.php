@@ -87,7 +87,8 @@
                     <button type="button" class="btn btn-primary my-2" onclick="addVariation()">Add Variation</button><br><br>
                     <div class="mb-3">
                         <label for="productCategory" class="form-label">Category</label>
-                        <select class="form-select" name="category_id" id="productCategory">
+                        <select class="form-select" name="category_id" id="productCategory" required>
+                            <option value="">Select Category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
@@ -95,7 +96,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="productSubCategory" class="form-label">Sub Category</label>
-                        <input type="text" class="form-control" name="sub_category_id" id="productSubCategory" placeholder="Enter sub category" value="{{ old('sub_category_id') }}">
+                        <select class="form-select" name="sub_category_id" id="productSubCategory" required>
+                            <option value="">Select Category</option>
+                            @foreach ($sub_categories as $sub_category)
+                                <option value="{{ $sub_category->id }}" {{ old('sub_category_id') === $sub_category->id ? 'selected' : '' }}>{{ $sub_category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="productTags" class="form-label">Tags</label>

@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -16,15 +16,35 @@
         </nav>
         <h5>All Orders</h5>
         <hr>
+        <div class="col-2 py-3">
+            <form method="GET" action="{{ route('admin.orders.index') }}">
+                <label for="status" class="form-label">Status</label>
+                <select name="status" id="status" class="form-select" onchange="this.form.submit()">
+                    <option value="">Select Status</option>
+                    <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="processing" {{ request('status') === 'processing' ? 'selected' : '' }}>Processing
+                    </option>
+                    <option value="delivered" {{ request('status') === 'delivered' ? 'selected' : '' }}>Delivered
+                    </option>
+                    <option value="on_hold" {{ request('status') === 'on_hold' ? 'selected' : '' }}>On Hold</option>
+                    <option value="shipped" {{ request('status') === 'shipped' ? 'selected' : '' }}>Shipped</option>
+                    <option value="cancelled" {{ request('status') === 'cancelled' ? 'selected' : '' }}>Cancelled
+                    </option>
+                </select>
+            </form>
+
+        </div>
         <table class="table table-striped" id="Products">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>City</th>
-                <th>Thana</th>
+                <th>phone</th>
+                <th>Product Id</th>
+                <th>Product name</th>
                 <th>address</th>
                 <th>Total Price</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -33,15 +53,43 @@
                 <tr>
                     <td>{{ $order->id }}</td>
                     <td> {{ $order->name }}</td>
-                    <td> {{ $order->city }}</td>
-                    <td> {{ $order->upazila }}</td>
-                    <td> {{ $order->address }}</td>
+                    <td> {{ $order->phone }}</td>
+                    <td> @foreach($order->products as $product)
+                            {{ $product->id }}@if($loop->index < 2)
+                                ,
+                            @endif
+                        @endforeach</td>
+                    <td> @foreach($order->products as $product)
+                            {{ $product->title }}@if($loop->index <2)
+                                <br>
+                            @endif
+                        @endforeach</td>
+                    <td> {{ $order->upazila }},{{$order->city}},{{$order->address}}</td>
                     <td> {{ $order->total }}</td>
+                    <td>
+                        @php
+                            $statusClass = 'danger'; // Default class
+                            if ($order->status === 'pending') {
+                                $statusClass = 'warning';
+                            } elseif ($order->status === 'processing') {
+                                $statusClass = 'primary';
+                            } elseif ($order->status === 'delivered') {
+                                $statusClass = 'success';
+                            } elseif ($order->status === 'on_hold') {
+                                $statusClass = 'secondary';
+                            } elseif ($order->status === 'shipped') {
+                                $statusClass = 'info';
+                            }
+                        @endphp
+                        <span class="btn btn-{{ $statusClass }} btn-sm">
+                            {{ $order->status }}
+                        </span>
+                    </td>
                     <td>
                         <a href="">
                             <img src="{{ asset('view.svg') }}" alt="" width="28">
                         </a>
-                        <a href="">
+                        <a href="{{route ("admin.orders.edit",$order->id)}}">
                             <img src="{{ asset('edit.svg') }}" alt="" width="26">
                         </a>
                         <form action="" method="POST" class="d-inline">
@@ -68,7 +116,7 @@
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#Products').DataTable({
                 dom: 'Bfrtip',
                 buttons: [

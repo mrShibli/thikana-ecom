@@ -23,10 +23,9 @@
 
 Route::get('/product/{id}/{slug}', [ProductControler::class, 'index'])->name('product.single');
 Route::controller (OthersController::class)->group (function (){
-    Route::get ("/shop", 'shop')->name ("shop");
-    Route::get ("/refund-returns","refund")->name ("refund-returns");
-    Route::get ("/privacy-policy","policy")->name ("privacy-policy");
+    Route::get ("/shop/{category?}/{sub_category?}", 'shop')->name ("shop");
     Route::get('/',"index" )->name ("index");
+    Route::get ('/p/{slug}', "page")->name ("page");
 });
 Route::post('/check-email', [AdminController::class, 'checkemail'])->name('check.email');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
@@ -55,9 +54,18 @@ Route::prefix('admin')->middleware ("is_admin")->group(function () {
     Route::get('/product_categories', [ProductCategoryController::class, 'index'])->name('product_categories.index');
     Route::get('/product_categories/create', [ProductCategoryController::class, 'create'])->name('product_categories.create');
     Route::post('/product_categories', [ProductCategoryController::class, 'store'])->name('product_categories.store');
-    Route::get('/product_categories/{id}/edit', [ProductCategoryController::class, 'edit'])->name('product_categories.edit');
-    Route::put('/product_categories/{id}', [ProductCategoryController::class, 'update'])->name('product_categories.update');
-    Route::delete('/product_categories/{id}', [ProductCategoryController::class, 'destroy'])->name('product_categories.destroy');
+    Route::get ('/product_categories/{product_category}/edit', [
+        ProductCategoryController::class,
+        'edit'
+    ])->name ('product_categories.edit');
+    Route::put ('/product_categories/{product_category}', [
+        ProductCategoryController::class,
+        'update'
+    ])->name ('product_categories.update');
+    Route::delete ('/product_categories/{product_category}', [
+        ProductCategoryController::class,
+        'destroy'
+    ])->name ('product_categories.destroy');
 
     // Dashboard Product Controller
     Route::get('/product', [AdminProductControler::class, 'index'])->name('product.index');
@@ -66,15 +74,45 @@ Route::prefix('admin')->middleware ("is_admin")->group(function () {
     //caht gpt 
     Route::get('/products/create', [AdminProductControler::class, 'productCreate'])->name('product.create');
     Route::post('/products', [AdminProductControler::class, 'store'])->name('products.store');
+    Route::get ('/products/{product}/edit', [
+        AdminProductControler::class,
+        'edit'
+    ])->name ('products.edit');
+    Route::put ('/products/{product}', [
+        AdminProductControler::class,
+        'update'
+    ])->name ('products.update');
+    Route::delete ('/products/{product}', [
+        AdminProductControler::class,
+        'destroy'
+    ])->name ('products.destroy');
     //orders
     Route::name('admin.')->group(function () {
-        Route::resource ('orders', OrderController::class);
+        Route::resource ('orders', \App\Http\Controllers\OrderController::class);
+        Route::resource ('banners', \App\Http\Controllers\BannerController::class)->except ("show");
         //sub category
         Route::resource ("sub-categories", App\Http\Controllers\SubCategoryController::class)->except ("show");
+        //static pages
+        Route::resource ("pages", \App\Http\Controllers\PageController::class)->except ("show");
+
+        //settings page
+        Route::get ("/settings", [
+            \App\Http\Controllers\SettingController::class,
+            'index'
+        ])->name ("settings.index");
+        Route::post ("/settings/{id?}", [
+            \App\Http\Controllers\SettingController::class,
+            'store'
+        ])->name ("settings.store");
+        //social
+        Route::resource ("socials", \App\Http\Controllers\SocialController::class)->except ("show");
     });
 
 });
-
+    Route::get ("/migrate", function () {
+        Artisan::call ("migrate");
+        return "migrate";
+    });
 
 Auth::routes();
 

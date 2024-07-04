@@ -17,8 +17,7 @@ class ProductCategoryController extends Controller
     }
 
     // Category Create 
-    public function create()
-    {
+    public function create () {
         return view('admin.product.category.create');
     }
 
@@ -67,5 +66,51 @@ class ProductCategoryController extends Controller
         ]);
 
         return redirect()->route('product_categories.create')->with('success', 'Product category created successfully.');
+    }
+
+    public function edit (ProductCategory $productCategory) {
+        return view ("admin.product.category.edit", compact ("productCategory"));
+    }
+
+    public function update (Request $request, ProductCategory $productCategory) {
+        // Validate the request
+        $request->validate ([
+            'name'             => 'required',
+            'description'      => 'nullable',
+            'meta_title'       => 'nullable',
+            'meta_description' => 'nullable',
+            'meta_keywords'    => 'nullable',
+            'image'            => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'background_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status'           => 'required|in:active,inactive',
+        ]);
+        // Handle file upload for image
+        $imagePath = $request->old_image;
+        if ($request->hasFile ('image')) {
+            $image = $request->file ('image');
+            $imageName = time () . '_' . uniqid () . '.' . $image->getClientOriginalExtension ();
+            $imagePath = $image->storeAs ('category_images', $imageName, 'public');
+        }
+        $productCategory->name = $request->name;
+        $productCategory->description = $request->description;
+        $productCategory->meta_title = $request->meta_title;
+        $productCategory->meta_description = $request->meta_description;
+        $productCategory->meta_keywords = $request->meta_keywords;
+        $productCategory->status = $request->status;
+        $productCategory->image = $imagePath;
+        $productCategory->show_menu = (bool)$request->show_menu;
+        $productCategory->save ();
+        flash ("Category Update successfully.");
+        return redirect ()->back ();
+    }
+
+    public function destroy (ProductCategory $productCategory) {
+        if ($productCategory) {
+            $productCategory->delete ();
+            flash ("Category Deleted.");
+            return redirect ()->back ();
+        }
+        flash ("No Category Found", "error");
+        return redirect ()->back ();
     }
 }

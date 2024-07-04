@@ -96,8 +96,7 @@
         }
 
         .glowcard i {
-            font-size: 10px;
-            ;
+            font-size: 10px;;
         }
     </style>
     <style>
@@ -277,310 +276,329 @@
 <body>
 
 
-
-    <div class="main-wrapper">
-        <!-- -navbar- -->
-        <div class="header-container fixed-top">
-            <header class="header navbar navbar-expand-sm expand-header">
-                <div class="header-left d-flex">
-                    <div class="logo">
-                        <a href="{{ route('admin') }}">Thikana.shop</a>
-                    </div>
-                    <a href="#" id="toggleSidebar" class="sidebarCollapse" data-placement="button">
-                        <span class="fas fa-bars"></span>
+<div class="main-wrapper">
+    <!-- -navbar- -->
+    <div class="header-container fixed-top">
+        <header class="header navbar navbar-expand-sm expand-header">
+            <div class="header-left d-flex">
+                <div class="logo">
+                    <a href="{{ route('admin') }}">Thikana.shop</a>
+                </div>
+                <a href="#" id="toggleSidebar" class="sidebarCollapse" data-placement="button">
+                    <span class="fas fa-bars"></span>
+                </a>
+            </div>
+            <div class="searchBar">
+                <input type="search" name="search" placeholder="Search..." id="">
+            </div>
+            <ul class="navbar-item flex-row  align-items-center py-2 ml-auto ">
+                <li class="nav-item dropdown user-profile-dropdown">
+                    <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/img/notification.png') }}" alt="" class="icon">
+                        <p class="count">5</p>
                     </a>
-                </div>
-                <div class="searchBar">
-                    <input type="search" name="search" placeholder="Search..." id="">
-                </div>
-                <ul class="navbar-item flex-row  align-items-center py-2 ml-auto ">
-                    <li class="nav-item dropdown user-profile-dropdown">
-                        <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
-                            <img src="{{ asset('assets/img/notification.png') }}" alt="" class="icon">
-                            <p class="count">5</p>
-                        </a>
 
-                        <div class="dropdown-menu notification">
-                            <div class="dp-main-menu">
-                                <a href="" class="dropdown-item message-item">
-                                    <img src="{{ asset('assets/img/email.png') }}" alt="" class="user-note">
-                                    <div class="note-info-desmis">
-                                        <div class="user-notify-info">
-                                            <p class="note-name">server reboted</p>
-                                            <p class="note-time">20 min ago</p>
-                                        </div>
-                                        <p class="status-link"><span class="fas fa-times"></span></p>
+                    <div class="dropdown-menu notification">
+                        <div class="dp-main-menu">
+                            <a href="" class="dropdown-item message-item">
+                                <img src="{{ asset('assets/img/email.png') }}" alt="" class="user-note">
+                                <div class="note-info-desmis">
+                                    <div class="user-notify-info">
+                                        <p class="note-name">server reboted</p>
+                                        <p class="note-time">20 min ago</p>
                                     </div>
+                                    <p class="status-link"><span class="fas fa-times"></span></p>
+                                </div>
 
-                                </a>
-                                <a href="" class="dropdown-item message-item">
-                                    <img src="{{ asset('assets/img/email.png') }}" alt="" class="user-note">
-                                    <div class="note-info-desmis">
-                                        <div class="user-notify-info">
-                                            <p class="note-name">software server reboted</p>
-                                            <p class="note-time">20 min ago</p>
-                                        </div>
-                                        <p class="status-link"><span class="fas fa-times"></span></p>
+                            </a>
+                            <a href="" class="dropdown-item message-item">
+                                <img src="{{ asset('assets/img/email.png') }}" alt="" class="user-note">
+                                <div class="note-info-desmis">
+                                    <div class="user-notify-info">
+                                        <p class="note-name">software server reboted</p>
+                                        <p class="note-time">20 min ago</p>
                                     </div>
+                                    <p class="status-link"><span class="fas fa-times"></span></p>
+                                </div>
 
-                                </a>
-                                <a href="" class="dropdown-item message-item">
-                                    <img src="{{ asset('assets/img/email.png') }}" alt="" class="user-note">
-                                    <div class="note-info-desmis">
-                                        <div class="user-notify-info">
-                                            <p class="note-name">server reboted</p>
-                                            <p class="note-time">20 min ago</p>
-                                        </div>
-                                        <p class="status-link"><span class="fas fa-times"></span></p>
+                            </a>
+                            <a href="" class="dropdown-item message-item">
+                                <img src="{{ asset('assets/img/email.png') }}" alt="" class="user-note">
+                                <div class="note-info-desmis">
+                                    <div class="user-notify-info">
+                                        <p class="note-name">server reboted</p>
+                                        <p class="note-time">20 min ago</p>
                                     </div>
+                                    <p class="status-link"><span class="fas fa-times"></span></p>
+                                </div>
 
-                                </a>
+                            </a>
 
 
-                            </div>
                         </div>
+                    </div>
 
-                    </li>
-                    <li class="nav-item dropdown user-profile-dropdown">
-                        <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
-                            <img src="{{ asset('assets/img/email.png') }}" alt="" class="icon">
-                            <p class="count">4</p>
-                        </a>
-                        <div class="dropdown-menu mail">
-                            <div class="dp-main-menu">
+                </li>
+                <li class="nav-item dropdown user-profile-dropdown">
+                    <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/img/email.png') }}" alt="" class="icon">
+                        <p class="count">4</p>
+                    </a>
+                    <div class="dropdown-menu mail">
+                        <div class="dp-main-menu">
 
-                                <div class="email-info">
-                                    <a href="" class="email-item">
-                                        <img src="{{ asset('profile.svg') }}" alt="" class="user-email">
-                                        <div class="note-info-email">
-                                            <h2 class="name">Tawfiq Khan</h2>
-                                            <p class="role">Super admin</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="email-info">
-                                    <a href="" class="email-item">
-                                        <img src="{{ asset('assets/img/man.png') }}" alt=""
-                                            class="user-email">
-                                        <div class="note-info-email">
-                                            <h2 class="name">Tawfiq Khan</h2>
-                                            <p class="role">Super admin</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="email-info">
-                                    <a href="" class="email-item">
-                                        <img src="{{ asset('assets/img/man.png') }}" alt=""
-                                            class="user-email">
-                                        <div class="note-info-email">
-                                            <h2 class="name">Tawfiq Khan</h2>
-                                            <p class="role">Super admin</p>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown user-profile-dropdown">
-                        <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
-                            <img src="{{ asset('profile.svg') }}" width="38" alt="" class="icon">
-                        </a>
-
-                        <div class="dropdown-menu usr">
-                            <div class="dp-main-menu">
-
-                                <div class="user-info">
-                                    <div class="user-data">
-                                        <img src="{{ asset('assets/img/man.png') }}" alt=""
-                                            class="user-img">
-                                        <div class="mt-3">
-                                            <h2>{{ Auth::user()->name ?? '' }}</h2>
-                                            <p> <small>{{ Auth::user()->email  ?? ''}}</small> </p>
-                                            <p>Super admin</p>
-                                        </div>
+                            <div class="email-info">
+                                <a href="" class="email-item">
+                                    <img src="{{ asset('profile.svg') }}" alt="" class="user-email">
+                                    <div class="note-info-email">
+                                        <h2 class="name">Tawfiq Khan</h2>
+                                        <p class="role">Super admin</p>
                                     </div>
-                                    <div class="user-link">
-                                        <a href="{{ route('admin.profile') }}"><i class="fas fa-user"></i>
-                                            Profile</a>
-                                        <a href=""><i class="fas fa-envelope"></i> Inbox</a>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                </a>
+                            </div>
+                            <div class="email-info">
+                                <a href="" class="email-item">
+                                    <img src="{{ asset('assets/img/man.png') }}" alt=""
+                                         class="user-email">
+                                    <div class="note-info-email">
+                                        <h2 class="name">Tawfiq Khan</h2>
+                                        <p class="role">Super admin</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="email-info">
+                                <a href="" class="email-item">
+                                    <img src="{{ asset('assets/img/man.png') }}" alt=""
+                                         class="user-email">
+                                    <div class="note-info-email">
+                                        <h2 class="name">Tawfiq Khan</h2>
+                                        <p class="role">Super admin</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown user-profile-dropdown">
+                    <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
+                        <img src="{{ asset('profile.svg') }}" width="38" alt="" class="icon">
+                    </a>
+
+                    <div class="dropdown-menu usr">
+                        <div class="dp-main-menu">
+
+                            <div class="user-info">
+                                <div class="user-data">
+                                    <img src="{{ asset('assets/img/man.png') }}" alt=""
+                                         class="user-img">
+                                    <div class="mt-3">
+                                        <h2>{{ Auth::user()->name ?? '' }}</h2>
+                                        <p><small>{{ Auth::user()->email  ?? ''}}</small></p>
+                                        <p>Super admin</p>
+                                    </div>
+                                </div>
+                                <div class="user-link">
+                                    <a href="{{ route('admin.profile') }}"><i class="fas fa-user"></i>
+                                        Profile</a>
+                                    <a href=""><i class="fas fa-envelope"></i> Inbox</a>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"><i
                                                 class="fas fa-lock-open"></i>
 
-                                            {{ __('Logout') }}
-                                        </a>
+                                        {{ __('Logout') }}
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                        </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          class="d-none">
+                                        @csrf
+                                    </form>
+                                    </a>
 
-                                    </div>
                                 </div>
-
                             </div>
-                        </div>
 
-                    </li>
-                    <li class="nav-item dropdown user-profile-dropdown">
-                        <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
-                            <img src="{{ asset('assets/img/settings.png') }}" alt="" class="icon">
-                        </a>
-                        <div class="dropdown-menu setting">
-                            <div class="dp-main-menu">
-                                <div class="user-info">
-                                    <div class="user-link mt-3">
-                                        <a href=""><i class="fas fa-gear"></i> Settings</a>
-                                        <a href=""><i class="fas fa-users"></i> Admin</a>
-                                        <a href=""><i class="fas fa-pen"></i> Color</a>
-                                        <a href=""><i class="fas fa-moon"></i> Theme</a>
-                                    </div>
+                        </div>
+                    </div>
+
+                </li>
+                <li class="nav-item dropdown user-profile-dropdown">
+                    <a href="" class="nav-link user" id="notify" data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/img/settings.png') }}" alt="" class="icon">
+                    </a>
+                    <div class="dropdown-menu setting">
+                        <div class="dp-main-menu">
+                            <div class="user-info">
+                                <div class="user-link mt-3">
+                                    <a href=""><i class="fas fa-gear"></i> Settings</a>
+                                    <a href=""><i class="fas fa-users"></i> Admin</a>
+                                    <a href=""><i class="fas fa-pen"></i> Color</a>
+                                    <a href=""><i class="fas fa-moon"></i> Theme</a>
                                 </div>
-
                             </div>
+
                         </div>
+                    </div>
+                </li>
+            </ul>
+
+        </header>
+    </div>
+    <!-- -navbar-end -->
+
+
+    <!-- --sidebar-start-- -->
+
+    <div class="left-menu">
+        <div class="menubar-content">
+            <nav class="animated bounceInDown">
+                <ul id="sidebar">
+                    <li class="active">
+                        <a href="{{ route('admin') }}"><i class="fas fa-home"></i>Dashboard</a>
                     </li>
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="fas fa-box-open"></i>Product <span
+                                    class="fas fa-caret-down right"></span></a>
+                        <ul class="left-menu-dp">
+                            <li><a href="{{ route('product.index') }}"><i class="fas fa-list"></i>All Products</a></li>
+                            <li><a href="{{ route('product.create') }}"><i class="fas fa-plus-circle"></i>Add
+                                    Product</a></li>
+                            <li><a href="{{ route('product_categories.index') }}"><i class="fas fa-tags"></i>Categories</a>
+                            </li>
+                            <li><a href="{{ route('admin.sub-categories.index') }}"><i class="fas fa-tags"></i>Sub
+                                    Categories</a></li>
+                            <li><a href="#"><i class="fas fa-star"></i>Reviews</a></li>
+                            <li><a href="#"><i class="fas fa-warehouse"></i>Stock Management</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="fas fa-user"></i>Banners<span
+                                    class="fas fa-caret-down right"></span></a>
+                        <ul class="left-menu-dp">
+                            <li>
+                                <a href="{{ route('admin.banners.index') }}"><i class="fas fa-user-circle"></i>All
+                                    Banners</a>
+                            </li>
+                            <li>
+                                <a href="{{route ("admin.banners.create")}}"><i class="fas fa-plus-circle"></i>Add
+                                    Banner</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="#"><i class="fas fa-user"></i>Users <span
+                                    class="fas fa-caret-down right"></span></a>
+                        <ul class="left-menu-dp">
+                            <li><a href="{{ route('admin.users') }}"><i class="fas fa-user-circle"></i>All
+                                    Users</a></li>
+                            <li><a href="#"><i class="fas fa-fingerprint"></i>Security &amp; Privacy</a>
+                            </li>
+                            <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
+                            <li><a href="#"><i class="fas fa-bell"></i>Notification</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="#"><i class="fas fa-user"></i>Orders <span
+                                    class="fas fa-caret-down right"></span></a>
+                        <ul class="left-menu-dp">
+                            <li><a href="{{ route('admin.orders.index') }}"><i class="fas fa-user-circle"></i>All Orders</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="fas fa-tools"></i>Settings <span
+                                    class="fas fa-caret-down right"></span></a>
+                        <ul class="left-menu-dp">
+                            <li><a href="{{route ("admin.settings.index")}}"><i class="fas fa-globe"></i>Website
+                                    Settings</a></li>
+                            <li><a href="{{route ("admin.socials.index")}}"><i class="fas fa-globe"></i>Social Media</a>
+                            </li>
+                            {{--                                <li><a href="#"><i class="fas fa-heading"></i>Header Settings</a></li>--}}
+                            {{--                                <li><a href="#"><i class="fas fa-shoe-prints"></i>Footer Settings</a></li>--}}
+                            {{--                                <li><a href="#"><i class="fas fa-shield-alt"></i>Security Settings</a></li>--}}
+                            {{--                                <li><a href="#"><i class="fas fa-envelope"></i>SMTP Setup</a></li>--}}
+                            {{--                                <li><a href="#"><i class="fas fa-lock"></i>Login Activity</a></li>--}}
+                            {{--                                <li><a href="#"><i class="fas fa-user-secret"></i>Privacy Settings</a></li>--}}
+                            {{--                                <li><a href="#"><i class="fas fa-bell"></i>Notification Settings</a></li>--}}
+                        </ul>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="fas fa-copy"></i>Pages <span
+                                    class="fas fa-caret-down right"></span></a>
+                        <ul class="left-menu-dp">
+                            <li><a href="{{route ("admin.pages.index")}}"><i class="fas fa-file-alt"></i>All Pages</a>
+                            </li>
+                            <li><a href="{{route ("admin.pages.create")}}"><i class="fas fa-file-medical"></i>Create
+                                    Page</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="fas fa-blog"></i>Blog <span
+                                    class="fas fa-caret-down right"></span></a>
+                        <ul class="left-menu-dp">
+                            <li><a href="#"><i class="fas fa-list"></i>All Posts</a></li>
+                            <li><a href="#"><i class="fas fa-pencil-alt"></i>Create Post</a></li>
+                            <li><a href="#"><i class="fas fa-edit"></i>Edit Post</a></li>
+                            <li><a href="#"><i class="fas fa-archive"></i>Archived Posts</a></li>
+                            <li><a href="#"><i class="fas fa-tags"></i>Categories</a></li>
+                            <li><a href="#"><i class="fas fa-comments"></i>Comments</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href=""><i class="fas fa-bell"></i>Subscripton</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="fas fa-envelope"></i>Contacts</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="fas fa-play"></i>Media</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="fas fa-list"></i>Sliders</a>
+                    </li>
+
+
                 </ul>
-
-            </header>
+            </nav>
         </div>
-        <!-- -navbar-end -->
-
-
-        <!-- --sidebar-start-- -->
-
-        <div class="left-menu">
-            <div class="menubar-content">
-                <nav class="animated bounceInDown">
-                    <ul id="sidebar">
-                        <li class="active">
-                            <a href="{{ route('admin') }}"><i class="fas fa-home"></i>Dashboard</a>
-                        </li>
-
-                        <li class="sub-menu">
-                            <a href="#"><i class="fas fa-box-open"></i>Product <span
-                                    class="fas fa-caret-down right"></span></a>
-                            <ul class="left-menu-dp">
-                                <li><a href="{{ route('product.index') }}"><i class="fas fa-list"></i>All Products</a></li>
-                                <li><a href="{{ route('product.create') }}"><i class="fas fa-plus-circle"></i>Add
-                                        Product</a></li>
-                                <li><a href="{{ route('product_categories.index') }}"><i class="fas fa-tags"></i>Categories</a></li>
-                                <li><a href="{{ route('admin.sub-categories.index') }}"><i class="fas fa-tags"></i>Sub Categories</a></li>
-                                <li><a href="#"><i class="fas fa-star"></i>Reviews</a></li>
-                                <li><a href="#"><i class="fas fa-warehouse"></i>Stock Management</a></li>
-                                <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sub-menu">
-                            <a href="#"><i class="fas fa-user"></i>Users <span
-                                    class="fas fa-caret-down right"></span></a>
-                            <ul class="left-menu-dp">
-                                <li><a href="{{ route('admin.users') }}"><i class="fas fa-user-circle"></i>All
-                                        Users</a></li>
-                                <li><a href="#"><i class="fas fa-fingerprint"></i>Security &amp; Privacy</a>
-                                </li>
-                                <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
-                                <li><a href="#"><i class="fas fa-bell"></i>Notification</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="#"><i class="fas fa-user"></i>Orders <span
-                                    class="fas fa-caret-down right"></span></a>
-                            <ul class="left-menu-dp">
-                                <li><a href="{{ route('admin.orders.index') }}"><i class="fas fa-user-circle"></i>All Orders</a></li>
-                            </ul>
-                        </li>
-
-
-
-                        <li class="sub-menu">
-                            <a href="#"><i class="fas fa-tools"></i>Settings <span
-                                    class="fas fa-caret-down right"></span></a>
-                            <ul class="left-menu-dp">
-                                <li><a href="#"><i class="fas fa-globe"></i>Website Settings</a></li>
-                                <li><a href="#"><i class="fas fa-heading"></i>Header Settings</a></li>
-                                <li><a href="#"><i class="fas fa-shoe-prints"></i>Footer Settings</a></li>
-                                <li><a href="#"><i class="fas fa-shield-alt"></i>Security Settings</a></li>
-                                <li><a href="#"><i class="fas fa-envelope"></i>SMTP Setup</a></li>
-                                <li><a href="#"><i class="fas fa-lock"></i>Login Activity</a></li>
-                                <li><a href="#"><i class="fas fa-user-secret"></i>Privacy Settings</a></li>
-                                <li><a href="#"><i class="fas fa-bell"></i>Notification Settings</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="sub-menu">
-                            <a href="#"><i class="fas fa-copy"></i>Pages <span
-                                    class="fas fa-caret-down right"></span></a>
-                            <ul class="left-menu-dp">
-                                <li><a href="#"><i class="fas fa-file-alt"></i>All Pages</a></li>
-                                <li><a href="#"><i class="fas fa-file-medical"></i>Create Page</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="sub-menu">
-                            <a href="#"><i class="fas fa-blog"></i>Blog <span
-                                    class="fas fa-caret-down right"></span></a>
-                            <ul class="left-menu-dp">
-                                <li><a href="#"><i class="fas fa-list"></i>All Posts</a></li>
-                                <li><a href="#"><i class="fas fa-pencil-alt"></i>Create Post</a></li>
-                                <li><a href="#"><i class="fas fa-edit"></i>Edit Post</a></li>
-                                <li><a href="#"><i class="fas fa-archive"></i>Archived Posts</a></li>
-                                <li><a href="#"><i class="fas fa-tags"></i>Categories</a></li>
-                                <li><a href="#"><i class="fas fa-comments"></i>Comments</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li>
-                            <a href=""><i class="fas fa-bell"></i>Subscripton</a>
-                        </li>
-
-                        <li>
-                            <a href=""><i class="fas fa-envelope"></i>Contacts</a>
-                        </li>
-
-                        <li>
-                            <a href=""><i class="fas fa-play"></i>Media</a>
-                        </li>
-
-                        <li>
-                            <a href=""><i class="fas fa-list"></i>Sliders</a>
-                        </li>
-
-
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <!-- --sidebar-end-- -->
-
-        <!-- --Main wrapper-start-- -->
-        <div class="content-wrapper">
-
-            @yield('content')
-
-        </div>
-        <!-- --Main wrapper-end-- -->
-
-
     </div>
 
+    <!-- --sidebar-end-- -->
+
+    <!-- --Main wrapper-start-- -->
+    <div class="content-wrapper">
+
+        @yield('content')
+
+    </div>
+    <!-- --Main wrapper-end-- -->
 
 
+</div>
 
-    <!-- ----------------------------js---------------------------------------- -->
 
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    @yield('scripts')
+<!-- ----------------------------js---------------------------------------- -->
+
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
+@yield('scripts')
 </body>
 
 </html>

@@ -14,8 +14,7 @@
          * Display a listing of the resource.
          */
         public function index () {
-            $orders = order::get ();
-            return view ('admin.orders',compact ("orders"));
+
         }
 
         /**
@@ -56,7 +55,8 @@
                 'upazila' => $request->upazila,
                 'city'    => $request->city,
                 'message' => $request->message,
-                'total'   => $total,
+                'shipping' => $request->shipping??120,
+                'total'    => $total + ($request->shipping??120),
                 'user_id' => Auth::user ()->id,
             ]);
             if ($order) {

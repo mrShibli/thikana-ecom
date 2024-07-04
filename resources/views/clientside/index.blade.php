@@ -1,17 +1,16 @@
 
 @extends('clientside.app.app')
-    <!-- -------------------hero-section------------------- -->
+<!-- -------------------hero-section------------------- -->
 @section('client-content')
-    
 
     <div class="swiper hero-slider container mx-auto p-3 py-3">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="{{ asset('clientside/images/Eid-Sale-Slider-Ramadan-Special.jpg') }}" alt="">
-            </div>
-            <div class="swiper-slide">
-                <img src="{{ asset('clientside/images/Eid-Sale-Slider-Ramadan-Special.jpg') }}" alt="">
-            </div>
+            @foreach($banners as $banner)
+                <div class="swiper-slide">
+                    <img src="{{ asset($banner->image) }}" alt="">
+                </div>
+            @endforeach
+
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -23,32 +22,21 @@
     <div class="category container mx-auto py-5 p-3 ">
 
         <input type="search" name="search" placeholder="Search Category" id=""
-            class="p-1 pl-2 border rounded my-5 placeholder:text-xs focus:border-red outline-none">
+               class="p-1 pl-2 border rounded my-5 placeholder:text-xs focus:border-red outline-none">
 
         <div class="grid grid-cols-4 tablet:grid-cols-4 laptop:grid-cols-8 desktop:grid-cols-9 ">
-            <div>
-                <a href="shop.html"> <img class="w-14 h-14" src="{{ asset('clientside/images/mens-fashion.png') }}"
-                        alt=""></a>
-                <a href="shop.html">
-                    <h6 class="text-xs mt-2">Mens Fashion</h6>
-                </a>
-            </div>
-            <div>
-                <a href="shop.html"><img class="w-14 h-14" src="{{ asset('clientside/images/T-Shirt_Collection.png') }}"
-                        alt=""></a>
-                <a href="shop.html">
-                    <h6 class="text-xs mt-2">T-Shirt Collection</h6>
-                </a>
-            </div>
-            <div>
-                <a href="shop.html"> <img class="w-14 h-14" src="{{ asset('clientside/images/Dawah_T-Shirt.png') }}"
-                        alt=""></a>
-                <a href="shop.html">
-                    <h6 class="text-xs mt-2">Dawah T-Shirt</h6>
-                </a>
-            </div>
 
-
+            @foreach($categories as $category)
+                <div>
+                    <a href="{{route ("shop",$category->slug)}}">
+                        <img class="w-14 h-14" src="{{ asset($category->image) }}"
+                             alt="">
+                    </a>
+                    <a href="{{route ("shop",$category->slug)}}">
+                        <h6 class="text-xs mt-2">{{$category->name}}</h6>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 
@@ -66,7 +54,8 @@
                     @endphp
                     <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
                         <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}">
-                            <img class="bg-slate-100 p-2 w-full h-48 object-cover" src="{{ asset($features_product->thumb_image) }}" alt="">
+                            <img class="bg-slate-100 p-2 w-full h-48 object-cover"
+                                 src="{{ asset($features_product->thumb_image) }}" alt="">
                         </a>
                         <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$features_product->title }}</h5>
                         <p class="my-3">
@@ -78,11 +67,12 @@
                             @endif
                         </p>
                         <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}"
-                           class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                           class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                            Product</a>
                     </div>
 
                 @endforeach
-                
+
 
             </div>
 
@@ -111,7 +101,8 @@
                     @endphp
                     <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
                         <a href="{{ route('product.single', ['slug' => $slug, 'id' => $product->id]) }}">
-                            <img class="bg-slate-100 p-2 w-full h-48 object-cover" src="{{ asset($product->thumb_image) }}" alt="">
+                            <img class="bg-slate-100 p-2 w-full h-48 object-cover"
+                                 src="{{ asset($product->thumb_image) }}" alt="">
                         </a>
                         <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$product->title }}</h5>
                         <p class="my-3">
@@ -123,7 +114,8 @@
                             @endif
                         </p>
                         <a href="{{ route('product.single', ['slug' => $slug, 'id' => $product->id]) }}"
-                           class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                           class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                            Product</a>
                     </div>
                 @endforeach
 
@@ -148,23 +140,23 @@
 
                 <div class="swiper-slide">
                     <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
-                        src="{{ asset('clientside/images/hpy-cstmr (1).jpg') }}" alt="">
+                         src="{{ asset('clientside/images/hpy-cstmr (1).jpg') }}" alt="">
                 </div>
                 <div class="swiper-slide">
                     <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
-                        src="{{ asset('clientside/images/hpy-cstmr (2).jpg') }}" alt="">
+                         src="{{ asset('clientside/images/hpy-cstmr (2).jpg') }}" alt="">
                 </div>
                 <div class="swiper-slide">
                     <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
-                        src="{{ asset('clientside/images/hpy-cstmr (1).png') }}" alt="">
+                         src="{{ asset('clientside/images/hpy-cstmr (1).png') }}" alt="">
                 </div>
                 <div class="swiper-slide">
                     <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
-                        src="{{ asset('clientside/images/hpy-cstmr (2).png') }}" alt="">
+                         src="{{ asset('clientside/images/hpy-cstmr (2).png') }}" alt="">
                 </div>
                 <div class="swiper-slide">
                     <img class="w-full h-44 tablet:h-72 laptop:h-96 object-cover rounded"
-                        src="{{ asset('clientside/images/hpy-cstmr (1).png') }}" alt="">
+                         src="{{ asset('clientside/images/hpy-cstmr (1).png') }}" alt="">
                 </div>
 
             </div>
@@ -195,7 +187,8 @@
                 @endphp
                 <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
                     <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}">
-                        <img class="bg-slate-100 p-2 w-full h-48 object-cover" src="{{ asset($features_product->thumb_image) }}" alt="">
+                        <img class="bg-slate-100 p-2 w-full h-48 object-cover"
+                             src="{{ asset($features_product->thumb_image) }}" alt="">
                     </a>
                     <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$features_product->title }}</h5>
                     <p class="my-3">
@@ -207,7 +200,8 @@
                         @endif
                     </p>
                     <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}"
-                       class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View Product</a>
+                       class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">View
+                        Product</a>
                 </div>
             @endforeach
         </div>
@@ -233,7 +227,8 @@
                         <h5 class="my-3 text-sm laptop:text-base">{{$activity->note}}</h5>
                     </a>
                     <a href="#"
-                       class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read More</a>
+                       class="py-2 block bg-blue text-white text-center rounded-xl text-xs laptop:text-base">Read
+                        More</a>
                 </div>
             @endforeach
 

@@ -16,7 +16,7 @@
         </nav>
         <h5>All Products</h5>
         <hr>
-        <a href="#" class="btn btn-primary rounded mb-2">Add Product</a>
+        <a href="{{route ("product.create")}}" class="btn btn-primary rounded mb-2">Add Product</a>
         <table class="table table-striped" id="Products">
             <thead>
                 <tr>
@@ -33,17 +33,17 @@
                    <td>{{ $product->id }}</td>
                    <td> {{ $product->title }}</td>
                    <td>
-                        <img src="{{ asset('storage/'.$product->thumb_image) }}" alt="" width="28">
+                        <img src="{{ asset($product->thumb_image) }}" alt="" width="28">
                     </td>
                    <td> {{ $product->old_price }}</td>
                    <td>
-                       <a href="">
-                           <img src="{{ asset('view.svg') }}" alt="" width="28">
-                       </a>
-                       <a href="">
+{{--                       <a href="">--}}
+{{--                           <img src="{{ asset('view.svg') }}" alt="" width="28">--}}
+{{--                       </a>--}}
+                       <a href="{{route ("products.edit",$product->id )}}">
                            <img src="{{ asset('edit.svg') }}" alt="" width="26">
                        </a>
-                       <form action="" method="POST" class="d-inline">
+                       <form action="{{route ("products.destroy",$product->id)}}" method="POST" class="d-inline">
                           
                            <button type="submit" onclick="return confirm('Are you sure?')">
                                <img src="{{ asset('delete.svg') }}" alt="" width="26">
