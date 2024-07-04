@@ -8,7 +8,7 @@
 /public/activities
 /storage/*.key
 /vendor
-
+*.zip
 .env.backup
 .env.production
 Homestead.json
