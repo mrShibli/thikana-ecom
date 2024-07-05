@@ -9,13 +9,102 @@
             </ol>
         </nav>
         <h5>Update Order</h5>
-        <div class="row">
+        <div class="row py-5">
             <div class="col-12 col-md-8 mx-auto">
                 <div class="py-3">
                     <a href="{{route ("admin.orders.index")}}" class="btn btn-sm btn-primary"><- Back</a>
                 </div>
                 <div class="card">
                     <div class="card-body">
+                        <div class="mb-3">
+                            <h4 class="py-1">Product Details</h4>
+                            @if(!empty($order->products ))
+                                @php
+                                    $order_items = $order->order_items ;
+                                @endphp
+                                @foreach($order->products as $product )
+                                    <div class="card my-1">
+                                        <div class="card-body">
+                                            <h5 class="py-1">Package#{{$loop->index+1}}</h5>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div><img src="{{asset ($product->thumb_image)}}" alt="" width="90">
+                                                </div>
+                                                <div>
+                                                    <h2>{{$product->title}}</h2>
+                                                </div>
+                                                <div class="fw-bold text-danger">
+                                                    Quantity: {{$order_items[$loop->index]->quantity}}</div>
+                                                <div class="fw-bold text-danger">
+                                                    Subtotal: {{$order_items[$loop->index]->quantity * $product->old_price}}
+                                                    TK
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+
+                        </div>
+                        <div class="mb-2">
+                            <h4 class="py-1">Order Details</h4>
+                            <div class="row py-2">
+                                <div class="col-12 col-md-6 order-2">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-center fw-bold" colspan="2">User Info</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>{{$order->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Phone</th>
+                                            <td>{{$order->phone}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Upazila</th>
+                                            <td>{{$order->upazila}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>City</th>
+                                            <td>{{$order->city}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Address</th>
+                                            <td>{{$order->address}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 col-md-6 order-1">
+                                    <h6 class="py-2">Total Summary</h6>
+                                    <div class="d-flex justify-content-between px-3 py-2">
+                                        <div class="fs-5">Subtotal</div>
+                                        <div class="fw-bold">{{$order->total}}TK</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between px-3">
+                                        <div class="fs-5">Shipping Cost</div>
+                                        <div class="fw-bold">{{$order->shipping}}TK</div>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between px-3">
+                                        <div class="fs-5">Total</div>
+                                        <div class="fw-bold">{{$order->shipping+$order->total}}TK</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between px-3">
+                                        <div class="fs-5">Paid</div>
+                                        <div class="fw-bold">0.00 TK</div>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between px-3">
+                                        <div class="fs-5">Total Due</div>
+                                        <div class="fw-bold">{{$order->shipping+$order->total}} TK</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                         <form action="{{route ("admin.orders.update",$order->id)}}" method="post">
                             @csrf
                             @method('PUT')

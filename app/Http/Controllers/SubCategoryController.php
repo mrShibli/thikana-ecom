@@ -12,7 +12,7 @@
          * Display a listing of the resource.
          */
         public function index () {
-            $sub_categories = SubCategory:: get ();
+            $sub_categories = SubCategory::with ("category")-> get ();
             return view ("admin.product.subCategory.index", compact ("sub_categories"));
         }
 

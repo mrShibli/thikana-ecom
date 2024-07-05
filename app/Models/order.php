@@ -10,8 +10,8 @@ class order extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function orderItems () {
-        return $this->hasMany (order_item::class);
+    public function order_items () {
+        return $this->hasMany (order_item::class,'order_id','id');
     }
 
     public function products () {

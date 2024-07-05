@@ -64,7 +64,6 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="tab" data-bs-target="#details">Next: Details</button>
                 </div>
                 <!-- Details Tab -->
                 <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
@@ -107,8 +106,6 @@
                         <label for="productTags" class="form-label">Tags</label>
                         <input type="text" class="form-control" name="tags" id="productTags" placeholder="Enter product tags" value="{{ old('tags') }}">
                     </div>
-                    <button class="btn btn-secondary" type="button" data-bs-toggle="tab" data-bs-target="#basic-info">Back: Basic Information</button>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="tab" data-bs-target="#pricing">Next: Pricing & Inventory</button>
                 </div>
                 <!-- Pricing & Inventory Tab -->
                 <div class="tab-pane fade" id="pricing" role="tabpanel" aria-labelledby="pricing-tab">
@@ -132,7 +129,6 @@
                             <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
                         </select>
                     </div>
-                    <button class="btn btn-secondary" type="button" data-bs-toggle="tab" data-bs-target="#details">Back: Details</button>
                     <button class="btn btn-success" type="submit">Create Product</button>
                 </div>
             </div>

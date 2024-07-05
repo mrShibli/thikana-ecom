@@ -86,9 +86,6 @@
                         </span>
                     </td>
                     <td>
-                        <a href="">
-                            <img src="{{ asset('view.svg') }}" alt="" width="28">
-                        </a>
                         <a href="{{route ("admin.orders.edit",$order->id)}}">
                             <img src="{{ asset('edit.svg') }}" alt="" width="26">
                         </a>

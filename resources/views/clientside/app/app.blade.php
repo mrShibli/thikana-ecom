@@ -34,7 +34,7 @@
 <header>
     @php
         $socials = \App\Models\Social::where ("status",1)->get ();
-        if ($socials){
+        if (!$socials){
             $socials = [];
         }
         $setting = \App\Models\Setting::first ();
@@ -98,11 +98,23 @@
         <div class="user"><a href="{{ route('login') }}"><img class="w-8 h-8"
                                                               src="{{ asset('clientside/images/profile.png') }}" alt=""></a>
         </div>
+        @php
+            $total = 0;
+            if (auth()->check()) {
+                $carts = \App\Models\Cart::where("user_id", auth()->user()->id)->get();
 
+                if (!$carts->isEmpty()) {
+                    foreach ($carts as $cart) {
+                        // Assuming you have 'price' and 'quantity' fields in your cart model
+                        $total += $cart->price * $cart->qunt;
+                    }
+                }
+            }
+        @endphp
         <div class="cart flex gap-2">
             <a href="{{ route('cart.index') }}">
                 <img class="w-8 h-8" src="{{ asset('clientside/images/cart.png') }}" alt="">
-                <p class="text-red">0ট</p>
+                <p class="text-red">{{$total}}ট</p>
             </a>
         </div>
 

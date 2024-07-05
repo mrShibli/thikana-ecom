@@ -32,11 +32,8 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->slug }}</td>
-                    <td>{{ $category->product_category_id }}</td>
+                    <td>{{ $category->category->name }}</td>
                     <td>
-                        <a href="">
-                            <img src="{{ asset('view.svg') }}" alt="" width="28">
-                        </a>
                         <a href="{{ route('admin.sub-categories.edit', $category->id) }}">
                             <img src="{{ asset('edit.svg') }}" alt="" width="26">
                         </a>

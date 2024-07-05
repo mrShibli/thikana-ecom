@@ -21,7 +21,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Slug</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -30,11 +30,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
-                        <td>546456</td>
+                        <td>{{$category->slug}}</td>
                         <td>
-                            <a href="">
-                                <img src="{{ asset('view.svg') }}" alt="" width="28">
-                            </a>
                             <a href="{{ route('product_categories.edit', $category->id) }}">
                                 <img src="{{ asset('edit.svg') }}" alt="" width="26">
                             </a>

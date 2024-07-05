@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller {
     public function index() {
-        $cart = Cart::where('user_id', Auth::user()->id)->get();
+        $carts = Cart::with("product")->where('user_id', Auth::user()->id)->get();
         $sub_total = 0;
-        foreach ($cart as $item) {
+        foreach ($carts as $item) {
             $sub_total += $item->price * $item->qunt;
         }
-        return view ('clientside.cart', compact ('cart', 'sub_total'));
+        return view ('clientside.cart', compact ('carts', 'sub_total'));
     }
 
     public function store (Request $request)
