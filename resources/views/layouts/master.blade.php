@@ -478,11 +478,11 @@
 
 
                     <li class="sub-menu">
-                        <a href="#"><i class="fas fa-user"></i>Banners<span
+                        <a href="#"><i class="fas fa-list"></i>Banners<span
                                     class="fas fa-caret-down right"></span></a>
                         <ul class="left-menu-dp">
                             <li>
-                                <a href="{{ route('admin.banners.index') }}"><i class="fas fa-user-circle"></i>All
+                                <a href="{{ route('admin.banners.index') }}"><i class="fas fa-list"></i>All
                                     Banners</a>
                             </li>
                             <li>
@@ -567,10 +567,6 @@
 
                     <li>
                         <a href=""><i class="fas fa-play"></i>Media</a>
-                    </li>
-
-                    <li>
-                        <a href=""><i class="fas fa-list"></i>Sliders</a>
                     </li>
 
 

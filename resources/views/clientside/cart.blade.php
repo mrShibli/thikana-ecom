@@ -27,7 +27,7 @@
                     <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px]  text-red">
                         <a href="{{route ("cart.destroy",$cart->id)}}"><i class="fas fa-times pl-4"></i></a>
                     </td>
-                    <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] " id="p-img"><a href=""><img src="{{asset ($cart->product->thumb_image)}}" alt="" class=" h-12 w-10 laptop:h-16 laptop:w-14"></a></td>
+                    <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] " id="p-img"><a href=""><img src="{{asset ('storage/' .$cart->product->thumb_image)}}" alt="" class=" h-12 w-10 laptop:h-16 laptop:w-14"></a></td>
                     <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] " id="p-title"><a href="">{{$cart->product->title}}</a></td>
                     <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] " id="p-price">{{ $cart->price }}৳</td>
                     <td class="border p-1 laptop:p-2 px-1 laptop:px-4 text-xs text-[10px] ">{{ $cart->qunt }}</td>

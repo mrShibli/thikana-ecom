@@ -55,7 +55,7 @@
                     <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
                         <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}">
                             <img class="bg-slate-100 p-2 w-full h-48 object-cover"
-                                 src="{{ asset($features_product->thumb_image) }}" alt="">
+                                 src="{{ asset('storage/' . $features_product->thumb_image) }}" alt="">
                         </a>
                         <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$features_product->title }}</h5>
                         <p class="my-3">
@@ -102,7 +102,7 @@
                     <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
                         <a href="{{ route('product.single', ['slug' => $slug, 'id' => $product->id]) }}">
                             <img class="bg-slate-100 p-2 w-full h-48 object-cover"
-                                 src="{{ asset($product->thumb_image) }}" alt="">
+                                 src="{{ asset('storage/'.$product->thumb_image) }}" alt="">
                         </a>
                         <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$product->title }}</h5>
                         <p class="my-3">
@@ -188,7 +188,7 @@
                 <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
                     <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}">
                         <img class="bg-slate-100 p-2 w-full h-48 object-cover"
-                             src="{{ asset($features_product->thumb_image) }}" alt="">
+                             src="{{ asset('storage/'. $features_product->thumb_image) }}" alt="">
                     </a>
                     <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$features_product->title }}</h5>
                     <p class="my-3">

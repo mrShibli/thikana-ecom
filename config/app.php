@@ -210,6 +210,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        // Other aliases...
+        'SMSService' => App\Services\SMSService::class,
     ])->toArray(),
 
 ];

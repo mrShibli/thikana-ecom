@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-flud mt-5">
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

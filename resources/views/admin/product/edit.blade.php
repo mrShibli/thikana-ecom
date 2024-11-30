@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container mt-5 py-5">
+    <div class="container-fluid mt-5 py-5">
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -52,7 +52,7 @@
                     <div class="mb-3">
                         <label for="productDescription" class="form-label">Product Description</label>
                         <textarea class="form-control @error('description') is-invalid @enderror"
-                                  id="productDescription" name="description" rows="3"
+                                    name="description" rows="3"
                                   placeholder="Enter product description">{{$product->description }}</textarea>
                         @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>

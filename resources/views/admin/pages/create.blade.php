@@ -57,7 +57,7 @@
     </div>
 @endsection
 @section("scripts")
-    <script src="https://cdn.tiny.cloud/1/rf8c9vd0hbcj6ki31dx8rjngpd0dfag96p1qyaymeifshg95/tinymce/5/tinymce.min.js"
+    {{-- <script src="https://cdn.tiny.cloud/1/rf8c9vd0hbcj6ki31dx8rjngpd0dfag96p1qyaymeifshg95/tinymce/5/tinymce.min.js"
             referrerpolicy="origin"></script>
     <script>
         // Initialize TinyMCE editor
@@ -75,5 +75,5 @@
                 'removeformat | help',
             content_style: 'body { font-family: Arial, sans-serif; font-size: 14px }'
         });
-    </script>
+    </script> --}}
 @endsection

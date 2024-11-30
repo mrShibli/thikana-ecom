@@ -62,7 +62,7 @@
                     @endphp
                     <div class="text-center border rounded p-2">
                         <a href="{{route ("product.single",[$product->id,$slug])}}">
-                            <img class="bg-slate-100 p-2" src="{{ asset($product->thumb_image) }}" alt="">
+                            <img class="bg-slate-100 p-2" src="{{ asset('storage/' .$product->thumb_image) }}" alt="">
                         </a>
                         <h5 class="title text-sm laptop:text-base font-hindSiliguri">{{$product->title}}</h5>
                         <p class="my-3">

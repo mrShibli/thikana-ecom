@@ -24,6 +24,7 @@
             $table->decimal('total', 14, 2);
             $table->decimal('discount', 14, 2)->default(0);
             $table->decimal('shipping', 14, 2)->default(0);
+            $table->string('payment_method');
             $table->timestamps();
         });
     }

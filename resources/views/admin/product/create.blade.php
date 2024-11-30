@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -140,20 +140,20 @@
     <script src="https://cdn.tiny.cloud/1/rf8c9vd0hbcj6ki31dx8rjngpd0dfag96p1qyaymeifshg95/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         // Initialize TinyMCE editor
-        tinymce.init({
-            selector: '#productDescription',
-            height: 300,
-            plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
-            ],
-            toolbar: 'undo redo | formatselect | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-            content_style: 'body { font-family: Arial, sans-serif; font-size: 14px }'
-        });
+        // tinymce.init({
+        //     selector: '#productDescription',
+        //     height: 300,
+        //     plugins: [
+        //         'advlist autolink lists link image charmap print preview anchor',
+        //         'searchreplace visualblocks code fullscreen',
+        //         'insertdatetime media table paste code help wordcount'
+        //     ],
+        //     toolbar: 'undo redo | formatselect | ' +
+        //         'bold italic backcolor | alignleft aligncenter ' +
+        //         'alignright alignjustify | bullist numlist outdent indent | ' +
+        //         'removeformat | help',
+        //     content_style: 'body { font-family: Arial, sans-serif; font-size: 14px }'
+        // });
 
         function addVariation() {
             const variationsDiv = document.getElementById('variations');
