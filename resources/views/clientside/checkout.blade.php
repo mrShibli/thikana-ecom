@@ -144,15 +144,15 @@
                                 <label for="cod" class="text-sm">Cash on Delivery</label>
                             </div>
                             <!-- Credit Card -->
-                            <div class="mb-2">
+                            {{-- <div class="mb-2">
                                 <input type="radio" name="payment_method" id="credit_card" value="credit_card">
                                 <label for="credit_card" class="text-sm">Credit Card</label>
-                            </div>
+                            </div> --}}
                             <!-- Bkash -->
-                            <div class="mb-2">
+                            {{-- <div class="mb-2">
                                 <input type="radio" name="payment_method" id="bkash" value="bkash">
                                 <label for="bkash" class="text-sm">Bkash</label>
-                            </div>
+                            </div> --}}
                             <!-- Add more payment methods as needed -->
                         </div>
                         <div class="divider border border-gray-300 my-4"></div>
@@ -177,12 +177,12 @@
         <div id="otpModal" class="fixed inset-0 z-50 hidden bg-gray-600 bg-opacity-50 flex justify-center items-center">
             <div class="bg-white p-6 rounded-lg shadow-lg w-96">
                 <div class="flex justify-between items-center">
-                    <h5 class="text-xl font-semibold">OTP Verification</h5>
+                    <h5 class="text-xl font-semibold">Mobile Verification</h5>
                     <button type="button" class="text-gray-600 hover:text-gray-800" onclick="closeOtpModal()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                            </path>
                         </svg>
                     </button>
                 </div>
@@ -197,6 +197,9 @@
                         <div class="mb-4">
                             <button type="submit"
                                 class="w-full bg-indigo-600 text-white p-2 rounded-md hover:bg-indigo-700">Verify
+                                OTP</button>
+                            <button type="button"
+                                class="w-full bg-blue text-white p-2 rounded-md hover:bg-indigo-700 mt-1 mb-1 resendotp">Resend
                                 OTP</button>
                         </div>
                         <div id="otp-message"></div>
@@ -336,15 +339,16 @@
                         );
                         closeOtpModal();
                         // Redirect to the Thank You page after 1 second
-                        
+
                         setTimeout(function() {
                             window.location.href =
-                            '{{ url('thank-you') }}'; // Redirect to your Thank You page URL
+                                '{{ url('thank-you') }}'; // Redirect to your Thank You page URL
                         }, 1000); // 1 second delay before redirection
 
                     } else {
                         $('#otp-message').html(
-                            '<div class="p-3 bg-red-500 text-white rounded">' + xhr.responseJSON.message  + '</div>'
+                            '<div class="p-3 bg-red-500 text-white rounded">' + xhr.responseJSON.message +
+                            '</div>'
                         );
                     }
                 },
@@ -364,6 +368,59 @@
                     }
                 }
             });
+        }
+
+        // Function to handle Resend OTP button click
+        $(document).on('click', '.resendotp', function() {
+            var resendButton = $(this);
+
+            // Disable the button and start the countdown
+            disableResendButton(resendButton, 30);
+
+            // Make the AJAX call to resend the OTP
+            $.ajax({
+                url: '{{ route('otp.resend') }}',
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        $('#otp-message').html(
+                            '<div class="p-3 bg-green-500 text-white rounded">OTP resent successfully!</div>'
+                        );
+                    } else {
+                        $('#otp-message').html(
+                            '<div class="p-3 bg-red-500 text-white rounded">' + response.message +
+                            '</div>'
+                        );
+                    }
+                },
+                error: function(xhr) {
+                    $('#otp-message').html(
+                        '<div class="p-3 bg-red-500 text-white rounded">' +
+                        (xhr.responseJSON?.message || 'An error occurred while resending OTP.') +
+                        '</div>'
+                    );
+                }
+            });
+        });
+
+        // Function to disable the Resend OTP button with a countdown
+        function disableResendButton(button, seconds) {
+            button.prop('disabled', true); // Disable the button
+            var originalText = button.text(); // Save the original button text
+
+            var interval = setInterval(function() {
+                if (seconds > 0) {
+                    button.text('Resend in ' + seconds + 's'); // Update button text with countdown
+                    seconds--;
+                } else {
+                    clearInterval(interval); // Clear the interval when countdown ends
+                    button.prop('disabled', false); // Re-enable the button
+                    button.text('Resend OTP'); // Restore original button text
+                }
+            }, 1000); // Update every second
         }
     </script>
 @endsection

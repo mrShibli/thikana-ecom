@@ -36,6 +36,7 @@ Route::post('/buy/order', [CartController::class, 'buynoworder'])->name('buynow.
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 Route::post('/order/verifyOtp', [OrderController::class, 'verifyOtp'])->name('otp.verify');
+Route::post('/order/resendOtp', [OrderController::class, 'resendOtp'])->name('otp.resend');
 Route::get('/thank-you', [OrderController::class, 'thankYou'])->name('order.thankYou');
 
 //middleware(['auth'])->
