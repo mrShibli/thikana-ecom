@@ -10,13 +10,19 @@ class order extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function order_items () {
-        return $this->hasMany (order_item::class,'order_id','id');
+    public function order_items()
+    {
+        return $this->hasMany(order_item::class, 'order_id', 'id');
     }
 
-    public function products () {
-        return $this->hasManyThrough (Product::class, order_item::class, 'order_id', 'id', 'id', 'product_id');
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, order_item::class, 'order_id', 'id', 'id', 'product_id');
     }
 
-
+    // OrderItem.php
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

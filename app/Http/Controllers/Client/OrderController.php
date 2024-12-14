@@ -321,6 +321,7 @@ class OrderController extends Controller
             if (Auth::check()) {
                 $userId = Auth::id();
                 $carts = Cart::where("user_id", $userId)->get();
+                $user = Auth::user();
             } else {
                 $password = bcrypt('password');
                 $user = User::create([
@@ -328,6 +329,8 @@ class OrderController extends Controller
                     'email'    => $this->generateUniqueEmail(),
                     'password' => $password,
                     'phone'    => $request->phone,
+                    'upazila'    => $request->upazila,
+                    'city'    => $request->city,
                 ]);
 
                 $userId = $user->id;
@@ -349,50 +352,42 @@ class OrderController extends Controller
             }
 
             // Handling payment method
-            if ($request->payment_method === 'cod') {
-                if (Auth::check()) {
-                    $otp = rand(1000, 9999);
-                    $user = Auth::user();  // Get the authenticated user
+            if (!$user->otp_verified && $request->payment_method === 'cod') {
+                $otp = rand(1000, 9999);
 
-                    // Update OTP and expiration in the database
-                    $userUpdated = $user->update([
-                        'otp_code'       => $otp,
-                        'otp_expires_at' => now()->addMinutes(10),
+                // Update OTP and expiration in the database
+                $userUpdated = $user->update([
+                    'otp_code'       => $otp,
+                    'otp_expires_at' => now()->addMinutes(10),
+                ]);
+
+                if ($userUpdated) {
+                    // Prepare order details for later use
+                    $orderDetails = [
+                        'name'           => $request->name,
+                        'address'        => $request->address,
+                        'phone'          => $request->phone,
+                        'upazila'        => $request->upazila,
+                        'city'           => $request->city,
+                        'message'        => $request->message,
+                        'shipping'       => $request->shipping ?? 120,
+                        'total'          => $total + ($request->shipping ?? 120),
+                        'payment_method' => $request->payment_method,
+                        'user_id'        => $userId,
+                        'carts'          => $carts
+                    ];
+
+                    // Store order details in session for later use
+                    session(['pending_order' => $orderDetails]);
+
+                    return response()->json([
+                        'status'  => 'otp_sent',
+                        'message' => 'OTP sent to your phone for verification.',
                     ]);
-
-                    if ($userUpdated) {
-                        // Prepare order details for later use
-                        $orderDetails = [
-                            'name'           => $request->name,
-                            'address'        => $request->address,
-                            'phone'          => $request->phone,
-                            'upazila'        => $request->upazila,
-                            'city'           => $request->city,
-                            'message'        => $request->message,
-                            'shipping'       => $request->shipping ?? 120,
-                            'total'          => $total + ($request->shipping ?? 120),
-                            'payment_method' => $request->payment_method,
-                            'user_id'        => $userId,
-                            'carts'          => $carts
-                        ];
-
-                        // Store order details in session for later use
-                        session(['pending_order' => $orderDetails]);
-
-                        return response()->json([
-                            'status'  => 'otp_sent',
-                            'message' => 'OTP sent to your phone for verification.',
-                        ]);
-                    } else {
-                        return response()->json([
-                            'status'  => 'error',
-                            'message' => 'Failed to update OTP.',
-                        ]);
-                    }
                 } else {
                     return response()->json([
                         'status'  => 'error',
-                        'message' => 'User is not authenticated.',
+                        'message' => 'Failed to update OTP.',
                     ]);
                 }
             }
@@ -421,6 +416,11 @@ class OrderController extends Controller
                         'price'      => $cart->price,
                         'sub_total'  => $cart->price * $cart->qunt,
                     ]);
+                }
+
+                // Mark OTP as verified for future orders
+                if (!$user->otp_verified) {
+                    $user->update(['otp_verified' => true]);
                 }
 
                 // Clear the cart
@@ -496,11 +496,8 @@ class OrderController extends Controller
             // Clear the cart
             Cart::where('user_id', $orderDetails['user_id'])->delete();
 
-            // Clear OTP details
-            $user->update([
-                'otp_code' => null,
-                'otp_expires_at' => null,
-            ]);
+            // Mark OTP as verified for future orders
+            $user->update(['otp_verified' => true]);
 
             // Clear session
             session()->forget('pending_order');
@@ -601,11 +598,26 @@ class OrderController extends Controller
 
 
 
-    public function thankyou()
+    public function thankYou($orderId)
     {
-        Cart::where('user_id', Auth::id())->orWhere('guest_id', $guestId ?? null)->delete();
-        return view('clientside.thankyou');
+        $order = Order::with('order_items.product')
+        ->where('user_id', Auth::id())
+        ->where('id', $orderId)
+        ->first();
+
+        // Check if the order exists
+        if (!$order) {
+            return redirect()->route('home')->with('error', 'Order not found!');
+        }
+
+        // Pass the order data to the view
+        return view('clientside.thankyou', compact('order'));
     }
+
+
+
+
+
 
 
     // protected function generateUniqueEmail(): string

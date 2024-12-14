@@ -10,9 +10,11 @@
 
                 <div class="laptop:w-1/2 border rounded p-2 laptop:p-4">
                     <h2 class="text-xl font-semibold mb-3">Billing details</h2>
+
+                    {{-- Name --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="text" name="name" placeholder="আপনার নাম লিখুন" id="">
+                            type="text" name="name" placeholder="আপনার নাম লিখুন" id=""  value="{{ auth()->check() ? auth()->user()->name : old('name') }}">
                         @if ($errors->get('name'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('name') as $error)
@@ -21,10 +23,12 @@
                             </div>
                         @endif
                     </div>
+
+                    {{-- Address --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
                             type="text" name="address"
-                            placeholder="যেখানে ডেলিভারি নিবেন তা লিখুন যেমনঃ হোল্ডিং/গ্রাম/বাজার" id="">
+                            placeholder="যেখানে ডেলিভারি নিবেন তা লিখুন যেমনঃ হোল্ডিং/গ্রাম/বাজার" id="" value="{{ auth()->check() ? auth()->user()->address : old('address') }}">
                         @if ($errors->get('address'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('address') as $error)
@@ -33,9 +37,11 @@
                             </div>
                         @endif
                     </div>
+
+                    {{-- Upazila --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="text" name="upazila" placeholder="আপনার থানা (পুলিশ স্টেশন) লিখুন" id="">
+                            type="text" name="upazila" placeholder="আপনার থানা (পুলিশ স্টেশন) লিখুন" id="" value="{{ auth()->check() ? auth()->user()->upazila : old('upazila') }}">
                         @if ($errors->get('upazila'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('upazila') as $error)
@@ -44,9 +50,11 @@
                             </div>
                         @endif
                     </div>
+
+                    {{-- City --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="text" name="city" placeholder="আপনার জেলা লিখুন" id="">
+                            type="text" name="city" placeholder="আপনার জেলা লিখুন" id="" value="{{ auth()->check() ? auth()->user()->city : old('city') }}">
                         @if ($errors->get('city'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('city') as $error)
@@ -55,9 +63,11 @@
                             </div>
                         @endif
                     </div>
+
+                    {{-- Phone --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2  placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার লিখুন" id="">
+                            type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার লিখুন" id="" value="{{ auth()->check() ? auth()->user()->phone : old('phone') }}">
                         @if ($errors->get('phone'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('phone') as $error)
@@ -209,7 +219,6 @@
         </div>
 
 
-
         <!-- Include a section for messages -->
         <div id="order-message" class="mt-4"></div>
 
@@ -250,6 +259,12 @@
                                 ${data.message}  <!-- Show success message -->
                             </div>
                         `);
+
+                            setTimeout(function() {
+                                window.location.href =
+                                    '{{ url('thank-you') }}'; // Redirect to your Thank You page URL
+                            }, 1000); // 1 second delay before redirection
+
                             $('#order-form')[0].reset(); // Clear form after success (optional)
                         } else {
                             // Display errors returned by the backend

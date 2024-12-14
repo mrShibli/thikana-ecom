@@ -31,13 +31,14 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 Route::get('/buy/store', [CartController::class, 'buystore'])->name('buy.store');
 Route::post('/buy/order', [CartController::class, 'buynoworder'])->name('buynow.order');
+Route::post('/buy/verifyOtp', [CartController::class, 'verifyBuynowOtp'])->name('otp.verify.buynow');
 
 //Order Controller
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 Route::post('/order/verifyOtp', [OrderController::class, 'verifyOtp'])->name('otp.verify');
 Route::post('/order/resendOtp', [OrderController::class, 'resendOtp'])->name('otp.resend');
-Route::get('/thank-you', [OrderController::class, 'thankYou'])->name('order.thankYou');
+Route::get('/thank-you/{order}', [OrderController::class, 'thankYou'])->name('order.thankYou');
 
 //middleware(['auth'])->
 Route::prefix('admin')->middleware("auth")->group(function () {
