@@ -21,6 +21,7 @@
             $table->string('message')->nullable();
             $table->foreignIdFor (App\Models\User::class)->constrained ()->cascadeOnDelete ();
             $table->string ('status')->default ('pending');
+            $table->bigInteger ('assign')->nullable();
             $table->decimal('total', 14, 2);
             $table->decimal('discount', 14, 2)->default(0);
             $table->decimal('shipping', 14, 2)->default(0);

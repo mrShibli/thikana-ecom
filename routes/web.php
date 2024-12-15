@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\ProductControler as AdminProductControler;
-use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\OthersController;
 use App\Http\Controllers\Client\ProductControler;
 use App\Http\Controllers\Product\ProductCategoryController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductControler as AdminProductControler;
 
 
 Route::get('/send-sample-sms', [AdminController::class, 'sendSampleSMS']);
@@ -39,6 +40,14 @@ Route::post('/order/store', [OrderController::class, 'store'])->name('order.stor
 Route::post('/order/verifyOtp', [OrderController::class, 'verifyOtp'])->name('otp.verify');
 Route::post('/order/resendOtp', [OrderController::class, 'resendOtp'])->name('otp.resend');
 Route::get('/thank-you/{order}', [OrderController::class, 'thankYou'])->name('order.thankYou');
+
+Route::get('order/{orderId}/download-pdf', [OrderController::class, 'downloadOrderPDF'])->name('downloadOrderPDF');
+
+Route::middleware(['auth'])->prefix('account')->group(function () {
+    Route::get('/profile', [AccountController::class, 'show'])->name('account.show'); // Profile page
+    Route::get('/edit', [AccountController::class, 'edit'])->name('account.edit'); // Edit form
+    Route::post('/update', [AccountController::class, 'update'])->name('account.update'); // Update form submission
+});
 
 //middleware(['auth'])->
 Route::prefix('admin')->middleware("auth")->group(function () {
@@ -91,6 +100,7 @@ Route::prefix('admin')->middleware("auth")->group(function () {
         'destroy'
     ])->name('products.destroy');
     //orders
+
     Route::name('admin.')->group(function () {
         Route::resource('orders', \App\Http\Controllers\OrderController::class);
         Route::resource('banners', \App\Http\Controllers\BannerController::class)->except("show");
@@ -111,7 +121,12 @@ Route::prefix('admin')->middleware("auth")->group(function () {
         //social
         Route::resource("socials", \App\Http\Controllers\SocialController::class)->except("show");
     });
+
+    Route::get('/my-assigned-orders', [OrderController::class, 'asignedorders'])->name('asigned.orders');
+
+
 });
+
 Route::get("/migrate", function () {
     Artisan::call("migrate");
     return "migrate";

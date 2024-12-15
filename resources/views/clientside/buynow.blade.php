@@ -258,7 +258,7 @@
                                 // Redirect to the thank you page with order ID
                                 setTimeout(function() {
                                     window.location.href = "{{ url('thank-you') }}/" + data.order_id; // Ensure order_id is appended
-                                }, 2000); // 2 seconds before redirecting
+                                }, 1000); // 2 seconds before redirecting
                             } else {
                                 console.log("Order ID not received");
                             }
@@ -355,10 +355,15 @@
                         closeOtpModal();
                         // Redirect to the Thank You page after 1 second
 
-                        setTimeout(function() {
-                            window.location.href =
-                                '{{ url('thank-you') }}'; // Redirect to your Thank You page URL
-                        }, 1000); // 1 second delay before redirection
+                        // Check if order_id is available
+                        if (response.order_id) {
+                            // Redirect to the thank you page with order ID
+                            setTimeout(function() {
+                                window.location.href = "{{ url('thank-you') }}/" + response.order_id; // Ensure order_id is appended
+                            }, 1000); // 2 seconds before redirecting
+                        } else {
+                            console.log("Order ID not received");
+                        }
 
                     } else {
                         $('#otp-message').html(

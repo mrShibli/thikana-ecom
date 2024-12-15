@@ -508,8 +508,8 @@
                         <a href="#"><i class="fas fa-user"></i>Orders <span
                                     class="fas fa-caret-down right"></span></a>
                         <ul class="left-menu-dp">
-                            <li><a href="{{ route('admin.orders.index') }}"><i class="fas fa-user-circle"></i>All Orders</a>
-                            </li>
+                            <li><a href="{{ route('admin.orders.index') }}"><i class="fas fa-user-circle"></i>All Orders</a> </li>
+                            <li><a href="{{ route('asigned.orders') }}"><i class="fas fa-user-circle"></i>My Orders</a> </li>
                         </ul>
                     </li>
 

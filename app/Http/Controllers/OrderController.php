@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\order;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -49,7 +50,8 @@ class OrderController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit (order $order) {
-        return view ("admin.orders.edit", compact ("order"));
+        $users = User::get();
+        return view ("admin.orders.edit", compact ("order", "users"));
     }
 
     /**
@@ -57,6 +59,7 @@ class OrderController extends Controller
      */
     public function update (Request $request, order $order) {
         $order->status = $request->status;
+        $order->assign = $request->assign;
         $order->save ();
         flash ("order Updated");
         return redirect ()->back ();

@@ -21,7 +21,7 @@ class Product extends Model
         'status',
         'quantity',
         'category_id',
-        'sub_category_id'
+        'sub_category_id',
     ];
 
     public function variations()
@@ -29,7 +29,7 @@ class Product extends Model
         return $this->hasMany(Variation::class);
     }
 
-    public function orderItems()
+    public function order_items()
     {
         return $this->hasMany(order_item::class);
     }

@@ -1,53 +1,102 @@
 @extends('clientside.app.app')
 
 @section('client-content')
-<div class="container mx-auto p-3 laptop:py-10">
+    <div class="container mx-auto p-5 laptop:py-10 bg-white rounded shadow-lg mt-4 mb-4 max-w-2xl">
+        <!-- Right Side Buttons -->
+        <div class="flex justify-end mb-4">
+            <!-- Print Button -->
+            <button onclick="window.print()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                Print
+            </button>
 
-    <!-- Thank You Message Section -->
-    <div class="bg-green-100 border-t-4 border-green-500 p-5 mb-8 rounded">
-        <h2 class="text-2xl font-semibold text-center text-green-800">Thank You for Your Order!</h2>
-        <p class="text-center text-green-700 mt-2">Your order has been successfully placed. We will process it shortly and send you a confirmation email with further details.</p>
-    </div>
+            <!-- Download PDF Button -->
+            <a href="{{ route('downloadOrderPDF', ['orderId' => $order->id]) }}"
+                class="ml-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                Download PDF
+            </a>
+        </div>
+        <!-- Thank You Message -->
+        <div class="border-dashed border-4 border-blue-400 text-center py-6 mb-8">
+            <h2 class="text-xl font-semibold text-blue-600">Thank You {{ $order->name }}. Your Order Has Been Received.</h2>
+        </div>
 
-    @if (isset($order) && $order->order_items->count() > 0)
         <!-- Order Summary Section -->
-        <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
-            <h3 class="text-xl font-semibold mb-5">Order Summary</h3>
-            <table class="min-w-full table-auto border-separate border-spacing-2">
-                <thead>
-                    <tr class="text-left text-sm font-medium text-gray-600">
-                        <th class="py-2 px-4 border-b">Product</th>
-                        <th class="py-2 px-4 border-b">Quantity</th>
-                        <th class="py-2 px-4 border-b">Price</th>
-                        <th class="py-2 px-4 border-b">Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($order->order_items as $item)
-                        <tr class="text-sm">
-                            <td class="py-3 px-4 border-b">{{ $item->product->name ?? 'Unknown Product' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $item->quantity }}</td>
-                            <td class="py-3 px-4 border-b">${{ number_format($item->product->price, 2) }}</td>
-                            <td class="py-3 px-4 border-b">${{ number_format($item->product->price * $item->quantity, 2) }}</td>
+        @if (isset($order))
+            <div class="flex flex-wrap justify-between gap-6 text-sm text-gray-700 mb-8">
+                <div class="flex-1 text-center">
+                    <p class="font-medium">Order number:</p>
+                    <p class="text-gray-600">{{ $order->id }}</p>
+                </div>
+                <div class="flex-1 text-center">
+                    <p class="font-medium">Date:</p>
+                    <p class="text-gray-600">{{ date('F j, Y', strtotime($order->created_at)) }}</p>
+                </div>
+                <div class="flex-1 text-center">
+                    <p class="font-medium">Total:</p>
+                    <p class="text-gray-600">${{ number_format($order->total, 2) }}</p>
+                </div>
+                <div class="flex-1 text-center">
+                    <p class="font-medium">Payment method:</p>
+                    <p class="text-gray-600">{{ strtoupper($order->payment_method) }}</p>
+                </div>
+            </div>
+
+
+            <!-- Payment Notes -->
+            <p class="text-gray-600 text-center mb-8">Pay with cash upon delivery.</p>
+
+            <!-- Order Details -->
+            <div class="border-t pt-4">
+                <h2 class="text-lg font-semibold mb-4">ORDER DETAILS</h2>
+                <table class="w-full text-sm text-gray-700 border-collapse">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="py-2 px-4 text-left font-medium">PRODUCT</th>
+                            <th class="py-2 px-4 text-right font-medium">TOTAL</th>
                         </tr>
-                    @endforeach
-                    <tr class="text-sm font-semibold">
-                        <td colspan="3" class="py-3 px-4 text-right">Total</td>
-                        <td class="py-3 px-4">${{ number_format($order->order_items->sum(function($item) { return $item->product->price * $item->quantity; }), 2) }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    @else
-        <div class="bg-white p-4 rounded-md shadow-md mb-8">
-            <p class="text-center text-gray-600">No items found in your order.</p>
-        </div>
-    @endif
+                    </thead>
+                    <tbody>
+                        @foreach ($orderItems as $item)
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-3 px-4">{{ $item->product->title }} × {{ $item->quantity }}</td>
+                                <td class="py-3 px-4 text-right">${{ number_format($item->price * $item->quantity, 2) }}
+                                </td>
+                            </tr>
+                        @endforeach
+                        <tr>
+                            <td class="py-3 px-4 font-medium">Subtotal:</td>
+                            <td class="py-3 px-4 text-right">${{ number_format($order->subtotal, 2) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium">Shipping:</td>
+                            <td class="py-3 px-4 text-right">
+                                {{ $order->shipping_cost > 0 ? '$' . number_format($order->shipping_cost, 2) : 'Free shipping' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium">Payment method:</td>
+                            <td class="py-3 px-4 text-right">{{ strtoupper($order->payment_method) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-lg">TOTAL:</td>
+                            <td class="py-3 px-4 text-right text-lg font-bold">${{ number_format($order->total, 2) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        @else
+            <!-- Fallback Message -->
+            <div class="text-center py-8">
+                <p class="text-gray-500">No order details found.</p>
+            </div>
+        @endif
 
-    <!-- Contact or Support Section -->
-    <div class="text-center">
-        <p class="text-sm text-gray-600">If you have any questions or need assistance, feel free to contact us at <a href="mailto:support@yourcompany.com" class="text-blue-600 hover:text-blue-800">support@thikana.shop</a>.</p>
+        <!-- Footer -->
+        <div class="text-center mt-8">
+            <p class="text-sm text-gray-500">
+                If you have any questions, please contact us at
+                <a href="mailto:support@thikana.shop" class="text-blue-600 hover:text-blue-800">support@thikana.shop</a>.
+            </p>
+        </div>
     </div>
-
-</div>
 @endsection

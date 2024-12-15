@@ -98,7 +98,7 @@
                 </ul>
             </nav>
 
-            <div class="user"><a href="{{ route('login') }}"><img class="w-8 h-8"
+            <div class="user"><a href="{{ route('account.show') }}"><img class="w-8 h-8"
                         src="{{ asset('clientside/images/profile.png') }}" alt=""></a>
             </div>
 

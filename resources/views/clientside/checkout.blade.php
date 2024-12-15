@@ -14,7 +14,8 @@
                     {{-- Name --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="text" name="name" placeholder="আপনার নাম লিখুন" id=""  value="{{ auth()->check() ? auth()->user()->name : old('name') }}">
+                            type="text" name="name" placeholder="আপনার নাম লিখুন" id=""
+                            value="{{ auth()->check() ? auth()->user()->name : old('name') }}">
                         @if ($errors->get('name'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('name') as $error)
@@ -28,7 +29,8 @@
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
                             type="text" name="address"
-                            placeholder="যেখানে ডেলিভারি নিবেন তা লিখুন যেমনঃ হোল্ডিং/গ্রাম/বাজার" id="" value="{{ auth()->check() ? auth()->user()->address : old('address') }}">
+                            placeholder="যেখানে ডেলিভারি নিবেন তা লিখুন যেমনঃ হোল্ডিং/গ্রাম/বাজার" id=""
+                            value="{{ auth()->check() ? auth()->user()->address : old('address') }}">
                         @if ($errors->get('address'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('address') as $error)
@@ -41,7 +43,8 @@
                     {{-- Upazila --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="text" name="upazila" placeholder="আপনার থানা (পুলিশ স্টেশন) লিখুন" id="" value="{{ auth()->check() ? auth()->user()->upazila : old('upazila') }}">
+                            type="text" name="upazila" placeholder="আপনার থানা (পুলিশ স্টেশন) লিখুন" id=""
+                            value="{{ auth()->check() ? auth()->user()->upazila : old('upazila') }}">
                         @if ($errors->get('upazila'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('upazila') as $error)
@@ -54,7 +57,8 @@
                     {{-- City --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2 placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="text" name="city" placeholder="আপনার জেলা লিখুন" id="" value="{{ auth()->check() ? auth()->user()->city : old('city') }}">
+                            type="text" name="city" placeholder="আপনার জেলা লিখুন" id=""
+                            value="{{ auth()->check() ? auth()->user()->city : old('city') }}">
                         @if ($errors->get('city'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('city') as $error)
@@ -67,7 +71,8 @@
                     {{-- Phone --}}
                     <div class="mb-3">
                         <input class="w-full p-1 pl-2  placeholder:text-xs placeholder:text-[#666666] border rounded"
-                            type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার লিখুন" id="" value="{{ auth()->check() ? auth()->user()->phone : old('phone') }}">
+                            type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার লিখুন" id=""
+                            value="{{ auth()->check() ? auth()->user()->phone : old('phone') }}">
                         @if ($errors->get('phone'))
                             <div class="font-light text-red-900 px-1">
                                 @foreach ($errors->get('phone') as $error)
@@ -191,7 +196,8 @@
                     <button type="button" class="text-gray-600 hover:text-gray-800" onclick="closeOtpModal()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
                             </path>
                         </svg>
                     </button>
@@ -260,10 +266,16 @@
                             </div>
                         `);
 
-                            setTimeout(function() {
-                                window.location.href =
-                                    '{{ url('thank-you') }}'; // Redirect to your Thank You page URL
-                            }, 1000); // 1 second delay before redirection
+                            // Check if order_id is available
+                            if (data.order_id) {
+                                // Redirect to the thank you page with order ID
+                                setTimeout(function() {
+                                    window.location.href = "{{ url('thank-you') }}/" + data
+                                        .order_id; // Ensure order_id is appended
+                                }, 1000); // 2 seconds before redirecting
+                            } else {
+                                console.log("Order ID not received");
+                            }
 
                             $('#order-form')[0].reset(); // Clear form after success (optional)
                         } else {
@@ -348,17 +360,24 @@
                 },
                 success: function(response) {
                     console.log('OTP verification response:', response); // Log response for debugging
+
                     if (response.status === 'success') {
                         $('#order-message').html(
                             '<div class="p-3 bg-green-500 text-white rounded">OTP verified successfully!</div>'
                         );
+
                         closeOtpModal();
                         // Redirect to the Thank You page after 1 second
 
-                        setTimeout(function() {
-                            window.location.href =
-                                '{{ url('thank-you') }}'; // Redirect to your Thank You page URL
-                        }, 1000); // 1 second delay before redirection
+                        // Check if order_id is available
+                        if (response.order_id) {
+                            // Redirect to the thank you page with order ID
+                            setTimeout(function() {
+                                window.location.href = "{{ url('thank-you') }}/" + response.order_id; // Ensure order_id is appended
+                            }, 1000); // 2 seconds before redirecting
+                        } else {
+                            console.log("Order ID not received");
+                        }
 
                     } else {
                         $('#otp-message').html(

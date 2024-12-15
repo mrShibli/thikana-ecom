@@ -212,6 +212,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         // Other aliases...
         'SMSService' => App\Services\SMSService::class,
+
     ])->toArray(),
 
 ];

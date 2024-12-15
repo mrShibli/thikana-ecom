@@ -1,165 +1,181 @@
 @extends('layouts.master')
+
 @section('content')
+    <style>
+        table.table {
+            white-space: nowrap;
+            border: 0.1px solid #C6C7C8;
+        }
+    </style>
     <div class="container-fluid mt-5">
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb bg-white p-3 shadow-sm">
                 <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Orders</li>
             </ol>
         </nav>
-        <h5>Update Order</h5>
-        <div class="row py-5">
-            <div class="col-12 col-md-8 mx-auto">
-                <div class="py-3">
-                    <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-primary"><- Back</a>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Update Order</h5>
+            </div>
+            <div class="card-body">
+                <!-- Back Button -->
+                <div class="mb-4">
+                    <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </a>
                 </div>
-                <div class="card">
-                    <div class="card-body">
 
-                        <div class="mb-3">
-                            <h4 class="py-1">Product Details</h4>
-                            @if (!empty($order->products))
-                                @php
-                                    $order_items = $order->order_items;
-                                @endphp
-                                @foreach ($order->products as $product)
-                                    <div class="card my-1">
-                                        <div class="card-body">
+                <!-- Product Details -->
+                <div class="mb-4">
+                    <h4 class="mb-3">Product Details</h4>
+                    @if (!empty($order->products))
+                        @php $order_items = $order->order_items; @endphp
+                        @foreach ($order->products as $product)
+                            <div class="card mb-3 border-0 shadow-sm">
+                                <div class="card-body d-flex align-items-center justify-content-between">
+                                    @php
+                                        $variationOption = \App\Models\VariationOption::find(
+                                            $order_items[$loop->index]->option_id,
+                                        );
+                                    @endphp
+                                    <div>
+                                        <h6 class="mb-1">Package #{{ $loop->index + 1 }}</h6>
+                                        <h6>{{ $product->title }}</h6>
+                                        <p class="text-muted mb-0">Variation:
+                                            <strong>{{ $variationOption->name ?? 'N/A' }}</strong>
+                                        </p>
+                                        <p class="text-muted mb-0">Quantity:
+                                            <strong>{{ $order_items[$loop->index]->quantity }}</strong>
+                                        </p>
+                                        <p class="text-muted">Subtotal:
+                                            <strong>{{ $order_items[$loop->index]->quantity * $product->old_price }}
+                                                TK</strong>
+                                        </p>
+                                    </div>
+                                    <img src="{{ asset('storage/' . $product->thumb_image) }}" width="120"
+                                        alt="Product Image" class="rounded" width="100">
 
-                                            @php
-                                                // Fetch the variation details using option_id
-                                                $variationOption = \App\Models\VariationOption::find(
-                                                    $order_items[$loop->index]->option_id,
-                                                );
-                                            @endphp
-
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <h6 class="py-1">Package#{{ $loop->index + 1 }}</h6>
-                                                <div><img src="{{ asset($product->thumb_image) }}" alt=""
-                                                        width="90">
-                                                </div>
-                                                <div>
-                                                    <h6>{{ $product->title }}</h6>
-                                                </div>
-                                                <div class="d-block">
-                                                    <div class="fw-bold text-danger">
-                                                        Variation: {{$variationOption->name ?? 'N/A'}}</div>
-                                                    <div class="fw-bold text-danger">
-                                                        Quantity: {{ $order_items[$loop->index]->quantity }}</div>
-                                                    <div class="fw-bold text-danger">
-                                                        Subtotal:
-                                                        {{ $order_items[$loop->index]->quantity * $product->old_price }}
-                                                        TK
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-
-                        <div class="mb-2">
-                            <h4 class="py-1">Order Details</h4>
-                            <div class="row py-2">
-                                <div class="col-12 col-md-6 order-2">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center fw-bold" colspan="2">User Info</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Name</th>
-                                                <td>{{ $order->name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Phone</th>
-                                                <td>{{ $order->phone }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Upazila</th>
-                                                <td>{{ $order->upazila }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>City</th>
-                                                <td>{{ $order->city }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Address</th>
-                                                <td>{{ $order->address }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-12 col-md-6 order-1">
-                                    <h6 class="py-2">Total Summary</h6>
-                                    <div class="d-flex justify-content-between px-3 py-2">
-                                        <div class="fs-5">Subtotal</div>
-                                        <div class="fw-bold">{{ $order->total }}TK</div>
-                                    </div>
-                                    <div class="d-flex justify-content-between px-3">
-                                        <div class="fs-5">Shipping Cost</div>
-                                        <div class="fw-bold">{{ $order->shipping }}TK</div>
-                                    </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between px-3">
-                                        <div class="fs-5">Total</div>
-                                        <div class="fw-bold">{{ $order->shipping + $order->total }}TK</div>
-                                    </div>
-                                    <div class="d-flex justify-content-between px-3">
-                                        <div class="fs-5">Paid</div>
-                                        <div class="fw-bold">0.00 TK</div>
-                                    </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between px-3">
-                                        <div class="fs-5">Total Due</div>
-                                        <div class="fw-bold">{{ $order->shipping + $order->total }} TK</div>
-                                    </div>
                                 </div>
                             </div>
+                        @endforeach
+                    @else
+                        <p class="text-muted">No products found for this order.</p>
+                    @endif
+                </div>
 
+                <!-- Order Details -->
+                <div class="mb-4">
+                    <h4 class="mb-3">Order Details</h4>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th colspan="2" class="text-center">Customer Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Name</th>
+                                        <td>{{ $order->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>{{ $order->phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Upazila</th>
+                                        <td>{{ $order->upazila }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>City</th>
+                                        <td>{{ $order->city }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address</th>
+                                        <td>{{ $order->address }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <form action="{{ route('admin.orders.update', $order->id) }}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-3">
-                                <label for="status" class="form-label">Status</label>
-                                <select name="status" class="form-select">
-                                    @if ($order->status === 'pending')
-                                        <option value="pending" selected>Pending</option>
-                                        <option value="processing">Processing</option>
-                                        <option value="on_hold">On hold</option>
-                                        <option value="canceled">Canceled</option>
-                                    @elseif($order->status === 'processing')
-                                        <option value="processing" selected>Processing</option>
-                                        <option value="shipped">Shipped</option>
-                                        <option value="canceled">Canceled</option>
-                                    @elseif($order->status === 'on_hold')
-                                        <option value="processing">Processing</option>
-                                        <option value="on_hold" selected>On hold</option>
-                                        <option value="canceled">Canceled</option>
-                                    @elseif($order->status === 'shipped')
-                                        <option value="shipped" selected>Shipped</option>
-                                        <option value="delivered">Delivered</option>
-                                    @elseif($order->status === 'delivered')
-                                        <option value="delivered" selected>Delivered</option>
-                                    @else
-                                        <option value="canceled" selected>Canceled</option>
-                                    @endif
-
-
-                                </select>
+                        <div class="col-md-6">
+                            <div class="border p-3 rounded shadow-sm">
+                                <h6 class="mb-3">Total Summary</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span>Subtotal</span>
+                                    <span class="fw-bold">{{ $order->total }} TK</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Shipping Cost</span>
+                                    <span class="fw-bold">{{ $order->shipping }} TK</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <span>Total</span>
+                                    <span class="fw-bold">{{ $order->shipping + $order->total }} TK</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Paid</span>
+                                    <span class="fw-bold">0.00 TK</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <span>Total Due</span>
+                                    <span class="fw-bold">{{ $order->shipping + $order->total }} TK</span>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary"
-                                    @if ($order->status === 'delivered' || $order->status === 'canceled') disabled @endif>Update</button>
-                            </div>
-                        </form>
-
+                        </div>
                     </div>
                 </div>
+
+                <!-- Order Status Form -->
+                <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="status" class="form-label">Order Status</label>
+                                <select name="status" id="status" class="form-select"
+                                    {{ in_array($order->status, ['delivered', 'canceled']) ? 'disabled' : '' }}>
+                                    <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending
+                                    </option>
+                                    <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>
+                                        Processing
+                                    </option>
+                                    <option value="on_hold" {{ $order->status === 'on_hold' ? 'selected' : '' }}>On Hold
+                                    </option>
+                                    <option value="shipped" {{ $order->status === 'shipped' ? 'selected' : '' }}>Shipped
+                                    </option>
+                                    <option value="delivered" {{ $order->status === 'delivered' ? 'selected' : '' }}>
+                                        Delivered
+                                    </option>
+                                    <option value="canceled" {{ $order->status === 'canceled' ? 'selected' : '' }}>Canceled
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label for="status" class="form-label">Assign Order for</label>
+                                <select name="assign" id="assign" class="form-select">
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{$user->name}} : {{  $user->email }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary"
+                            {{ in_array($order->status, ['delivered', 'canceled']) ? 'disabled' : '' }}>Update
+                            Order</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

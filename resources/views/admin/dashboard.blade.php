@@ -21,7 +21,7 @@
                                         <div id="hybrid_followers"></div>
                                     </div>
                                 </div> -->
-                    <div class="glowcard glowcard1">
+                    <a class="glowcard glowcard1" href="{{ url('admin/orders') }}">
                         <div class="glowcard-content">
                             <span class="icon"><span class="fas fa-chart-simple text-white fs-4"></span></span>
                             <div>
@@ -29,7 +29,7 @@
                                 <div class="label">Orders</div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-6 my-2">
                     <!-- <div class="revinue revinue-one_hybrid">
@@ -75,7 +75,7 @@
                                         <div id="hybrid_followers"></div>
                                     </div>
                                 </div> -->
-                    <div class="glowcard glowcard3">
+                    <a class="glowcard glowcard3" href="{{ route('admin.users') }}">
                         <div class="glowcard-content">
                             <span class="icon"><span class="fas fa-user text-white fs-4"></span></span>
                             <div>
@@ -83,7 +83,7 @@
                                 <div class="label">Customers</div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-6 my-2">
                     <!-- <div class="revinue revinue-one_hybrid">
