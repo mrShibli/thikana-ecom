@@ -61,6 +61,21 @@ class OrderController extends Controller
         return view('admin.orders.assign', compact('orders'));
     }
 
+    public function updateStatus(Request $request)
+    {
+        $order = Order::find($request->order_id);
+
+        if ($order) {
+            $order->status = $request->status;
+            $order->save();
+
+            return response()->json(['success' => true, 'message' => 'Order status updated successfully']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Order not found']);
+    }
+
+
 
     public function store(Request $request)
     {

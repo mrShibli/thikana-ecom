@@ -19,6 +19,7 @@
             </ul>
         </div>
     @endif
+    
     <div class=" container mx-auto my-5 flex flex-wrap gap-4 p-3 ">
         <div class="w-full laptop:w-[430px] border rounded p-2">
             <div class="laptop:hidden tablet:hidden desktop:hidden">
@@ -29,20 +30,27 @@
                 <h2 class="p-title my-2 text-base tablet:table laptop:text-[17px] leading-6">Ramadan Special Premium
                     Dawah T-Shirt । নিশ্চই কষ্টের সাথেই স্বস্তি রয়েছে</h2>
             </div>
+            
             <div class="flex gap-1">
-
-                <img class="w-60 laptop:w-80 object-contain" src="{{ asset('storage/' . $product->thumb_image) }}"
-                    alt="">
-                <div class="image-gallery px-1">
-                    @php
-                        $productIMage = json_decode($product->images, false, 512, JSON_THROW_ON_ERROR);
-                    @endphp
-                    @foreach ($productIMage as $image)
-                        <img class="w-14 h-16 laptop:w-24 laptop:h-28 object-cover mb-1 border border-red "
-                            src="{{ asset('storage/' . $image) }}" alt="">
-                    @endforeach
-                </div>
+                @php
+                    $productImages = json_decode($product->images, false, 512, JSON_THROW_ON_ERROR);
+                @endphp
+            
+                <img class="{{ $productImages ? 'w-80' : 'w-100' }} object-contain" 
+                     src="{{ asset('storage/' . $product->thumb_image) }}" 
+                     alt="">
+            
+                @if($productImages)
+                    <div class="image-gallery px-1">
+                        @foreach ($productImages as $image)
+                            <img class="w-14 h-16 laptop:w-24 laptop:h-28 object-cover mb-1 border border-red" 
+                                 src="{{ asset('storage/' . $image) }}" 
+                                 alt="">
+                        @endforeach
+                    </div>
+                @endif
             </div>
+            
 
 
         </div>
@@ -67,26 +75,6 @@
                     <span id="updateOfferPrice">{{ $product->old_price }}</span> ৳
                 @endif
             </div>
-
-            {{-- <div class="color-btn mt-5">
-                <h4 class="font-semibold mb-2">Color</h4>
-                <div class="flex gap-2">
-                    <div class="black p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="p-4 transition-all  bg-black"></button>
-                    </div> 
-                    <div class="dark-olive p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="p-4 transition-all  bg-[#454636]"></button>
-                    </div>
-                    
-                    <div class="light-purple p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="p-4 transition-all  bg-[#9F92A6]"></button>
-                    </div>
-                    
-                    <div class="white p-[2px] border border-gray-500 rounded hover:border-2 hover:border-gray-600 transition-all">
-                        <button class="p-4 transition-all bg-white"></button>
-                    </div> 
-                </div>
-            </div> --}}
 
             @php
                 $optinId = null;
@@ -125,7 +113,7 @@
                         <input type="hidden" name="option_id" value="{{ $optinId }}" id="cart_option_id" />
                     @endif
                     <button type="submit" onclick="updateQuantityBeforeSubmit(this.form)"
-                        class="py-2 px-8 laptop:py-3 laptop:px-10 bg-blue rounded text-white text-sm font-bold">
+                        class="py-2 px-6 laptop:py-3 laptop:px-10 bg-blue rounded text-white text-sm font-bold">
                         Add To Cart
                     </button>
                 </form>
@@ -141,7 +129,7 @@
                         <input type="hidden" name="option_id" value="{{ $optinId }}" id="buy_option_id" />
                     @endif
                     <button type="submit" onclick="updateQuantityBeforeSubmit(this.form)"
-                        class="py-2 px-8 laptop:py-3 laptop:px-10 bg-red rounded text-white text-sm tablet:text-base laptop:text-base font-bold">
+                        class="py-2 px-6 laptop:py-3 laptop:px-10 bg-red rounded text-white text-sm tablet:text-base laptop:text-base font-bold">
                         Buy Now
                     </button>
                 </form>
@@ -258,13 +246,13 @@
     <div class="container mx-auto p-3 laptop:py-8">
         <h2 class="my-7 text-blue text-base laptop:text-xl font-semibold ">Related Products</h2>
 
-        <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4">
+        <div class="grid grid-cols-2 gap-2 tablet:grid-cols-3 laptop:grid-cols-4">
 
             @foreach ($related_products as $related_product)
                 @php
                     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $related_product->title)));
                 @endphp
-                <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
+                <div class="swiper-slide text-center border rounded p-1 w-50">
                     <a href="{{ route('product.single', ['slug' => $slug, 'id' => $related_product->id]) }}">
                         <img class="bg-slate-100 p-2 w-full h-48 object-cover"
                             src="{{ asset('storage/' . $related_product->thumb_image) }}" alt="">

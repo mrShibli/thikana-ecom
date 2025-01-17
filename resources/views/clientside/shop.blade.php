@@ -55,12 +55,12 @@
                         Price Low to high</option>
                 </select>
             </div>
-            <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4">
+            <div class="grid grid-cols-2 gap-2 tablet:grid-cols-3 laptop:grid-cols-4">
                 @foreach($products as $product)
                     @php
                         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product->title)));
                     @endphp
-                    <div class="text-center border rounded p-2">
+                    <div class="text-center border rounded p-1">
                         <a href="{{route ("product.single",[$product->id,$slug])}}">
                             <img class="bg-slate-100 p-2" src="{{ asset('storage/' .$product->thumb_image) }}" alt="">
                         </a>

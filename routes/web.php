@@ -43,11 +43,22 @@ Route::get('/thank-you/{order}', [OrderController::class, 'thankYou'])->name('or
 
 Route::get('order/{orderId}/download-pdf', [OrderController::class, 'downloadOrderPDF'])->name('downloadOrderPDF');
 
-Route::middleware(['auth'])->prefix('account')->group(function () {
-    Route::get('/profile', [AccountController::class, 'show'])->name('account.show'); // Profile page
-    Route::get('/edit', [AccountController::class, 'edit'])->name('account.edit'); // Edit form
-    Route::post('/update', [AccountController::class, 'update'])->name('account.update'); // Update form submission
+// Route::middleware(['auth'])->prefix('account')->group(function () {
+//     Route::get('/profile', [AccountController::class, 'show'])->name('account.show'); // Profile page
+//     Route::get('/edit', [AccountController::class, 'edit'])->name('account.edit'); // Edit form
+//     Route::post('/update', [AccountController::class, 'update'])->name('account.update'); // Update form submission
+// });
+
+Route::prefix('account')->name('account.')->group(function () {
+    // Edit profile form (authentication required)
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [AccountController::class, 'show'])->name('show');
+        Route::get('/edit', [AccountController::class, 'edit'])->name('edit');
+        Route::post('/update', [AccountController::class, 'update'])->name('update');
+    });
 });
+
+
 
 //middleware(['auth'])->
 Route::prefix('admin')->middleware("auth")->group(function () {
@@ -123,6 +134,7 @@ Route::prefix('admin')->middleware("auth")->group(function () {
     });
 
     Route::get('/my-assigned-orders', [OrderController::class, 'asignedorders'])->name('asigned.orders');
+    Route::post('/orders/update-status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
 
 });

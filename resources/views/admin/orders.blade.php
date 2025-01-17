@@ -3,6 +3,17 @@
 @section('styles')
     <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" rel="stylesheet">
+    <style>
+        /* Add hover effect to rows */
+        .clickable-row:hover {
+            background-color: #fa2b2b !important;
+            /* Light gray background on hover */
+            cursor: pointer;
+            /* Change cursor to pointer */
+            transition: background-color 0.3s ease;
+            /* Smooth transition effect */
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -22,7 +33,13 @@
                 <select name="status" id="status" class="form-select" onchange="this.form.submit()">
                     <option value="">Select Status</option>
                     <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="phone_not_rcv" {{ request('status') === 'phone_not_rcv' ? 'selected' : '' }}>Call Not
+                        Received</option>
+                    <option value="follow_up" {{ request('status') === 'follow_up' ? 'selected' : '' }}>Follow up</option>
                     <option value="processing" {{ request('status') === 'processing' ? 'selected' : '' }}>Processing
+                    </option>
+                    <option value="ready_for_delivery" {{ request('status') === 'ready_for_delivery' ? 'selected' : '' }}>
+                        Ready For Delivery
                     </option>
                     <option value="delivered" {{ request('status') === 'delivered' ? 'selected' : '' }}>Delivered
                     </option>
@@ -36,70 +53,73 @@
         </div>
         <table class="table table-striped" id="Products">
             <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>phone</th>
-                <th>Product Id</th>
-                <th>Product name</th>
-                <th>address</th>
-                <th>Total Price</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
+                <tr>
+                    <th>SL</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>phone</th>
+                    <th>Product name</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Order at</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach ($orders as $order)
-                <tr>
-                    <td>{{ $order->id }}</td>
-                    <td> {{ $order->name }}</td>
-                    <td> {{ $order->phone }}</td>
-                    <td> @foreach($order->products as $product)
-                            {{ $product->id }}@if($loop->index < 2)
-                                ,
-                            @endif
-                        @endforeach</td>
-                    <td> @foreach($order->products as $product)
-                            {{ $product->title }}@if($loop->index <2)
-                                <br>
-                            @endif
-                        @endforeach</td>
-                    <td> {{ $order->upazila }},{{$order->city}},{{$order->address}}</td>
-                    <td> {{ $order->total }}</td>
-                    <td>
-                        @php
-                            $statusClass = 'danger'; // Default class
-                            if ($order->status === 'pending') {
-                                $statusClass = 'warning';
-                            } elseif ($order->status === 'processing') {
-                                $statusClass = 'primary';
-                            } elseif ($order->status === 'delivered') {
-                                $statusClass = 'success';
-                            } elseif ($order->status === 'on_hold') {
-                                $statusClass = 'secondary';
-                            } elseif ($order->status === 'shipped') {
-                                $statusClass = 'info';
-                            }
-                        @endphp
-                        <span class="btn btn-{{ $statusClass }} btn-sm">
-                            {{ $order->status }}
-                        </span>
-                    </td>
-                    <td>
-                        <a href="{{route ("admin.orders.edit",$order->id)}}">
-                            <img src="{{ asset('edit.svg') }}" alt="" width="26">
-                        </a>
-                        <form action="" method="POST" class="d-inline">
-
-                            <button type="submit" onclick="return confirm('Are you sure?')">
-                                <img src="{{ asset('delete.svg') }}" alt="" width="26">
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-
+                @php
+                    use Illuminate\Support\Str;
+                @endphp
+                @foreach ($orders as $order)
+                    <tr data-href="{{ route('admin.orders.edit', $order->id) }}" class="clickable-row">
+                        <td>{{ $loop->iteration }}</td> <!-- Serial Number -->
+                        <td>{{ $order->id }}</td>
+                        <td>{{ $order->name }}</td>
+                        <td>{{ $order->phone }}</td>
+                        <td>
+                            @foreach ($order->products as $product)
+                                {{ Str::limit($product->title, 30, '...') }}@if (!$loop->last)
+                                    <br>
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>{{ $order->total }}</td>
+                        <td>
+                            <select class="form-select status-dropdown" data-order-id="{{ $order->id }}">
+                                <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending
+                                </option>
+                                <option value="phone_not_rcv" {{ $order->status === 'phone_not_rcv' ? 'selected' : '' }}>
+                                    Call Not Received</option>
+                                <option value="follow_up" {{ $order->status === 'follow_up' ? 'selected' : '' }}>Follow up
+                                </option>
+                                <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>
+                                    Processing</option>
+                                <option value="ready_for_delivery"
+                                    {{ $order->status === 'ready_for_delivery' ? 'selected' : '' }}>Ready For Delivery
+                                </option>
+                                <option value="delivered" {{ $order->status === 'delivered' ? 'selected' : '' }}>Delivered
+                                </option>
+                                <option value="on_hold" {{ $order->status === 'on_hold' ? 'selected' : '' }}>On Hold
+                                </option>
+                                <option value="shipped" {{ $order->status === 'shipped' ? 'selected' : '' }}>Shipped
+                                </option>
+                                <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Cancelled
+                                </option>
+                            </select>
+                        </td>
+                        <td>{{ $order->created_at->format('Y-m-d H:i:s') }}</td>
+                        <td>
+                            <a href="{{ route('admin.orders.edit', $order->id) }}">
+                                <img src="{{ asset('edit.svg') }}" alt="" width="26">
+                            </a>
+                            <a href="{{ route('admin.orders.edit', $order->id) }}">
+                                <img src="{{ asset('view.svg') }}" alt="" width="26">
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
+
+
         </table>
     </div>
 @endsection
@@ -112,13 +132,77 @@
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 
+
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
+            // Initialize DataTable
             $('#Products').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'pdf', 'csv', 'excel', 'print'
-                ]
+                ],
+                order: [
+                    [0, 'asc']
+                ] // Keep the default order
+            });
+
+            // Make rows clickable
+            $('#Products tbody').on('click', '.clickable-row', function() {
+                const url = $(this).data('href');
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+
+            // Prevent row click event when interacting with dropdown
+            $('.status-dropdown').on('click', function(event) {
+                event.stopPropagation();
+            });
+
+            // AJAX call to update status
+            $('.status-dropdown').on('change', function() {
+                const orderId = $(this).data('order-id');
+                const newStatus = $(this).val();
+
+                $.ajax({
+                    url: '{{ route('admin.orders.updateStatus') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        order_id: orderId,
+                        status: newStatus
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);
+
+                            // Update the status in the table without reordering
+                            const statusClass = {
+                                'pending': 'btn-warning',
+                                'processing': 'btn-primary',
+                                'delivered': 'btn-success',
+                                'on_hold': 'btn-secondary',
+                                'shipped': 'btn-info',
+                                'phone_not_rcv': 'btn-info',
+                                'follow_up': 'btn-info',
+                                'ready_for_delivery': 'btn-info',
+                                'cancelled': 'btn-danger'
+                            };
+
+                            // Update the button class and text dynamically
+                            const row = $(`[data-order-id=${orderId}]`).closest('tr');
+                            row.find('.btn')
+                                .removeClass()
+                                .addClass(`btn ${statusClass[newStatus]} btn-sm`)
+                                .text(newStatus);
+                        } else {
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while updating the status. Please try again.');
+                    }
+                });
             });
         });
     </script>

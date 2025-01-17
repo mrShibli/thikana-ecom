@@ -11,15 +11,19 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index (Request $request) {
-        $status = $request->get ("status");
-        $orders = order::with ("products");
+    public function index(Request $request)
+    {
+        $status = $request->get("status");
+
+        $orders = Order::with("products");
+
         if ($status && $status !== '') {
-            $orders = $orders->where ("status", $status);
+            $orders = $orders->where("status", $status);
         }
-        $orders = $orders->orderBy ("updated_at","desc");
-        $orders =  $orders->get ();
-        return view ('admin.orders', compact ("orders"));
+
+        $orders = $orders->orderBy("created_at", "desc")->get();
+
+        return view('admin.orders', compact("orders"));
     }
 
     /**
@@ -49,20 +53,22 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit (order $order) {
+    public function edit(order $order)
+    {
         $users = User::get();
-        return view ("admin.orders.edit", compact ("order", "users"));
+        return view("admin.orders.edit", compact("order", "users"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update (Request $request, order $order) {
+    public function update(Request $request, order $order)
+    {
         $order->status = $request->status;
         $order->assign = $request->assign;
-        $order->save ();
-        flash ("order Updated");
-        return redirect ()->back ();
+        $order->save();
+        flash("order Updated");
+        return redirect()->back();
     }
 
     /**

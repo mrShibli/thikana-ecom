@@ -12,8 +12,8 @@
             @endforeach
 
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        {{-- <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> --}}
         <div class="swiper-pagination"></div>
     </div>
 
@@ -76,8 +76,8 @@
 
             </div>
 
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            {{-- <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> --}}
             <div class="swiper-pagination"></div>
 
         </div>
@@ -121,8 +121,8 @@
 
             </div>
 
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            {{-- <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> --}}
             <div class="swiper-pagination"></div>
 
         </div>
@@ -177,15 +177,15 @@
 
 
     <div class="container mx-auto p-3 laptop:py-5">
-        <h2 class="mb-4 laptop:mb-12 text-center mt-7 text-blue text-xl font-semibold">T-Shirt Collection</h2>
+        <h2 class="mb-4 laptop:mb-12 text-center mt-7 text-blue text-xl font-semibold">Featured Collection</h2>
         <div class="divider border  block  container my-8 "></div>
 
-        <div class="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-4">
+        <div class="grid grid-cols-2 gap-2 tablet:grid-cols-3 laptop:grid-cols-4">
             @foreach ($features_products as $features_product)
                 @php
                     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $features_product->title)));
                 @endphp
-                <div class="swiper-slide text-center border rounded p-2 w-64 h-96">
+                <div class="swiper-slide text-center border rounded p-1 w-50">
                     <a href="{{ route('product.single', ['slug' => $slug, 'id' => $features_product->id]) }}">
                         <img class="bg-slate-100 p-2 w-full h-48 object-cover"
                              src="{{ asset('storage/'. $features_product->thumb_image) }}" alt="">

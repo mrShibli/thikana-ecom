@@ -146,9 +146,18 @@
                                     <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>
                                         Processing
                                     </option>
+                                    <option value="phone_not_rcv" {{ $order->status === 'phone_not_rcv' ? 'selected' : '' }}>
+                                        Call Not Received
+                                    </option>
+                                    <option value="follow_up" {{ $order->status === 'follow_up' ? 'selected' : '' }}>
+                                        Follow up
+                                    </option>
                                     <option value="on_hold" {{ $order->status === 'on_hold' ? 'selected' : '' }}>On Hold
                                     </option>
                                     <option value="shipped" {{ $order->status === 'shipped' ? 'selected' : '' }}>Shipped
+                                    </option>
+                                    <option value="ready_for_delivery" {{ $order->status === 'ready_for_delivery' ? 'selected' : '' }}>
+                                        Ready For Delivery
                                     </option>
                                     <option value="delivered" {{ $order->status === 'delivered' ? 'selected' : '' }}>
                                         Delivered
